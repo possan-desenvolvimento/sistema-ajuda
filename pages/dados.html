@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏎️ F1 SQL Reference - Dados</title>
+    <link rel="stylesheet" href="../css/dados.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- ============================================
+             MENU LATERAL
+        ============================================ -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🏎️</span>
+                    <span class="logo-text">F1</span>
+                    <span class="logo-badge">PRO</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../index.html">
+                            <span class="nav-icon">📊</span>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-divider"></li>
+                    <li class="nav-item active">
+                        <a href="dados.html">
+                            <span class="nav-icon">🗄️</span>
+                            <span class="nav-text">Dados</span>
+                            <span class="nav-badge">SQL</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="linux.html">
+                            <span class="nav-icon">🐧</span>
+                            <span class="nav-text">Linux</span>
+                            <span class="nav-badge">Terminal</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="devops.html">
+                            <span class="nav-icon">🐳</span>
+                            <span class="nav-text">DevOps</span>
+                            <span class="nav-badge">Docker</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="backend.html">
+                            <span class="nav-icon">☕</span>
+                            <span class="nav-text">Back-End</span>
+                            <span class="nav-badge">Spring</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="frontend.html">
+                            <span class="nav-icon">🎨</span>
+                            <span class="nav-text">Front-End</span>
+                            <span class="nav-badge">JS</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="automacao.html">
+                            <span class="nav-icon">⚡</span>
+                            <span class="nav-text">Automação</span>
+                            <span class="nav-badge">N8N</span>
+                        </a>
+                    </li>
+                     <li class="nav-item">
+                        <a href="controle-versao.html">
+                            <span class="nav-icon">⚡</span>
+                            <span class="nav-text">Controle de Versão</span>
+                            <span class="nav-badge">Git</span>
+                        </a>
+                    </li>
+                    <li class="nav-divider"></li>
+                    <li class="nav-item">
+                        <a href="ia.html">
+                            <span class="nav-icon">🤖</span>
+                            <span class="nav-text">Assistente IA</span>
+                            <span class="nav-badge">AI</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-avatar">👤</span>
+                    <span class="user-name">Usuário</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ============================================
+             CONTEÚDO PRINCIPAL
+        ============================================ -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="top-bar-left">
+                    <button class="menu-toggle">☰</button>
+                    <h1>Dados - Referência SQL</h1>
+                </div>
+                <div class="top-bar-right">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="🔍 Buscar comando...">
+                    </div>
+                    <button class="btn-ai">🤖 IA</button>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <!-- Header Ferrari -->
+                <div class="dados-header">
+                    <div class="dados-logo">
+                        <span class="dados-emoji">🏎️</span>
+                        <span class="dados-title">F1 SQL</span>
+                        <span class="dados-subtitle">Reference</span>
+                    </div>
+                    <div class="ferrari-badge">⚡ SCUDERIA FERRARI</div>
+                </div>
+
+                <!-- Conteúdo -->
+                <div class="sql-content">
+                    <h2>📋 Comandos SQL Essenciais</h2>
+                    <p class="subtitle">Clique em uma categoria para ver os comandos com explicações</p>
+
+                    <!-- ==========================================
+                         INTRODUÇÃO
+                    ========================================== -->
+                    <div class="info-card">
+                        <div class="info-title">💡 O que é SQL?</div>
+                        <div class="info-text">
+                            SQL (Structured Query Language) é a linguagem padrão para gerenciar e manipular bancos de dados relacionais.
+                            Com ela você pode <code>SELECT</code> (consultar), <code>INSERT</code> (inserir), <code>UPDATE</code> (atualizar)
+                            e <code>DELETE</code> (remover) dados.
+                        </div>
+                    </div>
+
+                    <!-- ==========================================
+                         SELETOR DE BANCO
+                    ========================================== -->
+                    <div class="db-selector">
+                        <button class="db-btn active" data-db="postgres">🐘 PostgreSQL</button>
+                        <button class="db-btn" data-db="mysql">🐬 MySQL</button>
+                        <button class="db-btn" data-db="sqlserver">💾 SQL Server</button>
+                        <button class="db-btn" data-db="informix">📊 Informix</button>
+                    </div>
+
+                    <!-- ==========================================
+                         ACORDEON DE COMANDOS
+                    ========================================== -->
+                    <div class="accordion" id="commandsAccordion">
+                        <!-- ==========================================
+                             SELECT
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="select">
+                                <span class="accordion-icon">📊</span>
+                                <span class="accordion-title">SELECT</span>
+                                <span class="accordion-badge">Consultar dados</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="select">
+                                <!-- 1 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">SELECT * FROM usuarios;</span>
+                                        <span class="cmd-desc">Seleciona todas as colunas e linhas da tabela</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 2 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">SELECT nome, email FROM usuarios;</span>
+                                        <span class="cmd-desc">Seleciona apenas colunas específicas</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 3 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">SELECT * FROM usuarios WHERE idade > 18;</span>
+                                        <span class="cmd-desc">Filtra registros com condição (maior que 18)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 4 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">SELECT * FROM usuarios ORDER BY nome ASC;</span>
+                                        <span class="cmd-desc">Ordena resultados por nome (A-Z)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 5 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">SELECT * FROM usuarios LIMIT 10;</span>
+                                        <span class="cmd-desc">Limita a quantidade de resultados (10 primeiros)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 6 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">SELECT COUNT(*) FROM usuarios;</span>
+                                        <span class="cmd-desc">Conta o total de registros na tabela</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 7 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">SELECT DISTINCT cidade FROM usuarios;</span>
+                                        <span class="cmd-desc">Retorna apenas valores únicos (sem duplicados)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 8 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">SELECT * FROM usuarios WHERE nome LIKE 'A%';</span>
+                                        <span class="cmd-desc">Busca nomes que começam com 'A'</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 9 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">SELECT * FROM usuarios WHERE idade BETWEEN 18 AND 30;</span>
+                                        <span class="cmd-desc">Filtra idades entre 18 e 30 (inclusive)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 10 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">SELECT * FROM usuarios WHERE id IN (1, 5, 10);</span>
+                                        <span class="cmd-desc">Filtra por múltiplos IDs específicos</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 11 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">SELECT * FROM usuarios WHERE email IS NULL;</span>
+                                        <span class="cmd-desc">Busca registros onde email está vazio (NULL)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 12 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">SELECT AVG(idade) FROM usuarios;</span>
+                                        <span class="cmd-desc">Calcula a média de idade</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             INSERT
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="insert">
+                                <span class="accordion-icon">➕</span>
+                                <span class="accordion-title">INSERT</span>
+                                <span class="accordion-badge">Inserir dados</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="insert">
+                                <!-- 1 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">INSERT INTO usuarios (nome, email) VALUES ('João', 'joao@email.com');</span>
+                                        <span class="cmd-desc">Insere um novo registro com nome e email</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 2 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">INSERT INTO usuarios (nome, idade) VALUES ('Maria', 25);</span>
+                                        <span class="cmd-desc">Insere apenas alguns campos (os outros ficam NULL)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 3 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">INSERT INTO usuarios VALUES (1, 'Pedro', 'pedro@email.com', 30);</span>
+                                        <span class="cmd-desc">Insere com todas as colunas na ordem da tabela</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 4 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">INSERT INTO usuarios (nome, email) VALUES ('Ana', 'ana@email.com'), ('Carlos', 'carlos@email.com');</span>
+                                        <span class="cmd-desc">Insere múltiplos registros de uma vez</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 5 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">INSERT INTO usuarios (nome, email, idade) VALUES ('Julia', 'julia@email.com', 22);</span>
+                                        <span class="cmd-desc">Insere com todos os campos preenchidos</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 6 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">INSERT INTO usuarios_backup SELECT * FROM usuarios WHERE idade > 30;</span>
+                                        <span class="cmd-desc">Copia registros filtrados para outra tabela</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 7 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">INSERT INTO usuarios (nome, email) SELECT nome, email FROM usuarios_antigos WHERE ativo = 1;</span>
+                                        <span class="cmd-desc">Insere dados de uma tabela para outra com filtro</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             UPDATE
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="update">
+                                <span class="accordion-icon">✏️</span>
+                                <span class="accordion-title">UPDATE</span>
+                                <span class="accordion-badge">Atualizar dados</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="update">
+                                <!-- 1 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">UPDATE usuarios SET email = 'novo@email.com' WHERE id = 1;</span>
+                                        <span class="cmd-desc">Atualiza o email de um usuário específico</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 2 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">UPDATE usuarios SET idade = 26 WHERE nome = 'Maria';</span>
+                                        <span class="cmd-desc">Atualiza idade de um usuário pelo nome</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 3 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">UPDATE usuarios SET status = 'ativo', updated_at = NOW() WHERE id > 10;</span>
+                                        <span class="cmd-desc">Atualiza múltiplos campos de uma vez</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 4 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">UPDATE usuarios SET idade = idade + 1 WHERE YEAR(data_nasc) < 2000;</span>
+                                        <span class="cmd-desc">Incrementa idade baseado na data de nascimento</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 5 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">UPDATE usuarios SET email = CONCAT(nome, '@empresa.com');</span>
+                                        <span class="cmd-desc">Gera email automaticamente a partir do nome</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             DELETE
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="delete">
+                                <span class="accordion-icon">🗑️</span>
+                                <span class="accordion-title">DELETE</span>
+                                <span class="accordion-badge">Remover dados</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="delete">
+                                <!-- 1 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">DELETE FROM usuarios WHERE id = 1;</span>
+                                        <span class="cmd-desc">Remove um usuário específico pelo ID</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 2 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">DELETE FROM usuarios WHERE idade < 18;</span>
+                                        <span class="cmd-desc">Remove todos os usuários menores de 18 anos</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 3 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">DELETE FROM usuarios WHERE status = 'inativo';</span>
+                                        <span class="cmd-desc">Remove todos os usuários inativos</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 4 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">DELETE FROM usuarios WHERE data_criacao < '2024-01-01';</span>
+                                        <span class="cmd-desc">Remove registros antigos (antes de 2024)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             CREATE TABLE
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="create">
+                                <span class="accordion-icon">🏗️</span>
+                                <span class="accordion-title">CREATE TABLE</span>
+                                <span class="accordion-badge">Criar tabela</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="create">
+                                <!-- 1 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">CREATE TABLE usuarios (id INT PRIMARY KEY, nome VARCHAR(100), email VARCHAR(100));</span>
+                                        <span class="cmd-desc">Tabela básica com chave primária</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 2 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">CREATE TABLE produtos (id SERIAL, nome TEXT, preco DECIMAL(10,2), estoque INT);</span>
+                                        <span class="cmd-desc">Tabela com auto-increment (SERIAL no PostgreSQL)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 3 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">CREATE TABLE pedidos (id INT, usuario_id INT, data DATE, FOREIGN KEY (usuario_id) REFERENCES usuarios(id));</span>
+                                        <span class="cmd-desc">Tabela com chave estrangeira (relacionamento)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 4 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">CREATE TABLE categorias (id INT PRIMARY KEY, nome VARCHAR(50), descricao TEXT);</span>
+                                        <span class="cmd-desc">Tabela simples para categorias</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 5 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">CREATE TABLE logs (id SERIAL, usuario_id INT, acao TEXT, data TIMESTAMP DEFAULT NOW());</span>
+                                        <span class="cmd-desc">Tabela com valor padrão (NOW() = data atual)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             ALTER TABLE
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="alter">
+                                <span class="accordion-icon">🔧</span>
+                                <span class="accordion-title">ALTER TABLE</span>
+                                <span class="accordion-badge">Modificar estrutura</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="alter">
+                                <!-- 1 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">ALTER TABLE usuarios ADD COLUMN telefone VARCHAR(20);</span>
+                                        <span class="cmd-desc">Adiciona uma nova coluna à tabela</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 2 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">ALTER TABLE usuarios DROP COLUMN telefone;</span>
+                                        <span class="cmd-desc">Remove uma coluna da tabela</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 3 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">ALTER TABLE usuarios RENAME COLUMN nome TO nome_completo;</span>
+                                        <span class="cmd-desc">Renomeia uma coluna</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 4 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">ALTER TABLE usuarios ALTER COLUMN idade SET NOT NULL;</span>
+                                        <span class="cmd-desc">Torna a coluna obrigatória (não aceita NULL)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 5 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">ALTER TABLE usuarios ADD CONSTRAINT unique_email UNIQUE (email);</span>
+                                        <span class="cmd-desc">Adiciona restrição UNIQUE (não permite duplicados)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             DROP
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="drop">
+                                <span class="accordion-icon">💥</span>
+                                <span class="accordion-title">DROP</span>
+                                <span class="accordion-badge">Remover tabelas</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="drop">
+                                <!-- 1 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">DROP TABLE usuarios;</span>
+                                        <span class="cmd-desc">Remove a tabela permanentemente</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 2 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">DROP TABLE IF EXISTS usuarios;</span>
+                                        <span class="cmd-desc">Remove a tabela se ela existir (evita erro)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 3 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">DROP DATABASE meu_banco;</span>
+                                        <span class="cmd-desc">Remove o banco de dados inteiro</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 4 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">DROP TABLE pedidos, produtos, categorias;</span>
+                                        <span class="cmd-desc">Remove múltiplas tabelas de uma vez</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             JOINS
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="joins">
+                                <span class="accordion-icon">🔗</span>
+                                <span class="accordion-title">JOINS</span>
+                                <span class="accordion-badge">Relacionar tabelas</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="joins">
+                                <!-- 1 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">SELECT * FROM usuarios INNER JOIN pedidos ON usuarios.id = pedidos.usuario_id;</span>
+                                        <span class="cmd-desc">Retorna apenas registros com correspondência em ambas tabelas</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 2 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">SELECT * FROM usuarios LEFT JOIN pedidos ON usuarios.id = pedidos.usuario_id;</span>
+                                        <span class="cmd-desc">Retorna todos os usuários, mesmo sem pedidos (NULL onde não tem)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 3 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">SELECT u.nome, p.total FROM usuarios u JOIN pedidos p ON u.id = p.usuario_id WHERE p.total > 100;</span>
+                                        <span class="cmd-desc">JOIN com alias (u, p) e filtro</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 4 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">SELECT * FROM usuarios u LEFT JOIN pedidos p ON u.id = p.usuario_id LEFT JOIN produtos pr ON p.produto_id = pr.id;</span>
+                                        <span class="cmd-desc">Múltiplos JOINs (usuários, pedidos, produtos)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             GROUP BY & HAVING
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="group">
+                                <span class="accordion-icon">📈</span>
+                                <span class="accordion-title">GROUP BY & HAVING</span>
+                                <span class="accordion-badge">Agrupar dados</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="group">
+                                <!-- 1 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">SELECT cidade, COUNT(*) FROM usuarios GROUP BY cidade;</span>
+                                        <span class="cmd-desc">Conta quantos usuários por cidade</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 2 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">SELECT cidade, COUNT(*) FROM usuarios GROUP BY cidade HAVING COUNT(*) > 5;</span>
+                                        <span class="cmd-desc">Filtra cidades com mais de 5 usuários</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 3 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">SELECT YEAR(data_criacao) AS ano, COUNT(*) FROM usuarios GROUP BY YEAR(data_criacao);</span>
+                                        <span class="cmd-desc">Conta usuários criados por ano</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <!-- 4 -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">SELECT status, AVG(idade) FROM usuarios GROUP BY status;</span>
+                                        <span class="cmd-desc">Média de idade por status</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // ============================================
+        // ACORDEON
+        // ============================================
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const targetId = this.dataset.target;
+                const body = document.getElementById(targetId);
+                const arrow = this.querySelector('.accordion-arrow');
+                
+                document.querySelectorAll('.accordion-body').forEach(b => {
+                    if (b.id !== targetId) {
+                        b.classList.remove('active');
+                        b.style.maxHeight = '0';
+                        b.style.padding = '0 20px';
+                        const otherArrow = b.closest('.accordion-item').querySelector('.accordion-arrow');
+                        if (otherArrow) otherArrow.textContent = '▶';
+                    }
+                });
+
+                if (body.classList.contains('active')) {
+                    body.classList.remove('active');
+                    body.style.maxHeight = '0';
+                    body.style.padding = '0 20px';
+                    arrow.textContent = '▶';
+                } else {
+                    body.classList.add('active');
+                    body.style.maxHeight = body.scrollHeight + 'px';
+                    body.style.padding = '20px';
+                    arrow.textContent = '▼';
+                }
+            });
+        });
+
+        // ============================================
+        // COPIAR COMANDO
+        // ============================================
+        document.querySelectorAll('.btn-copy-cmd').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const cmdText = this.closest('.cmd-item').querySelector('.cmd-text').textContent;
+                navigator.clipboard.writeText(cmdText).then(() => {
+                    const originalText = this.textContent;
+                    this.textContent = '✅ Copiado!';
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                    }, 2000);
+                });
+            });
+        });
+
+        // ============================================
+        // SELETOR DE BANCO
+        // ============================================
+        document.querySelectorAll('.db-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.db-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const db = this.dataset.db;
+                console.log('Banco selecionado:', db);
+            });
+        });
+
+        // ============================================
+        // BUSCA
+        // ============================================
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            const items = document.querySelectorAll('.cmd-item');
+            const headers = document.querySelectorAll('.accordion-header');
+            
+            if (!searchTerm) {
+                items.forEach(item => item.style.display = 'flex');
+                headers.forEach(h => h.style.display = 'flex');
+                return;
+            }
+
+            items.forEach(item => {
+                const text = item.querySelector('.cmd-text').textContent.toLowerCase();
+                const desc = item.querySelector('.cmd-desc').textContent.toLowerCase();
+                if (text.includes(searchTerm) || desc.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                    const parentBody = item.closest('.accordion-body');
+                    if (parentBody) {
+                        parentBody.classList.add('active');
+                        parentBody.style.maxHeight = parentBody.scrollHeight + 'px';
+                        parentBody.style.padding = '20px';
+                        const arrow = parentBody.closest('.accordion-item').querySelector('.accordion-arrow');
+                        if (arrow) arrow.textContent = '▼';
+                    }
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            headers.forEach(header => {
+                const body = document.getElementById(header.dataset.target);
+                if (body) {
+                    const visibleItems = body.querySelectorAll('.cmd-item[style*="display: flex"], .cmd-item:not([style*="display: none"])');
+                    const hasVisible = Array.from(visibleItems).some(el => el.style.display !== 'none');
+                    header.style.display = hasVisible ? 'flex' : 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

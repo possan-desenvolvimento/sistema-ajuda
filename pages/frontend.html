@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 F1 Front-End - HTML, CSS, JS & NGINX</title>
+    <link rel="stylesheet" href="../css/frontend.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- ============================================
+             MENU LATERAL
+        ============================================ -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🏎️</span>
+                    <span class="logo-text">F1</span>
+                    <span class="logo-badge">PRO</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../index.html">
+                            <span class="nav-icon">📊</span>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-divider"></li>
+                    <li class="nav-item">
+                        <a href="dados.html">
+                            <span class="nav-icon">🗄️</span>
+                            <span class="nav-text">Dados</span>
+                            <span class="nav-badge">SQL</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="linux.html">
+                            <span class="nav-icon">🐧</span>
+                            <span class="nav-text">Linux</span>
+                            <span class="nav-badge">Terminal</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="devops.html">
+                            <span class="nav-icon">🐳</span>
+                            <span class="nav-text">DevOps</span>
+                            <span class="nav-badge">Docker</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="backend.html">
+                            <span class="nav-icon">☕</span>
+                            <span class="nav-text">Back-End</span>
+                            <span class="nav-badge">Spring</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="frontend.html">
+                            <span class="nav-icon">🎨</span>
+                            <span class="nav-text">Front-End</span>
+                            <span class="nav-badge">JS</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="automacao.html">
+                            <span class="nav-icon">⚡</span>
+                            <span class="nav-text">Automação</span>
+                            <span class="nav-badge">N8N</span>
+                        </a>
+                    </li>
+                     <li class="nav-item">
+                        <a href="controle-versao.html">
+                            <span class="nav-icon">⚡</span>
+                            <span class="nav-text">Controle de Versão</span>
+                            <span class="nav-badge">Git</span>
+                        </a>
+                    </li>
+                    <li class="nav-divider"></li>
+                    <li class="nav-item">
+                        <a href="ia.html">
+                            <span class="nav-icon">🤖</span>
+                            <span class="nav-text">Assistente IA</span>
+                            <span class="nav-badge">AI</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-avatar">👤</span>
+                    <span class="user-name">Usuário</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ============================================
+             CONTEÚDO PRINCIPAL
+        ============================================ -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="top-bar-left">
+                    <button class="menu-toggle">☰</button>
+                    <h1>Front-End - HTML, CSS, JS & NGINX</h1>
+                </div>
+                <div class="top-bar-right">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="🔍 Buscar tópico...">
+                    </div>
+                    <button class="btn-ai">🤖 IA</button>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <!-- Header Ferrari -->
+                <div class="frontend-header">
+                    <div class="frontend-logo">
+                        <span class="frontend-emoji">🎨</span>
+                        <span class="frontend-title">F1 Front-End</span>
+                        <span class="frontend-subtitle">HTML, CSS, JS & NGINX</span>
+                    </div>
+                    <div class="ferrari-badge">⚡ SCUDERIA FERRARI</div>
+                </div>
+
+                <!-- Conteúdo -->
+                <div class="frontend-content">
+                    <h2>📋 Guia Completo Front-End</h2>
+                    <p class="subtitle">Clique em uma categoria para ver os comandos com explicações</p>
+
+                    <!-- ==========================================
+                         INTRODUÇÃO
+                    ========================================== -->
+                    <div class="info-card">
+                        <div class="info-title">💡 O que é o Front-End?</div>
+                        <div class="info-text">
+                            Front-End é a parte visual e interativa de uma aplicação. <code>HTML</code> estrutura o conteúdo,
+                            <code>CSS</code> estiliza e <code>JavaScript</code> dá vida à página.
+                            <code>NGINX</code> é o servidor web que entrega esses arquivos para o usuário.
+                        </div>
+                    </div>
+
+                    <!-- ==========================================
+                         ACORDEON DE COMANDOS
+                    ========================================== -->
+                    <div class="accordion" id="commandsAccordion">
+                        <!-- ==========================================
+                             HTML
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="html">
+                                <span class="accordion-icon">📄</span>
+                                <span class="accordion-title">HTML</span>
+                                <span class="accordion-badge">Estrutura</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="html">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">&lt;!DOCTYPE html&gt;&lt;html lang="pt"&gt;&lt;head&gt;&lt;meta charset="UTF-8"&gt;&lt;title&gt;Título&lt;/title&gt;&lt;/head&gt;&lt;body&gt;Conteúdo&lt;/body&gt;&lt;/html&gt;</span>
+                                        <span class="cmd-desc">Estrutura básica de um documento HTML</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">&lt;header&gt;&lt;nav&gt;&lt;main&gt;&lt;section&gt;&lt;article&gt;&lt;aside&gt;&lt;footer&gt;</span>
+                                        <span class="cmd-desc">Tags semânticas para estruturação do conteúdo</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">&lt;h1&gt;Título Principal&lt;/h1&gt;&lt;h2&gt;Subtítulo&lt;/h2&gt;&lt;h3&gt;Seção&lt;/h3&gt;</span>
+                                        <span class="cmd-desc">Hierarquia de títulos (h1 a h6)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">&lt;p&gt;Parágrafo de texto&lt;/p&gt;</span>
+                                        <span class="cmd-desc">Parágrafo de texto</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">&lt;a href="https://exemplo.com" target="_blank"&gt;Link&lt;/a&gt;</span>
+                                        <span class="cmd-desc">Link para outra página (abre em nova aba)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">&lt;img src="imagem.jpg" alt="Descrição" width="300" height="200"&gt;</span>
+                                        <span class="cmd-desc">Tag de imagem com atributos essenciais</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">&lt;ul&gt;&lt;li&gt;Item 1&lt;/li&gt;&lt;li&gt;Item 2&lt;/li&gt;&lt;/ul&gt;</span>
+                                        <span class="cmd-desc">Lista não ordenada (UL) e ordenada (OL)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Nome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Valor&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</span>
+                                        <span class="cmd-desc">Estrutura de tabela (thead, tbody, tr, th, td)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">&lt;form action="/submit" method="POST"&gt;&lt;input type="text" name="nome" placeholder="Digite seu nome"&gt;&lt;button type="submit"&gt;Enviar&lt;/button&gt;&lt;/form&gt;</span>
+                                        <span class="cmd-desc">Formulário com input e botão de submit</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">&lt;div class="container"&gt;&lt;span class="destaque"&gt;Texto&lt;/span&gt;&lt;/div&gt;</span>
+                                        <span class="cmd-desc">Div (bloco) e Span (inline) com classes</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             CSS
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="css">
+                                <span class="accordion-icon">🎨</span>
+                                <span class="accordion-title">CSS</span>
+                                <span class="accordion-badge">Estilização</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="css">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">.classe { propriedade: valor; }</span>
+                                        <span class="cmd-desc">Seletor de classe - reutilizável</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">#id { propriedade: valor; }</span>
+                                        <span class="cmd-desc">Seletor de ID - único na página</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">elemento { propriedade: valor; }</span>
+                                        <span class="cmd-desc">Seletor de elemento (tag)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">.container { display: flex; justify-content: center; align-items: center; gap: 10px; }</span>
+                                        <span class="cmd-desc">Flexbox - alinhamento e distribuição</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }</span>
+                                        <span class="cmd-desc">Grid - layout em colunas</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">.card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }</span>
+                                        <span class="cmd-desc">Hover - efeito ao passar mouse</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } } .animado { animation: pulse 2s infinite; }</span>
+                                        <span class="cmd-desc">Keyframes - animação personalizada</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">:root { --cor-principal: #ff2800; --cor-fundo: #1a1a2e; } .card { background: var(--cor-fundo); color: var(--cor-principal); }</span>
+                                        <span class="cmd-desc">Variáveis CSS - fácil manutenção</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">@media (max-width: 768px) { .container { flex-direction: column; } }</span>
+                                        <span class="cmd-desc">Media Query - responsividade para mobile</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">.card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }</span>
+                                        <span class="cmd-desc">Glassmorphism - efeito de vidro</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             JAVASCRIPT - DOM
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="js-dom">
+                                <span class="accordion-icon">⚡</span>
+                                <span class="accordion-title">JavaScript - DOM</span>
+                                <span class="accordion-badge">Manipulação</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="js-dom">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">document.getElementById('id')</span>
+                                        <span class="cmd-desc">Seleciona elemento por ID</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">document.querySelector('.classe')</span>
+                                        <span class="cmd-desc">Seleciona o primeiro elemento com seletor CSS</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">document.querySelectorAll('.classe')</span>
+                                        <span class="cmd-desc">Seleciona todos os elementos com seletor CSS</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">element.textContent = 'Novo texto'</span>
+                                        <span class="cmd-desc">Altera o texto do elemento</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">element.innerHTML = '&lt;strong&gt;HTML&lt;/strong&gt;'</span>
+                                        <span class="cmd-desc">Altera o HTML interno do elemento</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">element.classList.add('ativo')</span>
+                                        <span class="cmd-desc">Adiciona classe CSS</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">element.classList.remove('ativo')</span>
+                                        <span class="cmd-desc">Remove classe CSS</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">element.classList.toggle('ativo')</span>
+                                        <span class="cmd-desc">Alterna classe CSS (add/remove)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">element.style.backgroundColor = '#ff2800'</span>
+                                        <span class="cmd-desc">Altera estilo inline</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">document.createElement('div')</span>
+                                        <span class="cmd-desc">Cria um novo elemento</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">parent.appendChild(child)</span>
+                                        <span class="cmd-desc">Adiciona elemento filho</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">element.remove()</span>
+                                        <span class="cmd-desc">Remove o elemento</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             JAVASCRIPT - EVENTOS
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="js-eventos">
+                                <span class="accordion-icon">🖱️</span>
+                                <span class="accordion-title">JavaScript - Eventos</span>
+                                <span class="accordion-badge">Interatividade</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="js-eventos">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">element.addEventListener('click', () => { alert('Clicou!'); });</span>
+                                        <span class="cmd-desc">Evento de clique</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">element.addEventListener('mouseenter', () => { element.style.background = '#ff2800'; });</span>
+                                        <span class="cmd-desc">Evento ao passar mouse (entrar)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">element.addEventListener('mouseleave', () => { element.style.background = 'transparent'; });</span>
+                                        <span class="cmd-desc">Evento ao sair do mouse</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">input.addEventListener('input', (e) => { console.log(e.target.value); });</span>
+                                        <span class="cmd-desc">Evento ao digitar em input</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">form.addEventListener('submit', (e) => { e.preventDefault(); console.log('Enviado!'); });</span>
+                                        <span class="cmd-desc">Evento de submit (previne recarregar página)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">document.addEventListener('DOMContentLoaded', () => { console.log('Página carregada!'); });</span>
+                                        <span class="cmd-desc">Executa quando o DOM estiver pronto</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">window.addEventListener('scroll', () => { console.log('Scroll'); });</span>
+                                        <span class="cmd-desc">Evento ao rolar a página</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">element.addEventListener('keydown', (e) => { if (e.key === 'Enter') { console.log('Enter pressionado'); } });</span>
+                                        <span class="cmd-desc">Evento de tecla pressionada</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             JAVASCRIPT - ASYNC / AWAIT
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="js-async">
+                                <span class="accordion-icon">🔄</span>
+                                <span class="accordion-title">JavaScript - Async / Await</span>
+                                <span class="accordion-badge">Assíncrono</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="js-async">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">async function buscarDados() { const response = await fetch('https://api.exemplo.com/dados'); const data = await response.json(); console.log(data); }</span>
+                                        <span class="cmd-desc">Função assíncrona com fetch</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">try { const data = await fetch('/api'); } catch (error) { console.error('Erro:', error); }</span>
+                                        <span class="cmd-desc">Try/Catch para tratamento de erros</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">fetch('/api/usuarios').then(response => response.json()).then(data => console.log(data)).catch(error => console.error(error));</span>
+                                        <span class="cmd-desc">Promise com then/catch</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">const [response1, response2] = await Promise.all([fetch('/api/1'), fetch('/api/2')]);</span>
+                                        <span class="cmd-desc">Promise.all - executa múltiplas requisições em paralelo</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">setTimeout(() => { console.log('Executou após 1s'); }, 1000);</span>
+                                        <span class="cmd-desc">setTimeout - executa após X milissegundos</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">setInterval(() => { console.log('Executa a cada 2s'); }, 2000);</span>
+                                        <span class="cmd-desc">setInterval - executa a cada X milissegundos</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             JAVASCRIPT - ARRAYS
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="js-arrays">
+                                <span class="accordion-icon">📊</span>
+                                <span class="accordion-title">JavaScript - Arrays</span>
+                                <span class="accordion-badge">Manipulação</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="js-arrays">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">const numeros = [1, 2, 3, 4, 5];</span>
+                                        <span class="cmd-desc">Criação de array</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">numeros.map(num => num * 2)</span>
+                                        <span class="cmd-desc">Map - transforma cada elemento</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">numeros.filter(num => num > 2)</span>
+                                        <span class="cmd-desc">Filter - filtra elementos</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">numeros.reduce((acc, num) => acc + num, 0)</span>
+                                        <span class="cmd-desc">Reduce - reduz array a um único valor (soma)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">numeros.find(num => num > 3)</span>
+                                        <span class="cmd-desc">Find - encontra primeiro elemento que atende condição</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">numeros.includes(3)</span>
+                                        <span class="cmd-desc">Includes - verifica se elemento existe</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">numeros.forEach(num => console.log(num))</span>
+                                        <span class="cmd-desc">forEach - itera sobre os elementos</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             NGINX
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="nginx">
+                                <span class="accordion-icon">🌐</span>
+                                <span class="accordion-title">NGINX</span>
+                                <span class="accordion-badge">Servidor Web</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="nginx">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">sudo apt update && sudo apt install nginx</span>
+                                        <span class="cmd-desc">Instala o NGINX no Ubuntu</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">sudo systemctl start nginx</span>
+                                        <span class="cmd-desc">Inicia o NGINX</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">sudo systemctl stop nginx</span>
+                                        <span class="cmd-desc">Para o NGINX</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">sudo systemctl restart nginx</span>
+                                        <span class="cmd-desc">Reinicia o NGINX</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">sudo systemctl reload nginx</span>
+                                        <span class="cmd-desc">Recarrega configuração sem parar</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">sudo nginx -t</span>
+                                        <span class="cmd-desc">Testa a configuração do NGINX</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">server { listen 80; server_name meusite.com; root /var/www/html; index index.html; }</span>
+                                        <span class="cmd-desc">Configuração básica de um site estático</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">location /api/ { proxy_pass http://localhost:8080; proxy_set_header Host $host; }</span>
+                                        <span class="cmd-desc">Proxy reverso para API na porta 8080</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">upstream backend { server 192.168.1.10:8080; server 192.168.1.11:8080; } server { location / { proxy_pass http://backend; } }</span>
+                                        <span class="cmd-desc">Load balancing com 2 servidores</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">location ~* \.(jpg|jpeg|png|gif|ico|css|js)$ { expires 30d; }</span>
+                                        <span class="cmd-desc">Cache de arquivos estáticos por 30 dias</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">location / { try_files $uri $uri/ /index.html; }</span>
+                                        <span class="cmd-desc">SPA - redireciona todas as rotas para index.html</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">gzip on; gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;</span>
+                                        <span class="cmd-desc">Habilita compressão GZIP</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">sudo ln -s /etc/nginx/sites-available/meusite /etc/nginx/sites-enabled/</span>
+                                        <span class="cmd-desc">Ativa um site (cria link simbólico)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">error_log /var/log/nginx/error.log; access_log /var/log/nginx/access.log;</span>
+                                        <span class="cmd-desc">Configuração de logs</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             DICAS FRONT-END
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="dicas">
+                                <span class="accordion-icon">💡</span>
+                                <span class="accordion-title">Dicas Front-End</span>
+                                <span class="accordion-badge">Produtividade</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="dicas">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Alt + Shift + F (VS Code)</span>
+                                        <span class="cmd-desc">Formatar código automaticamente</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Ctrl + Shift + I</span>
+                                        <span class="cmd-desc">Abrir DevTools no navegador</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">! + Tab (VS Code - HTML)</span>
+                                        <span class="cmd-desc">Gera estrutura HTML básica</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">.classe + Tab (VS Code)</span>
+                                        <span class="cmd-desc">Cria div com classe</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">console.log(variável)</span>
+                                        <span class="cmd-desc">Depuração - mostra valor no console</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">debugger;</span>
+                                        <span class="cmd-desc">Pausa a execução no DevTools</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Ctrl + / (VS Code)</span>
+                                        <span class="cmd-desc">Comentar/descomentar linha</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Alt + Z (VS Code)</span>
+                                        <span class="cmd-desc">Quebrar linha (word wrap)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // ============================================
+        // ACORDEON
+        // ============================================
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const targetId = this.dataset.target;
+                const body = document.getElementById(targetId);
+                const arrow = this.querySelector('.accordion-arrow');
+                
+                document.querySelectorAll('.accordion-body').forEach(b => {
+                    if (b.id !== targetId) {
+                        b.classList.remove('active');
+                        b.style.maxHeight = '0';
+                        b.style.padding = '0 20px';
+                        const otherArrow = b.closest('.accordion-item').querySelector('.accordion-arrow');
+                        if (otherArrow) otherArrow.textContent = '▶';
+                    }
+                });
+
+                if (body.classList.contains('active')) {
+                    body.classList.remove('active');
+                    body.style.maxHeight = '0';
+                    body.style.padding = '0 20px';
+                    arrow.textContent = '▶';
+                } else {
+                    body.classList.add('active');
+                    body.style.maxHeight = body.scrollHeight + 'px';
+                    body.style.padding = '20px';
+                    arrow.textContent = '▼';
+                }
+            });
+        });
+
+        // ============================================
+        // COPIAR COMANDO
+        // ============================================
+        document.querySelectorAll('.btn-copy-cmd').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const cmdText = this.closest('.cmd-item').querySelector('.cmd-text').textContent;
+                navigator.clipboard.writeText(cmdText).then(() => {
+                    const originalText = this.textContent;
+                    this.textContent = '✅ Copiado!';
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                    }, 2000);
+                });
+            });
+        });
+
+        // ============================================
+        // BUSCA
+        // ============================================
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            const items = document.querySelectorAll('.cmd-item');
+            const headers = document.querySelectorAll('.accordion-header');
+            
+            if (!searchTerm) {
+                items.forEach(item => item.style.display = 'flex');
+                headers.forEach(h => h.style.display = 'flex');
+                return;
+            }
+
+            items.forEach(item => {
+                const text = item.querySelector('.cmd-text').textContent.toLowerCase();
+                const desc = item.querySelector('.cmd-desc').textContent.toLowerCase();
+                if (text.includes(searchTerm) || desc.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                    const parentBody = item.closest('.accordion-body');
+                    if (parentBody) {
+                        parentBody.classList.add('active');
+                        parentBody.style.maxHeight = parentBody.scrollHeight + 'px';
+                        parentBody.style.padding = '20px';
+                        const arrow = parentBody.closest('.accordion-item').querySelector('.accordion-arrow');
+                        if (arrow) arrow.textContent = '▼';
+                    }
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            headers.forEach(header => {
+                const body = document.getElementById(header.dataset.target);
+                if (body) {
+                    const visibleItems = body.querySelectorAll('.cmd-item[style*="display: flex"], .cmd-item:not([style*="display: none"])');
+                    const hasVisible = Array.from(visibleItems).some(el => el.style.display !== 'none');
+                    header.style.display = hasVisible ? 'flex' : 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

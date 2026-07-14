@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ F1 Automação - N8N</title>
+    <link rel="stylesheet" href="../css/automacao.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- ============================================
+             MENU LATERAL
+        ============================================ -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🏎️</span>
+                    <span class="logo-text">F1</span>
+                    <span class="logo-badge">PRO</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../index.html">
+                            <span class="nav-icon">📊</span>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-divider"></li>
+                    <li class="nav-item">
+                        <a href="dados.html">
+                            <span class="nav-icon">🗄️</span>
+                            <span class="nav-text">Dados</span>
+                            <span class="nav-badge">SQL</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="linux.html">
+                            <span class="nav-icon">🐧</span>
+                            <span class="nav-text">Linux</span>
+                            <span class="nav-badge">Terminal</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="devops.html">
+                            <span class="nav-icon">🐳</span>
+                            <span class="nav-text">DevOps</span>
+                            <span class="nav-badge">Docker</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="backend.html">
+                            <span class="nav-icon">☕</span>
+                            <span class="nav-text">Back-End</span>
+                            <span class="nav-badge">Spring</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="frontend.html">
+                            <span class="nav-icon">🎨</span>
+                            <span class="nav-text">Front-End</span>
+                            <span class="nav-badge">JS</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="automacao.html">
+                            <span class="nav-icon">⚡</span>
+                            <span class="nav-text">Automação</span>
+                            <span class="nav-badge">N8N</span>
+                        </a>
+                    </li>
+                     <li class="nav-item">
+                        <a href="controle-versao.html">
+                            <span class="nav-icon">⚡</span>
+                            <span class="nav-text">Controle de Versão</span>
+                            <span class="nav-badge">Git</span>
+                        </a>
+                    </li>
+                    <li class="nav-divider"></li>
+                    <li class="nav-item">
+                        <a href="ia.html">
+                            <span class="nav-icon">🤖</span>
+                            <span class="nav-text">Assistente IA</span>
+                            <span class="nav-badge">AI</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-avatar">👤</span>
+                    <span class="user-name">Usuário</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ============================================
+             CONTEÚDO PRINCIPAL
+        ============================================ -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="top-bar-left">
+                    <button class="menu-toggle">☰</button>
+                    <h1>Automação - N8N</h1>
+                </div>
+                <div class="top-bar-right">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="🔍 Buscar nó...">
+                    </div>
+                    <button class="btn-ai">🤖 IA</button>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <!-- Header Ferrari -->
+                <div class="automacao-header">
+                    <div class="automacao-logo">
+                        <span class="automacao-emoji">⚡</span>
+                        <span class="automacao-title">F1 Automação</span>
+                        <span class="automacao-subtitle">N8N - Nodes</span>
+                    </div>
+                    <div class="ferrari-badge">⚡ SCUDERIA FERRARI</div>
+                </div>
+
+                <!-- Conteúdo -->
+                <div class="automacao-content">
+                    <h2>📋 Nós N8N</h2>
+                    <p class="subtitle">Clique em uma categoria para ver os nós com explicações</p>
+
+                    <!-- ==========================================
+                         INTRODUÇÃO
+                    ========================================== -->
+                    <div class="info-card">
+                        <div class="info-title">💡 O que é o N8N?</div>
+                        <div class="info-text">
+                            N8N é uma ferramenta de automação de fluxos de trabalho (workflow automation).
+                            Cada <code>nó</code> (node) representa uma ação: <code>HTTP Request</code>, <code>IF</code>, <code>Merge</code>, <code>Webhook</code>, etc.
+                            Você conecta os nós para criar automações completas.
+                        </div>
+                    </div>
+
+                    <!-- ==========================================
+                         ACORDEON DE NÓS
+                    ========================================== -->
+                    <div class="accordion" id="commandsAccordion">
+                        <!-- ==========================================
+                             CORE - BÁSICOS
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="core">
+                                <span class="accordion-icon">🔧</span>
+                                <span class="accordion-title">Core - Nós Básicos</span>
+                                <span class="accordion-badge">Essencial</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="core">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Manual Trigger</span>
+                                        <span class="cmd-desc">Inicia o workflow manualmente (botão "Execute Workflow")</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Schedule Trigger</span>
+                                        <span class="cmd-desc">Executa o workflow em intervalos (CRON - ex: todos os dias às 8h)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Webhook</span>
+                                        <span class="cmd-desc">Recebe requisições HTTP e inicia o workflow (URL pública)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Set</span>
+                                        <span class="cmd-desc">Define ou modifica valores no fluxo de dados</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">IF</span>
+                                        <span class="cmd-desc">Condicional - bifurca o fluxo baseado em uma condição (true/false)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Switch</span>
+                                        <span class="cmd-desc">Multi-condicional - bifurca o fluxo para diferentes caminhos</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Merge</span>
+                                        <span class="cmd-desc">Combina dados de duas ou mais branches</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Code (JavaScript)</span>
+                                        <span class="cmd-desc">Executa código JavaScript customizado</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">NoOp</span>
+                                        <span class="cmd-desc">Nó vazio - útil para testes e debugging</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             HTTP / API
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="http">
+                                <span class="accordion-icon">🌐</span>
+                                <span class="accordion-title">HTTP / API</span>
+                                <span class="accordion-badge">Integrações</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="http">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">HTTP Request</span>
+                                        <span class="cmd-desc">Faz requisições HTTP (GET, POST, PUT, DELETE, PATCH)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">HTTP Request - GET</span>
+                                        <span class="cmd-desc">Busca dados de uma API (ex: https://api.exemplo.com/usuarios)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">HTTP Request - POST</span>
+                                        <span class="cmd-desc">Envia dados para uma API (ex: criar novo usuário)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">HTTP Request - Com Headers</span>
+                                        <span class="cmd-desc">Adiciona headers (Authorization, Content-Type, etc)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Webhook (Response)</span>
+                                        <span class="cmd-desc">Retorna uma resposta para quem chamou o webhook</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             DADOS - PROCESSAMENTO
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="dados">
+                                <span class="accordion-icon">📊</span>
+                                <span class="accordion-title">Dados - Processamento</span>
+                                <span class="accordion-badge">Transformação</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="dados">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Filter</span>
+                                        <span class="cmd-desc">Filtra itens do array baseado em uma condição</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Sort</span>
+                                        <span class="cmd-desc">Ordena dados por campo (ASC/DESC)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Limit</span>
+                                        <span class="cmd-desc">Limita a quantidade de itens processados</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Aggregate</span>
+                                        <span class="cmd-desc">Agrupa dados (COUNT, SUM, AVG, MIN, MAX)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Split In Batches</span>
+                                        <span class="cmd-desc">Divide dados em lotes (ex: 100 itens por lote)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Remove Duplicates</span>
+                                        <span class="cmd-desc">Remove itens duplicados baseado em um campo</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             DADOS - TRANSFORMAÇÃO
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="transform">
+                                <span class="accordion-icon">🔄</span>
+                                <span class="accordion-title">Dados - Transformação</span>
+                                <span class="accordion-badge">Mapeamento</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="transform">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Item Lists</span>
+                                        <span class="cmd-desc">Converte array em objetos ou vice-versa</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Spreadsheet (CSV)</span>
+                                        <span class="cmd-desc">Lê/Escreve arquivos CSV</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">XML</span>
+                                        <span class="cmd-desc">Converte dados entre JSON e XML</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">HTML Extract</span>
+                                        <span class="cmd-desc">Extrai dados de páginas HTML (Web Scraping)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">JSON</span>
+                                        <span class="cmd-desc">Converte strings JSON para objetos e vice-versa</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             BANCO DE DADOS
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="db">
+                                <span class="accordion-icon">🗄️</span>
+                                <span class="accordion-title">Banco de Dados</span>
+                                <span class="accordion-badge">SQL</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="db">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">PostgreSQL</span>
+                                        <span class="cmd-desc">Executa queries no PostgreSQL</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">MySQL</span>
+                                        <span class="cmd-desc">Executa queries no MySQL</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">SQLite</span>
+                                        <span class="cmd-desc">Executa queries no SQLite</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">MongoDB</span>
+                                        <span class="cmd-desc">Executa queries no MongoDB</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             GOOGLE
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="google">
+                                <span class="accordion-icon">🔵</span>
+                                <span class="accordion-title">Google</span>
+                                <span class="accordion-badge">Integrações</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="google">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Google Sheets</span>
+                                        <span class="cmd-desc">Lê/Escreve dados em planilhas Google Sheets</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Google Drive</span>
+                                        <span class="cmd-desc">Gerencia arquivos no Google Drive</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Gmail</span>
+                                        <span class="cmd-desc">Envia e recebe e-mails via Gmail</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Google Calendar</span>
+                                        <span class="cmd-desc">Gerencia eventos no Google Calendar</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">YouTube</span>
+                                        <span class="cmd-desc">Gerencia vídeos no YouTube</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             COMUNICAÇÃO
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="comunicacao">
+                                <span class="accordion-icon">💬</span>
+                                <span class="accordion-title">Comunicação</span>
+                                <span class="accordion-badge">Mensageria</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="comunicacao">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Email (SMTP/IMAP)</span>
+                                        <span class="cmd-desc">Envia e recebe e-mails via servidor SMTP</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Slack</span>
+                                        <span class="cmd-desc">Envia mensagens no Slack</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Discord</span>
+                                        <span class="cmd-desc">Envia mensagens no Discord</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Telegram</span>
+                                        <span class="cmd-desc">Envia mensagens no Telegram</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">WhatsApp (Meta)</span>
+                                        <span class="cmd-desc">Envia mensagens no WhatsApp Business</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             REDES SOCIAIS
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="social">
+                                <span class="accordion-icon">📱</span>
+                                <span class="accordion-title">Redes Sociais</span>
+                                <span class="accordion-badge">Social Media</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="social">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Twitter (X)</span>
+                                        <span class="cmd-desc">Publica tweets</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Facebook</span>
+                                        <span class="cmd-desc">Publica no Facebook</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Instagram</span>
+                                        <span class="cmd-desc">Publica no Instagram</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">LinkedIn</span>
+                                        <span class="cmd-desc">Publica no LinkedIn</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             ARQUIVOS
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="arquivos">
+                                <span class="accordion-icon">📁</span>
+                                <span class="accordion-title">Arquivos</span>
+                                <span class="accordion-badge">File System</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="arquivos">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Read File from Disk</span>
+                                        <span class="cmd-desc">Lê arquivos do sistema</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Write File to Disk</span>
+                                        <span class="cmd-desc">Escreve arquivos no sistema</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Binary Data</span>
+                                        <span class="cmd-desc">Processa dados binários (imagens, PDFs, etc)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Zip</span>
+                                        <span class="cmd-desc">Compacta/Descompacta arquivos ZIP</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             OUTROS
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="outros">
+                                <span class="accordion-icon">🧩</span>
+                                <span class="accordion-title">Outros</span>
+                                <span class="accordion-badge">Extras</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="outros">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Wait</span>
+                                        <span class="cmd-desc">Aguarda um tempo específico (milissegundos)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Delay</span>
+                                        <span class="cmd-desc">Atraso entre execuções (evita rate limiting)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Error Trigger</span>
+                                        <span class="cmd-desc">Captura erros e trata exceções</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Sticky Note</span>
+                                        <span class="cmd-desc">Adiciona notas/documentação no workflow</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Execute Workflow</span>
+                                        <span class="cmd-desc">Executa outro workflow (sub-workflow)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // ============================================
+        // ACORDEON
+        // ============================================
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const targetId = this.dataset.target;
+                const body = document.getElementById(targetId);
+                const arrow = this.querySelector('.accordion-arrow');
+                
+                document.querySelectorAll('.accordion-body').forEach(b => {
+                    if (b.id !== targetId) {
+                        b.classList.remove('active');
+                        b.style.maxHeight = '0';
+                        b.style.padding = '0 20px';
+                        const otherArrow = b.closest('.accordion-item').querySelector('.accordion-arrow');
+                        if (otherArrow) otherArrow.textContent = '▶';
+                    }
+                });
+
+                if (body.classList.contains('active')) {
+                    body.classList.remove('active');
+                    body.style.maxHeight = '0';
+                    body.style.padding = '0 20px';
+                    arrow.textContent = '▶';
+                } else {
+                    body.classList.add('active');
+                    body.style.maxHeight = body.scrollHeight + 'px';
+                    body.style.padding = '20px';
+                    arrow.textContent = '▼';
+                }
+            });
+        });
+
+        // ============================================
+        // COPIAR NOME DO NÓ
+        // ============================================
+        document.querySelectorAll('.btn-copy-cmd').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const cmdText = this.closest('.cmd-item').querySelector('.cmd-text').textContent;
+                navigator.clipboard.writeText(cmdText).then(() => {
+                    const originalText = this.textContent;
+                    this.textContent = '✅ Copiado!';
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                    }, 2000);
+                });
+            });
+        });
+
+        // ============================================
+        // BUSCA
+        // ============================================
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            const items = document.querySelectorAll('.cmd-item');
+            const headers = document.querySelectorAll('.accordion-header');
+            
+            if (!searchTerm) {
+                items.forEach(item => item.style.display = 'flex');
+                headers.forEach(h => h.style.display = 'flex');
+                return;
+            }
+
+            items.forEach(item => {
+                const text = item.querySelector('.cmd-text').textContent.toLowerCase();
+                const desc = item.querySelector('.cmd-desc').textContent.toLowerCase();
+                if (text.includes(searchTerm) || desc.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                    const parentBody = item.closest('.accordion-body');
+                    if (parentBody) {
+                        parentBody.classList.add('active');
+                        parentBody.style.maxHeight = parentBody.scrollHeight + 'px';
+                        parentBody.style.padding = '20px';
+                        const arrow = parentBody.closest('.accordion-item').querySelector('.accordion-arrow');
+                        if (arrow) arrow.textContent = '▼';
+                    }
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            headers.forEach(header => {
+                const body = document.getElementById(header.dataset.target);
+                if (body) {
+                    const visibleItems = body.querySelectorAll('.cmd-item[style*="display: flex"], .cmd-item:not([style*="display: none"])');
+                    const hasVisible = Array.from(visibleItems).some(el => el.style.display !== 'none');
+                    header.style.display = hasVisible ? 'flex' : 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

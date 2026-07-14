@@ -1,0 +1,828 @@
+/* ============================================
+   PÁGINA: DADOS - REFERÊNCIA SQL (COM EXPLICAÇÕES)
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    background-image: url('https://www.autoracing.com.br/wp-content/uploads/2025/04/F1-25-Lewis-Hamilton-Arabia.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 0;
+}
+
+/* ============================================
+   APP CONTAINER
+   ============================================ */
+.app-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+.sidebar {
+    width: 260px;
+    min-height: calc(100vh - 40px);
+    background: rgba(20, 20, 20, 0.92);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 2px solid #ff2800;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    padding: 0 20px 20px 20px;
+    border-bottom: 2px solid rgba(255, 40, 0, 0.3);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    font-size: 32px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.logo-text {
+    font-size: 28px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ff2800, #cc0000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logo-badge {
+    background: #ff2800;
+    color: white;
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+/* ============================================
+   NAVEGAÇÃO
+   ============================================ */
+.sidebar-nav {
+    flex: 1;
+    padding: 16px 12px;
+}
+
+.nav-list {
+    list-style: none;
+}
+
+.nav-item {
+    margin-bottom: 2px;
+}
+
+.nav-item a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    color: #b0b0b0;
+    text-decoration: none;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.nav-item a:hover {
+    background: rgba(255, 40, 0, 0.1);
+    color: #ffffff;
+}
+
+.nav-item.active a {
+    background: rgba(255, 40, 0, 0.15);
+    color: #ff2800;
+}
+
+.nav-item.active a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 60%;
+    background: #ff2800;
+    border-radius: 0 3px 3px 0;
+    box-shadow: 0 0 10px rgba(255, 40, 0, 0.4);
+}
+
+.nav-icon {
+    font-size: 18px;
+    width: 24px;
+    text-align: center;
+}
+
+.nav-text {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nav-badge {
+    background: rgba(255, 40, 0, 0.15);
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #ff2800;
+}
+
+.nav-divider {
+    height: 1px;
+    background: rgba(255, 40, 0, 0.2);
+    margin: 8px 14px;
+}
+
+.sidebar-footer {
+    padding: 16px 20px 0 20px;
+    border-top: 2px solid rgba(255, 40, 0, 0.3);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.user-avatar {
+    font-size: 24px;
+}
+
+.user-name {
+    font-size: 14px;
+    color: #b0b0b0;
+    font-weight: 600;
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+.main-content {
+    flex: 1;
+    min-height: calc(100vh - 40px);
+    background: rgba(20, 20, 20, 0.92);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 2px solid #ff2800;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ============================================
+   TOP BAR
+   ============================================ */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: 2px solid rgba(255, 40, 0, 0.3);
+    flex-shrink: 0;
+}
+
+.top-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.top-bar-left h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 6px 14px;
+    border: 1px solid rgba(255, 40, 0, 0.2);
+}
+
+.search-box input {
+    background: none;
+    border: none;
+    color: #ffffff;
+    padding: 6px 8px;
+    outline: none;
+    width: 180px;
+    font-size: 14px;
+}
+
+.search-box input::placeholder {
+    color: #666;
+}
+
+.btn-ai {
+    background: linear-gradient(135deg, #ff2800, #cc0000);
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 4px 15px rgba(255, 40, 0, 0.3);
+}
+
+.btn-ai:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 30px rgba(255, 40, 0, 0.5);
+}
+
+/* ============================================
+   CONTENT AREA
+   ============================================ */
+.content-area {
+    padding: 24px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* ============================================
+   HEADER FERRARI
+   ============================================ */
+.dados-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid #ff2800;
+}
+
+.dados-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dados-emoji {
+    font-size: 36px;
+    animation: pulse 2s infinite;
+}
+
+.dados-title {
+    font-size: 28px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ff2800, #cc0000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.dados-subtitle {
+    font-size: 16px;
+    font-weight: 700;
+    color: #b0b0b0;
+}
+
+.ferrari-badge {
+    background: linear-gradient(135deg, #ff2800, #cc0000);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(255, 40, 0, 0.4);
+    animation: glow 2s infinite;
+}
+
+@keyframes glow {
+    0%, 100% { box-shadow: 0 4px 15px rgba(255, 40, 0, 0.4); }
+    50% { box-shadow: 0 4px 30px rgba(255, 40, 0, 0.8); }
+}
+
+/* ============================================
+   CONTEÚDO SQL
+   ============================================ */
+.sql-content {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.sql-content h2 {
+    font-size: 24px;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.sql-content .subtitle {
+    color: #b0b0b0;
+    margin-bottom: 24px;
+    font-size: 15px;
+}
+
+/* ============================================
+   INTRODUÇÃO
+   ============================================ */
+.info-card {
+    background: rgba(30, 30, 30, 0.85);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 40, 0, 0.2);
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.info-card .info-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ff2800;
+    margin-bottom: 8px;
+}
+
+.info-card .info-text {
+    color: #b0b0b0;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.info-card .info-text code {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: #00ff88;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+}
+
+/* ============================================
+   SELETOR DE BANCO
+   ============================================ */
+.db-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.db-btn {
+    padding: 10px 20px;
+    background: rgba(30, 30, 30, 0.85);
+    border: 1px solid rgba(255, 40, 0, 0.2);
+    border-radius: 10px;
+    color: #b0b0b0;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 14px;
+}
+
+.db-btn:hover {
+    border-color: #ff2800;
+    color: #ffffff;
+}
+
+.db-btn.active {
+    background: rgba(255, 40, 0, 0.15);
+    border-color: #ff2800;
+    color: #ff2800;
+}
+
+/* ============================================
+   ACORDEON
+   ============================================ */
+.accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.accordion-item {
+    background: rgba(30, 30, 30, 0.85);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 40, 0, 0.15);
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.accordion-item:hover {
+    border-color: rgba(255, 40, 0, 0.3);
+}
+
+.accordion-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.accordion-header:hover {
+    background: rgba(255, 40, 0, 0.05);
+}
+
+.accordion-header .accordion-icon {
+    font-size: 20px;
+}
+
+.accordion-header .accordion-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.accordion-header .accordion-badge {
+    background: rgba(255, 40, 0, 0.12);
+    color: #ff2800;
+    padding: 2px 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: auto;
+}
+
+.accordion-header .accordion-arrow {
+    color: #b0b0b0;
+    font-size: 14px;
+    transition: transform 0.3s;
+    margin-left: 8px;
+}
+
+/* ============================================
+   ACORDEON BODY COM SCROLL
+   ============================================ */
+.accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.accordion-body.active {
+    max-height: 500px;
+    padding: 16px 20px;
+    overflow-y: auto;
+}
+
+/* Scroll do acordeon */
+.accordion-body.active::-webkit-scrollbar {
+    width: 4px;
+}
+
+.accordion-body.active::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.accordion-body.active::-webkit-scrollbar-thumb {
+    background: #ff2800;
+    border-radius: 4px;
+}
+
+.accordion-body.active::-webkit-scrollbar-thumb:hover {
+    background: #cc0000;
+}
+
+/* ============================================
+   COMANDOS - COM EXPLICAÇÃO
+   ============================================ */
+.cmd-item {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 3px solid #ff2800;
+    transition: all 0.3s;
+    flex-shrink: 0;
+    gap: 10px;
+}
+
+.cmd-item:hover {
+    border-left-color: #00ff88;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.cmd-item .cmd-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+}
+
+.cmd-item .cmd-text {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: #00ff88;
+    word-break: break-all;
+    line-height: 1.4;
+}
+
+.cmd-item .cmd-desc {
+    font-size: 12px;
+    color: #b0b0b0;
+    font-style: italic;
+    padding-left: 4px;
+}
+
+.cmd-item .btn-copy-cmd {
+    background: rgba(255, 40, 0, 0.15);
+    color: #ff2800;
+    border: none;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.cmd-item .btn-copy-cmd:hover {
+    background: #ff2800;
+    color: white;
+}
+
+/* ============================================
+   SCROLLBAR GLOBAL
+   ============================================ */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ff2800;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #cc0000;
+}
+
+/* ============================================
+   RESPONSIVO
+   ============================================ */
+@media (max-width: 1024px) {
+    .app-container {
+        padding: 15px;
+        gap: 15px;
+    }
+    .sidebar {
+        width: 220px;
+    }
+}
+
+@media (max-width: 768px) {
+    .app-container {
+        padding: 10px;
+        gap: 10px;
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 12px 16px;
+        height: auto;
+        max-height: none;
+        overflow-y: visible;
+    }
+
+    .sidebar-header {
+        padding: 0;
+        border-bottom: none;
+        flex: 1;
+    }
+
+    .sidebar-nav {
+        padding: 0;
+        flex: 1;
+        width: 100%;
+    }
+
+    .nav-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        padding: 10px 0;
+    }
+
+    .nav-item {
+        flex: 1 1 calc(50% - 4px);
+        min-width: 120px;
+    }
+
+    .nav-divider {
+        display: none;
+    }
+
+    .sidebar-footer {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .main-content {
+        min-height: auto;
+    }
+
+    .top-bar {
+        padding: 12px 16px;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .top-bar-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .search-box input {
+        width: 120px;
+    }
+
+    .content-area {
+        padding: 16px;
+    }
+
+    .dados-header {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .dados-title {
+        font-size: 22px;
+    }
+
+    .ferrari-badge {
+        font-size: 11px;
+        padding: 5px 14px;
+    }
+
+    .db-selector {
+        gap: 6px;
+    }
+
+    .db-btn {
+        padding: 8px 14px;
+        font-size: 12px;
+    }
+
+    .accordion-header {
+        flex-wrap: wrap;
+        padding: 12px 16px;
+    }
+
+    .accordion-header .accordion-badge {
+        margin-left: 0;
+    }
+
+    .accordion-body.active {
+        max-height: 350px;
+        padding: 12px 16px;
+    }
+
+    .cmd-item {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .cmd-item .btn-copy-cmd {
+        width: 100%;
+        text-align: center;
+        padding: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-container {
+        padding: 5px;
+        gap: 5px;
+    }
+
+    .sidebar {
+        padding: 10px 12px;
+    }
+
+    .logo-text {
+        font-size: 20px;
+    }
+
+    .nav-item {
+        flex: 1 1 100%;
+    }
+
+    .top-bar-left h1 {
+        font-size: 16px;
+    }
+
+    .search-box input {
+        width: 80px;
+        font-size: 12px;
+    }
+
+    .btn-ai {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    .content-area {
+        padding: 12px;
+    }
+
+    .dados-emoji {
+        font-size: 28px;
+    }
+
+    .dados-title {
+        font-size: 18px;
+    }
+
+    .accordion-body.active {
+        max-height: 250px;
+        padding: 10px 14px;
+    }
+}

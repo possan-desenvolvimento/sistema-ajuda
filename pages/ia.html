@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 F1 Assistente IA - Gerador</title>
+    <link rel="stylesheet" href="../css/ia.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- ============================================
+             MENU LATERAL
+        ============================================ -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🏎️</span>
+                    <span class="logo-text">F1</span>
+                    <span class="logo-badge">PRO</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../index.html">
+                            <span class="nav-icon">📊</span>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-divider"></li>
+                    <li class="nav-item">
+                        <a href="dados.html">
+                            <span class="nav-icon">🗄️</span>
+                            <span class="nav-text">Dados</span>
+                            <span class="nav-badge">SQL</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="linux.html">
+                            <span class="nav-icon">🐧</span>
+                            <span class="nav-text">Linux</span>
+                            <span class="nav-badge">Terminal</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="devops.html">
+                            <span class="nav-icon">🐳</span>
+                            <span class="nav-text">DevOps</span>
+                            <span class="nav-badge">Docker</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="backend.html">
+                            <span class="nav-icon">☕</span>
+                            <span class="nav-text">Back-End</span>
+                            <span class="nav-badge">Spring</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="frontend.html">
+                            <span class="nav-icon">🎨</span>
+                            <span class="nav-text">Front-End</span>
+                            <span class="nav-badge">JS</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="automacao.html">
+                            <span class="nav-icon">⚡</span>
+                            <span class="nav-text">Automação</span>
+                            <span class="nav-badge">N8N</span>
+                        </a>
+                    </li>
+                     <li class="nav-item">
+                        <a href="controle-versao.html">
+                            <span class="nav-icon">⚡</span>
+                            <span class="nav-text">Controle de Versão</span>
+                            <span class="nav-badge">Git</span>
+                        </a>
+                    </li>
+                    <li class="nav-divider"></li>
+                    <li class="nav-item active">
+                        <a href="ia.html">
+                            <span class="nav-icon">🤖</span>
+                            <span class="nav-text">Assistente IA</span>
+                            <span class="nav-badge">AI</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-avatar">👤</span>
+                    <span class="user-name">Usuário</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ============================================
+             CONTEÚDO PRINCIPAL
+        ============================================ -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="top-bar-left">
+                    <button class="menu-toggle">☰</button>
+                    <h1>Assistente IA - Gerador</h1>
+                </div>
+                <div class="top-bar-right">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="🔍 Buscar script...">
+                    </div>
+                    <button class="btn-ai" onclick="openAIAssistant()">🤖 IA</button>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <!-- Header Ferrari -->
+                <div class="ia-header">
+                    <div class="ia-logo">
+                        <span class="ia-emoji">🤖</span>
+                        <span class="ia-title">F1 Assistente</span>
+                        <span class="ia-subtitle">Gerador + Validador</span>
+                    </div>
+                    <div class="ferrari-badge">⚡ SCUDERIA FERRARI</div>
+                </div>
+
+                <!-- Conteúdo -->
+                <div class="ia-content">
+                    <h2>📋 Gerador e Validador de Scripts</h2>
+                    <p class="subtitle">Gere scripts SQL, comandos Linux e valide seu código</p>
+
+                    <!-- ==========================================
+                         INFO CARD
+                    ========================================== -->
+                    <div class="info-card">
+                        <div class="info-title">💡 O que esta ferramenta faz?</div>
+                        <div class="info-text">
+                            Gere <code>scripts SQL</code> com opções personalizadas (SELECT, INSERT, UPDATE, etc),
+                            <code>valide</code> comandos automaticamente e <code>corrija</code> erros de digitação.
+                        </div>
+                    </div>
+
+                    <!-- ==========================================
+                         GERADOR DE SCRIPTS
+                    ========================================== -->
+                    <div class="generator-section">
+                        <div class="generator-grid">
+                            <!-- Coluna Esquerda - Opções -->
+                            <div class="generator-options">
+                                <div class="options-header">
+                                    <h3>⚙️ Gerador SQL</h3>
+                                    <span class="options-badge">SELECT</span>
+                                </div>
+
+                                <div class="option-group">
+                                    <label>Tipo de Script</label>
+                                    <div class="script-types">
+                                        <button class="script-type-btn active" data-script="select" onclick="selectScript('select')">📊 SELECT</button>
+                                        <button class="script-type-btn" data-script="insert" onclick="selectScript('insert')">➕ INSERT</button>
+                                        <button class="script-type-btn" data-script="update" onclick="selectScript('update')">✏️ UPDATE</button>
+                                        <button class="script-type-btn" data-script="delete" onclick="selectScript('delete')">🗑️ DELETE</button>
+                                        <button class="script-type-btn" data-script="create" onclick="selectScript('create')">🏗️ CREATE</button>
+                                        <button class="script-type-btn" data-script="alter" onclick="selectScript('alter')">🔧 ALTER</button>
+                                        <button class="script-type-btn" data-script="drop" onclick="selectScript('drop')">💥 DROP</button>
+                                        <button class="script-type-btn" data-script="join" onclick="selectScript('join')">🔗 JOIN</button>
+                                        <button class="script-type-btn" data-script="group" onclick="selectScript('group')">📈 GROUP BY</button>
+                                    </div>
+                                </div>
+
+                                <div class="option-group" id="optionsContainer">
+                                    <!-- Opções dinâmicas via JS -->
+                                </div>
+
+                                <div class="option-group">
+                                    <label>Entrada Personalizada</label>
+                                    <textarea id="customInput" rows="3" placeholder="Digite seu comando ou descrição..."></textarea>
+                                </div>
+
+                                <div class="option-group" style="display: flex; gap: 10px;">
+                                    <button class="btn-generate-script" onclick="generateScript()" style="flex: 1;">
+                                        🚀 GERAR SCRIPT
+                                    </button>
+                                    <button class="btn-validate-script" onclick="validateScript()" style="flex: 1;">
+                                        ✅ VALIDAR
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Coluna Direita - Resultado -->
+                            <div class="generator-result">
+                                <div class="result-header">
+                                    <h3>📄 Resultado</h3>
+                                    <div class="result-actions">
+                                        <button class="btn-copy-result" onclick="copyResult()">📋 Copiar</button>
+                                        <button class="btn-clear-result" onclick="clearResult()">✕ Limpar</button>
+                                    </div>
+                                </div>
+                                <div class="result-body" id="resultBody">
+                                    <div class="result-placeholder">
+                                        <span class="placeholder-icon">📝</span>
+                                        <p>Selecione um tipo de script e clique em "GERAR SCRIPT"</p>
+                                        <span class="placeholder-sub">Ou cole seu código para validar</span>
+                                    </div>
+                                </div>
+                                <div class="result-status" id="resultStatus">
+                                    <span class="status-dot"></span>
+                                    <span class="status-text">Aguardando...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ==========================================
+                         VALIDADOR DE COMANDOS
+                    ========================================== -->
+                    <div class="validator-section">
+                        <div class="validator-header">
+                            <h3>🔍 Validador de Comandos</h3>
+                            <span class="validator-badge">Correção automática</span>
+                        </div>
+                        <div class="validator-body">
+                            <div class="validator-input-group">
+                                <input type="text" id="validatorInput" placeholder="Digite um comando (ex: selec * from usuarios)" oninput="validateCommand()">
+                                <button class="btn-validate-command" onclick="validateCommand()">🔍 Validar</button>
+                            </div>
+                            <div class="validator-result" id="validatorResult">
+                                <div class="validator-placeholder">
+                                    💡 Digite um comando para validar e corrigir automaticamente
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ==========================================
+                         SCRIPTS PRONTOS (ACORDEON)
+                    ========================================== -->
+                    <div class="scripts-section">
+                        <h3>📚 Scripts Prontos</h3>
+                        <p class="scripts-sub">Clique para copiar scripts prontos para seu projeto</p>
+                        
+                        <div class="accordion" id="commandsAccordion">
+                            <!-- OpenAI -->
+                            <div class="accordion-item">
+                                <div class="accordion-header" data-target="openai">
+                                    <span class="accordion-icon">🧠</span>
+                                    <span class="accordion-title">OpenAI - ChatGPT</span>
+                                    <span class="accordion-badge">API</span>
+                                    <span class="accordion-arrow">▶</span>
+                                </div>
+                                <div class="accordion-body" id="openai">
+                                    <div class="cmd-item">
+                                        <div class="cmd-left">
+                                            <span class="cmd-text">import openai; openai.api_key = "SUA_KEY"; response = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": "Olá!"}]); print(response.choices[0].message.content)</span>
+                                            <span class="cmd-desc">ChatGPT - Conversa básica</span>
+                                        </div>
+                                        <button class="btn-copy-cmd">📋 Copiar</button>
+                                    </div>
+                                    <div class="cmd-item">
+                                        <div class="cmd-left">
+                                            <span class="cmd-text">response = openai.ChatCompletion.create(model="gpt-4", messages=messages, temperature=0.2, max_tokens=500)</span>
+                                            <span class="cmd-desc">ChatGPT - Parâmetros (temperatura, max_tokens)</span>
+                                        </div>
+                                        <button class="btn-copy-cmd">📋 Copiar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PDF -->
+                            <div class="accordion-item">
+                                <div class="accordion-header" data-target="pdf">
+                                    <span class="accordion-icon">📄</span>
+                                    <span class="accordion-title">Análise de PDF</span>
+                                    <span class="accordion-badge">Documentos</span>
+                                    <span class="accordion-arrow">▶</span>
+                                </div>
+                                <div class="accordion-body" id="pdf">
+                                    <div class="cmd-item">
+                                        <div class="cmd-left">
+                                            <span class="cmd-text">pip install PyPDF2; import PyPDF2; reader = PyPDF2.PdfReader("arquivo.pdf"); texto = ""; for page in reader.pages: texto += page.extract_text()</span>
+                                            <span class="cmd-desc">Extrair texto de PDF com PyPDF2</span>
+                                        </div>
+                                        <button class="btn-copy-cmd">📋 Copiar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Imagem -->
+                            <div class="accordion-item">
+                                <div class="accordion-header" data-target="imagem">
+                                    <span class="accordion-icon">🖼️</span>
+                                    <span class="accordion-title">Análise de Imagens</span>
+                                    <span class="accordion-badge">Visão</span>
+                                    <span class="accordion-arrow">▶</span>
+                                </div>
+                                <div class="accordion-body" id="imagem">
+                                    <div class="cmd-item">
+                                        <div class="cmd-left">
+                                            <span class="cmd-text">from PIL import Image; img = Image.open("foto.jpg"); print(f"Tamanho: {img.size}, Formato: {img.format}")</span>
+                                            <span class="cmd-desc">Carregar e obter informações da imagem</span>
+                                        </div>
+                                        <button class="btn-copy-cmd">📋 Copiar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // ============================================
+        // GERADOR DE SCRIPTS
+        // ============================================
+
+        let currentScript = 'select';
+
+        function selectScript(type) {
+            currentScript = type;
+            document.querySelectorAll('.script-type-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.script === type) btn.classList.add('active');
+            });
+            updateOptions(type);
+            document.querySelector('.options-badge').textContent = type.toUpperCase();
+        }
+
+        function updateOptions(type) {
+            const container = document.getElementById('optionsContainer');
+            const options = {
+                select: `
+                    <label>Opções do SELECT</label>
+                    <div class="options-grid">
+                        <button class="opt-btn" data-opt="all" onclick="setOption('all')">* (todos)</button>
+                        <button class="opt-btn" data-opt="count" onclick="setOption('count')">COUNT</button>
+                        <button class="opt-btn" data-opt="distinct" onclick="setOption('distinct')">DISTINCT</button>
+                        <button class="opt-btn" data-opt="where" onclick="setOption('where')">WHERE</button>
+                        <button class="opt-btn" data-opt="order" onclick="setOption('order')">ORDER BY</button>
+                        <button class="opt-btn" data-opt="group" onclick="setOption('group')">GROUP BY</button>
+                        <button class="opt-btn" data-opt="limit" onclick="setOption('limit')">LIMIT</button>
+                    </div>
+                    <div class="opt-input-group">
+                        <input type="text" id="selectColumns" placeholder="Colunas (ex: nome, idade)" value="*">
+                        <input type="text" id="selectTable" placeholder="Tabela" value="usuarios">
+                        <input type="text" id="selectCondition" placeholder="Condição WHERE (ex: idade > 18)">
+                    </div>
+                `,
+                insert: `
+                    <label>Opções do INSERT</label>
+                    <div class="options-grid">
+                        <button class="opt-btn" data-opt="values" onclick="setOption('values')">VALUES</button>
+                        <button class="opt-btn" data-opt="select" onclick="setOption('select')">INSERT INTO SELECT</button>
+                        <button class="opt-btn" data-opt="multiple" onclick="setOption('multiple')">Múltiplos</button>
+                    </div>
+                    <div class="opt-input-group">
+                        <input type="text" id="insertTable" placeholder="Tabela" value="usuarios">
+                        <input type="text" id="insertColumns" placeholder="Colunas (ex: nome, email)" value="nome, email">
+                        <input type="text" id="insertValues" placeholder="Valores (ex: 'João', 'joao@email.com')">
+                        <input type="text" id="insertSelect" placeholder="INSERT INTO SELECT (ex: SELECT nome, email FROM antigos)">
+                    </div>
+                `,
+                update: `
+                    <label>Opções do UPDATE</label>
+                    <div class="options-grid">
+                        <button class="opt-btn" data-opt="set" onclick="setOption('set')">SET</button>
+                        <button class="opt-btn" data-opt="where" onclick="setOption('where')">WHERE</button>
+                    </div>
+                    <div class="opt-input-group">
+                        <input type="text" id="updateTable" placeholder="Tabela" value="usuarios">
+                        <input type="text" id="updateSet" placeholder="SET (ex: nome = 'Novo')" value="nome = 'Novo'">
+                        <input type="text" id="updateCondition" placeholder="WHERE (ex: id = 1)" value="id = 1">
+                    </div>
+                `,
+                delete: `
+                    <label>Opções do DELETE</label>
+                    <div class="options-grid">
+                        <button class="opt-btn" data-opt="where" onclick="setOption('where')">WHERE</button>
+                        <button class="opt-btn" data-opt="all" onclick="setOption('all')">DELETE ALL</button>
+                    </div>
+                    <div class="opt-input-group">
+                        <input type="text" id="deleteTable" placeholder="Tabela" value="usuarios">
+                        <input type="text" id="deleteCondition" placeholder="WHERE (ex: idade < 18)" value="id = 1">
+                    </div>
+                `,
+                create: `
+                    <label>Opções do CREATE TABLE</label>
+                    <div class="options-grid">
+                        <button class="opt-btn" data-opt="basic" onclick="setOption('basic')">Básico</button>
+                        <button class="opt-btn" data-opt="pk" onclick="setOption('pk')">Com PK</button>
+                        <button class="opt-btn" data-opt="fk" onclick="setOption('fk')">Com FK</button>
+                    </div>
+                    <div class="opt-input-group">
+                        <input type="text" id="createTable" placeholder="Nome da tabela" value="usuarios">
+                        <input type="text" id="createColumns" placeholder="Colunas (ex: id INT, nome VARCHAR(100))" value="id INT PRIMARY KEY, nome VARCHAR(100), email VARCHAR(100)">
+                    </div>
+                `,
+                alter: `
+                    <label>Opções do ALTER TABLE</label>
+                    <div class="options-grid">
+                        <button class="opt-btn" data-opt="add" onclick="setOption('add')">ADD COLUMN</button>
+                        <button class="opt-btn" data-opt="drop" onclick="setOption('drop')">DROP COLUMN</button>
+                        <button class="opt-btn" data-opt="rename" onclick="setOption('rename')">RENAME</button>
+                    </div>
+                    <div class="opt-input-group">
+                        <input type="text" id="alterTable" placeholder="Tabela" value="usuarios">
+                        <input type="text" id="alterColumn" placeholder="Coluna" value="telefone">
+                        <input type="text" id="alterType" placeholder="Tipo (ex: VARCHAR(20))" value="VARCHAR(20)">
+                    </div>
+                `,
+                drop: `
+                    <label>Opções do DROP</label>
+                    <div class="options-grid">
+                        <button class="opt-btn" data-opt="table" onclick="setOption('table')">DROP TABLE</button>
+                        <button class="opt-btn" data-opt="database" onclick="setOption('database')">DROP DATABASE</button>
+                        <button class="opt-btn" data-opt="ifexists" onclick="setOption('ifexists')">IF EXISTS</button>
+                    </div>
+                    <div class="opt-input-group">
+                        <input type="text" id="dropTable" placeholder="Tabela/Database" value="usuarios">
+                    </div>
+                `,
+                join: `
+                    <label>Opções do JOIN</label>
+                    <div class="options-grid">
+                        <button class="opt-btn" data-opt="inner" onclick="setOption('inner')">INNER JOIN</button>
+                        <button class="opt-btn" data-opt="left" onclick="setOption('left')">LEFT JOIN</button>
+                        <button class="opt-btn" data-opt="right" onclick="setOption('right')">RIGHT JOIN</button>
+                    </div>
+                    <div class="opt-input-group">
+                        <input type="text" id="joinTable1" placeholder="Tabela 1" value="usuarios">
+                        <input type="text" id="joinTable2" placeholder="Tabela 2" value="pedidos">
+                        <input type="text" id="joinCondition" placeholder="Condição (ex: usuarios.id = pedidos.usuario_id)" value="usuarios.id = pedidos.usuario_id">
+                        <input type="text" id="joinColumns" placeholder="Colunas (ex: usuarios.nome, pedidos.total)" value="*">
+                    </div>
+                `,
+                group: `
+                    <label>Opções do GROUP BY</label>
+                    <div class="options-grid">
+                        <button class="opt-btn" data-opt="count" onclick="setOption('count')">COUNT</button>
+                        <button class="opt-btn" data-opt="sum" onclick="setOption('sum')">SUM</button>
+                        <button class="opt-btn" data-opt="avg" onclick="setOption('avg')">AVG</button>
+                        <button class="opt-btn" data-opt="having" onclick="setOption('having')">HAVING</button>
+                    </div>
+                    <div class="opt-input-group">
+                        <input type="text" id="groupTable" placeholder="Tabela" value="usuarios">
+                        <input type="text" id="groupColumn" placeholder="GROUP BY coluna" value="cidade">
+                        <input type="text" id="groupAggregate" placeholder="Agregação (ex: COUNT(*))" value="COUNT(*)">
+                        <input type="text" id="groupHaving" placeholder="HAVING (ex: COUNT(*) > 5)" value="">
+                    </div>
+                `
+            };
+            container.innerHTML = options[type] || '<p>Selecione um tipo de script</p>';
+        }
+
+        function setOption(opt) {
+            document.querySelectorAll('.opt-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.opt === opt) btn.classList.add('active');
+            });
+        }
+
+        // ============================================
+        // GERAR SCRIPT
+        // ============================================
+
+        function generateScript() {
+            const type = currentScript;
+            let script = '';
+            let description = '';
+
+            switch(type) {
+                case 'select':
+                    const cols = document.getElementById('selectColumns')?.value || '*';
+                    const table = document.getElementById('selectTable')?.value || 'usuarios';
+                    const where = document.getElementById('selectCondition')?.value || '';
+                    script = `SELECT ${cols} FROM ${table}`;
+                    if (where) script += ` WHERE ${where}`;
+                    script += ';';
+                    description = 'Script SELECT gerado com sucesso!';
+                    break;
+
+                case 'insert':
+                    const insertTable = document.getElementById('insertTable')?.value || 'usuarios';
+                    const insertCols = document.getElementById('insertColumns')?.value || 'nome, email';
+                    const insertVals = document.getElementById('insertValues')?.value || "'João', 'joao@email.com'";
+                    const insertSelect = document.getElementById('insertSelect')?.value || '';
+                    if (insertSelect) {
+                        script = `INSERT INTO ${insertTable} (${insertCols}) ${insertSelect};`;
+                    } else {
+                        script = `INSERT INTO ${insertTable} (${insertCols}) VALUES (${insertVals});`;
+                    }
+                    description = 'Script INSERT gerado com sucesso!';
+                    break;
+
+                case 'update':
+                    const updateTable = document.getElementById('updateTable')?.value || 'usuarios';
+                    const updateSet = document.getElementById('updateSet')?.value || "nome = 'Novo'";
+                    const updateCond = document.getElementById('updateCondition')?.value || 'id = 1';
+                    script = `UPDATE ${updateTable} SET ${updateSet} WHERE ${updateCond};`;
+                    description = 'Script UPDATE gerado com sucesso!';
+                    break;
+
+                case 'delete':
+                    const deleteTable = document.getElementById('deleteTable')?.value || 'usuarios';
+                    const deleteCond = document.getElementById('deleteCondition')?.value || 'id = 1';
+                    script = `DELETE FROM ${deleteTable} WHERE ${deleteCond};`;
+                    description = 'Script DELETE gerado com sucesso!';
+                    break;
+
+                case 'create':
+                    const createTable = document.getElementById('createTable')?.value || 'usuarios';
+                    const createCols = document.getElementById('createColumns')?.value || 'id INT PRIMARY KEY, nome VARCHAR(100)';
+                    script = `CREATE TABLE ${createTable} (${createCols});`;
+                    description = 'Script CREATE TABLE gerado com sucesso!';
+                    break;
+
+                case 'alter':
+                    const alterTable = document.getElementById('alterTable')?.value || 'usuarios';
+                    const alterCol = document.getElementById('alterColumn')?.value || 'telefone';
+                    const alterType = document.getElementById('alterType')?.value || 'VARCHAR(20)';
+                    const activeOpt = document.querySelector('.opt-btn.active');
+                    const opt = activeOpt ? activeOpt.dataset.opt : 'add';
+                    if (opt === 'add') {
+                        script = `ALTER TABLE ${alterTable} ADD COLUMN ${alterCol} ${alterType};`;
+                    } else if (opt === 'drop') {
+                        script = `ALTER TABLE ${alterTable} DROP COLUMN ${alterCol};`;
+                    } else {
+                        script = `ALTER TABLE ${alterTable} RENAME COLUMN ${alterCol} TO ${alterType};`;
+                    }
+                    description = 'Script ALTER TABLE gerado com sucesso!';
+                    break;
+
+                case 'drop':
+                    const dropTable = document.getElementById('dropTable')?.value || 'usuarios';
+                    const dropOpt = document.querySelector('.opt-btn.active');
+                    const dropType = dropOpt ? dropOpt.dataset.opt : 'table';
+                    if (dropType === 'database') {
+                        script = `DROP DATABASE ${dropTable};`;
+                    } else if (dropType === 'ifexists') {
+                        script = `DROP TABLE IF EXISTS ${dropTable};`;
+                    } else {
+                        script = `DROP TABLE ${dropTable};`;
+                    }
+                    description = 'Script DROP gerado com sucesso!';
+                    break;
+
+                case 'join':
+                    const joinT1 = document.getElementById('joinTable1')?.value || 'usuarios';
+                    const joinT2 = document.getElementById('joinTable2')?.value || 'pedidos';
+                    const joinCond = document.getElementById('joinCondition')?.value || `${joinT1}.id = ${joinT2}.usuario_id`;
+                    const joinCols = document.getElementById('joinColumns')?.value || '*';
+                    const joinOpt = document.querySelector('.opt-btn.active');
+                    const joinType = joinOpt ? joinOpt.dataset.opt : 'inner';
+                    script = `SELECT ${joinCols} FROM ${joinT1} ${joinType.toUpperCase()} JOIN ${joinT2} ON ${joinCond};`;
+                    description = 'Script JOIN gerado com sucesso!';
+                    break;
+
+                case 'group':
+                    const groupTable = document.getElementById('groupTable')?.value || 'usuarios';
+                    const groupCol = document.getElementById('groupColumn')?.value || 'cidade';
+                    const groupAgg = document.getElementById('groupAggregate')?.value || 'COUNT(*)';
+                    const groupHaving = document.getElementById('groupHaving')?.value || '';
+                    script = `SELECT ${groupAgg} FROM ${groupTable} GROUP BY ${groupCol}`;
+                    if (groupHaving) script += ` HAVING ${groupHaving}`;
+                    script += ';';
+                    description = 'Script GROUP BY gerado com sucesso!';
+                    break;
+
+                default:
+                    script = '-- Selecione um tipo de script válido';
+                    description = 'Erro: tipo de script não reconhecido';
+            }
+
+            showResult(script, description);
+        }
+
+        // ============================================
+        // VALIDADOR
+        // ============================================
+
+        function validateScript() {
+            const input = document.getElementById('customInput').value.trim();
+            if (!input) {
+                showResult('', '⚠️ Digite um script ou comando para validar');
+                return;
+            }
+
+            let validated = input;
+            let status = '✅ Script validado com sucesso!';
+            let errors = [];
+
+            const sqlKeywords = ['SELECT', 'INSERT', 'UPDATE', 'DELETE', 'CREATE', 'ALTER', 'DROP', 'JOIN', 'GROUP BY'];
+            const upperInput = input.toUpperCase();
+            const isSQL = sqlKeywords.some(kw => upperInput.includes(kw));
+
+            if (isSQL) {
+                validated = validated.replace(/selec\s*/gi, 'SELECT ');
+                validated = validated.replace(/inser\s*/gi, 'INSERT ');
+                validated = validated.replace(/atuali\s*/gi, 'UPDATE ');
+                validated = validated.replace(/delet\s*/gi, 'DELETE ');
+                validated = validated.replace(/cri\s*/gi, 'CREATE ');
+                validated = validated.replace(/tabel\s*/gi, 'TABLE ');
+                validated = validated.replace(/onde\s*/gi, 'WHERE ');
+                validated = validated.replace(/ordena\s*/gi, 'ORDER BY ');
+                validated = validated.replace(/grup\s*/gi, 'GROUP BY ');
+                validated = validated.replace(/limi\s*/gi, 'LIMIT ');
+                validated = validated.replace(/\s*\*\s*/g, ' * ');
+                validated = validated.replace(/\s+/g, ' ').trim();
+
+                if (validated !== input) {
+                    status = '✅ Script corrigido automaticamente!';
+                }
+            } else {
+                const linuxCmds = ['ls', 'cd', 'pwd', 'cp', 'mv', 'rm', 'mkdir', 'grep', 'find', 'cat', 'less', 'vim'];
+                const inputLower = input.toLowerCase();
+                const hasCmd = linuxCmds.some(cmd => inputLower.includes(cmd));
+                if (hasCmd) {
+                    validated = validated.replace(/li\s*/gi, 'ls ');
+                    validated = validated.replace(/copi\s*/gi, 'cp ');
+                    validated = validated.replace(/mov\s*/gi, 'mv ');
+                    validated = validated.replace(/remov\s*/gi, 'rm ');
+                    validated = validated.replace(/cri\s*past\s*/gi, 'mkdir ');
+                    validated = validated.replace(/busc\s*/gi, 'find ');
+                    validated = validated.replace(/procur\s*/gi, 'grep ');
+                    if (validated !== input) {
+                        status = '✅ Comando Linux corrigido automaticamente!';
+                    }
+                } else {
+                    status = '⚠️ Comando não reconhecido. Verifique a sintaxe.';
+                    errors.push('Comando não identificado como SQL ou Linux');
+                }
+            }
+
+            showResult(validated, status, errors);
+        }
+
+        // ============================================
+        // VALIDADOR DE COMANDO (tempo real)
+        // ============================================
+
+        function validateCommand() {
+            const input = document.getElementById('validatorInput').value.trim();
+            const resultDiv = document.getElementById('validatorResult');
+            
+            if (!input) {
+                resultDiv.innerHTML = `<div class="validator-placeholder">💡 Digite um comando para validar e corrigir automaticamente</div>`;
+                return;
+            }
+
+            let original = input;
+            let corrected = input;
+            let suggestions = [];
+
+            const sqlCorrections = {
+                'selec': 'SELECT', 'selct': 'SELECT', 'selc': 'SELECT',
+                'inser': 'INSERT', 'insrt': 'INSERT',
+                'updat': 'UPDATE', 'updte': 'UPDATE',
+                'delet': 'DELETE', 'delt': 'DELETE',
+                'creat': 'CREATE', 'crat': 'CREATE',
+                'alt': 'ALTER', 'altr': 'ALTER',
+                'drop': 'DROP', 'drp': 'DROP',
+                'form': 'FROM', 'frm': 'FROM',
+                'wher': 'WHERE', 'whr': 'WHERE',
+                'order by': 'ORDER BY', 'ordr by': 'ORDER BY',
+                'group by': 'GROUP BY', 'grp by': 'GROUP BY',
+                'limit': 'LIMIT', 'lmt': 'LIMIT',
+                'join': 'JOIN', 'jn': 'JOIN',
+                'inner': 'INNER', 'left': 'LEFT', 'right': 'RIGHT'
+            };
+
+            let words = input.split(' ');
+            let correctedWords = words.map(word => {
+                const lower = word.toLowerCase();
+                for (let [key, value] of Object.entries(sqlCorrections)) {
+                    if (lower.includes(key)) {
+                        suggestions.push(`"${word}" → "${value}"`);
+                        return word.replace(new RegExp(key, 'i'), value);
+                    }
+                }
+                return word;
+            });
+
+            corrected = correctedWords.join(' ');
+
+            if (corrected !== original) {
+                resultDiv.innerHTML = `
+                    <div class="validator-success">
+                        <span class="validator-icon">✅</span>
+                        <div class="validator-details">
+                            <strong>Comando corrigido:</strong>
+                            <code>${corrected}</code>
+                            ${suggestions.length > 0 ? `<div class="validator-suggestions">${suggestions.join(' • ')}</div>` : ''}
+                        </div>
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="validator-ok">
+                        <span class="validator-icon">✅</span>
+                        <span>Comando válido! <code>${corrected}</code></span>
+                    </div>
+                `;
+            }
+        }
+
+        // ============================================
+        // MOSTRAR RESULTADO
+        // ============================================
+
+        function showResult(script, status, errors = []) {
+            const body = document.getElementById('resultBody');
+            const statusDiv = document.getElementById('resultStatus');
+            
+            if (!script) {
+                body.innerHTML = `
+                    <div class="result-placeholder">
+                        <span class="placeholder-icon">⚠️</span>
+                        <p>${status}</p>
+                    </div>
+                `;
+                statusDiv.innerHTML = `
+                    <span class="status-dot" style="background: #ffb347;"></span>
+                    <span class="status-text">${status}</span>
+                `;
+                return;
+            }
+
+            body.innerHTML = `
+                <div class="result-content">
+                    <pre><code>${script}</code></pre>
+                </div>
+            `;
+
+            const dotColor = errors.length > 0 ? '#ff4444' : '#00ff88';
+            statusDiv.innerHTML = `
+                <span class="status-dot" style="background: ${dotColor};"></span>
+                <span class="status-text">${status}</span>
+                ${errors.length > 0 ? `<span class="status-errors">${errors.join(' • ')}</span>` : ''}
+            `;
+        }
+
+        // ============================================
+        // AÇÕES DO RESULTADO
+        // ============================================
+
+        function copyResult() {
+            const code = document.querySelector('#resultBody code');
+            if (!code) return;
+            navigator.clipboard.writeText(code.textContent).then(() => {
+                showNotification('✅ Script copiado!');
+            });
+        }
+
+        function clearResult() {
+            document.getElementById('resultBody').innerHTML = `
+                <div class="result-placeholder">
+                    <span class="placeholder-icon">📝</span>
+                    <p>Selecione um tipo de script e clique em "GERAR SCRIPT"</p>
+                    <span class="placeholder-sub">Ou cole seu código para validar</span>
+                </div>
+            `;
+            document.getElementById('resultStatus').innerHTML = `
+                <span class="status-dot"></span>
+                <span class="status-text">Aguardando...</span>
+            `;
+            document.getElementById('customInput').value = '';
+        }
+
+        // ============================================
+        // NOTIFICAÇÃO
+        // ============================================
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: var(--bg-card);
+                color: var(--text-primary);
+                padding: 16px 24px;
+                border-radius: 12px;
+                border: 1px solid var(--ferrari-red);
+                box-shadow: var(--shadow);
+                z-index: 9999;
+                animation: slideIn 0.3s ease;
+            `;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transition = 'opacity 0.5s';
+                setTimeout(() => notification.remove(), 500);
+            }, 3000);
+        }
+
+        // ============================================
+        // ACORDEON E INICIALIZAÇÃO
+        // ============================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            selectScript('select');
+            
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const targetId = this.dataset.target;
+                    const body = document.getElementById(targetId);
+                    const arrow = this.querySelector('.accordion-arrow');
+                    
+                    document.querySelectorAll('.accordion-body').forEach(b => {
+                        if (b.id !== targetId) {
+                            b.classList.remove('active');
+                            b.style.maxHeight = '0';
+                            b.style.padding = '0 20px';
+                            const otherArrow = b.closest('.accordion-item').querySelector('.accordion-arrow');
+                            if (otherArrow) otherArrow.textContent = '▶';
+                        }
+                    });
+
+                    if (body.classList.contains('active')) {
+                        body.classList.remove('active');
+                        body.style.maxHeight = '0';
+                        body.style.padding = '0 20px';
+                        arrow.textContent = '▶';
+                    } else {
+                        body.classList.add('active');
+                        body.style.maxHeight = body.scrollHeight + 'px';
+                        body.style.padding = '20px';
+                        arrow.textContent = '▼';
+                    }
+                });
+            });
+
+            document.querySelectorAll('.btn-copy-cmd').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const cmdText = this.closest('.cmd-item').querySelector('.cmd-text').textContent;
+                    navigator.clipboard.writeText(cmdText).then(() => {
+                        const originalText = this.textContent;
+                        this.textContent = '✅ Copiado!';
+                        setTimeout(() => {
+                            this.textContent = originalText;
+                        }, 2000);
+                    });
+                });
+            });
+
+            document.getElementById('searchInput').addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase().trim();
+                const items = document.querySelectorAll('.cmd-item');
+                const headers = document.querySelectorAll('.accordion-header');
+                
+                if (!searchTerm) {
+                    items.forEach(item => item.style.display = 'flex');
+                    headers.forEach(h => h.style.display = 'flex');
+                    return;
+                }
+
+                items.forEach(item => {
+                    const text = item.querySelector('.cmd-text').textContent.toLowerCase();
+                    const desc = item.querySelector('.cmd-desc').textContent.toLowerCase();
+                    if (text.includes(searchTerm) || desc.includes(searchTerm)) {
+                        item.style.display = 'flex';
+                        const parentBody = item.closest('.accordion-body');
+                        if (parentBody) {
+                            parentBody.classList.add('active');
+                            parentBody.style.maxHeight = parentBody.scrollHeight + 'px';
+                            parentBody.style.padding = '20px';
+                            const arrow = parentBody.closest('.accordion-item').querySelector('.accordion-arrow');
+                            if (arrow) arrow.textContent = '▼';
+                        }
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                headers.forEach(header => {
+                    const body = document.getElementById(header.dataset.target);
+                    if (body) {
+                        const visibleItems = body.querySelectorAll('.cmd-item[style*="display: flex"], .cmd-item:not([style*="display: none"])');
+                        const hasVisible = Array.from(visibleItems).some(el => el.style.display !== 'none');
+                        header.style.display = hasVisible ? 'flex' : 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐧 F1 Linux Helper</title>
+    <link rel="stylesheet" href="../css/linux.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- ============================================
+             MENU LATERAL
+        ============================================ -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🏎️</span>
+                    <span class="logo-text">F1</span>
+                    <span class="logo-badge">PRO</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../index.html">
+                            <span class="nav-icon">📊</span>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-divider"></li>
+                    <li class="nav-item">
+                        <a href="dados.html">
+                            <span class="nav-icon">🗄️</span>
+                            <span class="nav-text">Dados</span>
+                            <span class="nav-badge">SQL</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="linux.html">
+                            <span class="nav-icon">🐧</span>
+                            <span class="nav-text">Linux</span>
+                            <span class="nav-badge">Terminal</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="devops.html">
+                            <span class="nav-icon">🐳</span>
+                            <span class="nav-text">DevOps</span>
+                            <span class="nav-badge">Docker</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="backend.html">
+                            <span class="nav-icon">☕</span>
+                            <span class="nav-text">Back-End</span>
+                            <span class="nav-badge">Spring</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="frontend.html">
+                            <span class="nav-icon">🎨</span>
+                            <span class="nav-text">Front-End</span>
+                            <span class="nav-badge">JS</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="automacao.html">
+                            <span class="nav-icon">⚡</span>
+                            <span class="nav-text">Automação</span>
+                            <span class="nav-badge">N8N</span>
+                        </a>
+                    </li>
+                     <li class="nav-item">
+                        <a href="controle-versao.html">
+                            <span class="nav-icon">⚡</span>
+                            <span class="nav-text">Controle de Versão</span>
+                            <span class="nav-badge">Git</span>
+                        </a>
+                    </li>
+                    <li class="nav-divider"></li>
+                    <li class="nav-item">
+                        <a href="ia.html">
+                            <span class="nav-icon">🤖</span>
+                            <span class="nav-text">Assistente IA</span>
+                            <span class="nav-badge">AI</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-avatar">👤</span>
+                    <span class="user-name">Usuário</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ============================================
+             CONTEÚDO PRINCIPAL
+        ============================================ -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="top-bar-left">
+                    <button class="menu-toggle">☰</button>
+                    <h1>Linux - Terminal Helper</h1>
+                </div>
+                <div class="top-bar-right">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="🔍 Buscar comando...">
+                    </div>
+                    <button class="btn-ai">🤖 IA</button>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <!-- Header Ferrari -->
+                <div class="linux-header">
+                    <div class="linux-logo">
+                        <span class="linux-emoji">🐧</span>
+                        <span class="linux-title">F1 Linux</span>
+                        <span class="linux-subtitle">Terminal Helper</span>
+                    </div>
+                    <div class="ferrari-badge">⚡ SCUDERIA FERRARI</div>
+                </div>
+
+                <!-- Conteúdo -->
+                <div class="linux-content">
+                    <h2>📋 Comandos Essenciais</h2>
+                    <p class="subtitle">Clique em uma categoria para ver os comandos com explicações</p>
+
+                    <!-- ==========================================
+                         INTRODUÇÃO
+                    ========================================== -->
+                    <div class="info-card">
+                        <div class="info-title">💡 O que é o Terminal Linux?</div>
+                        <div class="info-text">
+                            O terminal é a interface de linha de comando do Linux. Com ele você pode executar programas,
+                            gerenciar arquivos, monitorar processos e controlar todo o sistema de forma eficiente.
+                            Domine os comandos básicos <code>ls</code>, <code>cd</code>, <code>cp</code>, <code>mv</code>, <code>rm</code>,
+                            e depois evolua para <code>find</code>, <code>grep</code>, <code>vim</code> e <code>less</code>.
+                        </div>
+                    </div>
+
+                    <!-- ==========================================
+                         ACORDEON DE COMANDOS
+                    ========================================== -->
+                    <div class="accordion" id="commandsAccordion">
+                        <!-- ==========================================
+                             COMANDOS BÁSICOS
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="basico">
+                                <span class="accordion-icon">📂</span>
+                                <span class="accordion-title">Comandos Básicos</span>
+                                <span class="accordion-badge">Essencial</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="basico">
+                                <!-- ls -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">ls</span>
+                                        <span class="cmd-desc">Lista arquivos e diretórios do diretório atual</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">ls -l</span>
+                                        <span class="cmd-desc">Lista com detalhes (permissões, dono, tamanho, data)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">ls -a</span>
+                                        <span class="cmd-desc">Lista TODOS os arquivos, incluindo ocultos (que começam com .)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">ls -la</span>
+                                        <span class="cmd-desc">Lista TODOS os arquivos com detalhes (mais usado do dia a dia)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">ls -lh</span>
+                                        <span class="cmd-desc">Lista com tamanhos legíveis (KB, MB, GB)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">ls -lt</span>
+                                        <span class="cmd-desc">Lista ordenado por data de modificação (mais recentes primeiro)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">ls -ltr</span>
+                                        <span class="cmd-desc">Lista ordenado por data (mais antigos primeiro)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+
+                                <!-- cd -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">cd</span>
+                                        <span class="cmd-desc">Volta para o diretório home do usuário</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">cd /caminho</span>
+                                        <span class="cmd-desc">Vai para um diretório específico (caminho absoluto)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">cd ..</span>
+                                        <span class="cmd-desc">Sobe um nível (volta para o diretório pai)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">cd -</span>
+                                        <span class="cmd-desc">Volta para o diretório anterior (último onde estava)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">cd ~</span>
+                                        <span class="cmd-desc">Vai para o diretório home do usuário</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">cd ../..</span>
+                                        <span class="cmd-desc">Sobe dois níveis de uma vez</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+
+                                <!-- pwd -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">pwd</span>
+                                        <span class="cmd-desc">Mostra o caminho completo do diretório atual</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+
+                                <!-- cp -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">cp origem destino</span>
+                                        <span class="cmd-desc">Copia arquivo ou diretório</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">cp -r origem destino</span>
+                                        <span class="cmd-desc">Copia diretório recursivamente (com todo o conteúdo)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">cp -i origem destino</span>
+                                        <span class="cmd-desc">Copia perguntando antes de sobrescrever (seguro)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">cp -v origem destino</span>
+                                        <span class="cmd-desc">Copia mostrando o progresso (verbose)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">cp -u origem destino</span>
+                                        <span class="cmd-desc">Copia apenas se origem for mais novo que destino</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+
+                                <!-- mv -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">mv origem destino</span>
+                                        <span class="cmd-desc">Move ou renomeia arquivo/diretório</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">mv -i origem destino</span>
+                                        <span class="cmd-desc">Move perguntando antes de sobrescrever</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">mv -v origem destino</span>
+                                        <span class="cmd-desc">Move mostrando o que está fazendo</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">mv arquivo.txt pasta/</span>
+                                        <span class="cmd-desc">Move arquivo para uma pasta</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">mv antigo.txt novo.txt</span>
+                                        <span class="cmd-desc">Renomeia arquivo</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+
+                                <!-- rm -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">rm arquivo</span>
+                                        <span class="cmd-desc">Remove arquivo (cuidado: não vai para lixeira!)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">rm -i arquivo</span>
+                                        <span class="cmd-desc">Remove perguntando antes (mais seguro)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">rm -r pasta</span>
+                                        <span class="cmd-desc">Remove diretório recursivamente (com todo o conteúdo)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">rm -rf pasta</span>
+                                        <span class="cmd-desc">Remove forçadamente sem perguntar (PERIGOSO!)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+
+                                <!-- mkdir -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">mkdir nome_pasta</span>
+                                        <span class="cmd-desc">Cria um novo diretório</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">mkdir -p pasta/subpasta</span>
+                                        <span class="cmd-desc">Cria diretórios aninhados (pai e filho) de uma vez</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+
+                                <!-- rmdir -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">rmdir nome_pasta</span>
+                                        <span class="cmd-desc">Remove diretório VAZIO</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+
+                                <!-- touch -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">touch arquivo.txt</span>
+                                        <span class="cmd-desc">Cria um arquivo vazio ou atualiza a data de modificação</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+
+                                <!-- cat -->
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">cat arquivo.txt</span>
+                                        <span class="cmd-desc">Exibe o conteúdo do arquivo na tela</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">cat -n arquivo.txt</span>
+                                        <span class="cmd-desc">Exibe com números de linha</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             FIND
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="find">
+                                <span class="accordion-icon">🔍</span>
+                                <span class="accordion-title">find</span>
+                                <span class="accordion-badge">Buscar arquivos</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="find">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">find . -name "*.txt"</span>
+                                        <span class="cmd-desc">Busca arquivos .txt no diretório atual</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">find /home -type f -name "*.pdf"</span>
+                                        <span class="cmd-desc">Busca arquivos PDF em /home</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">find . -type d -name "backup"</span>
+                                        <span class="cmd-desc">Busca diretórios chamados "backup"</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">find . -size +100M</span>
+                                        <span class="cmd-desc">Busca arquivos maiores que 100MB</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">find . -mtime -7</span>
+                                        <span class="cmd-desc">Arquivos modificados nos últimos 7 dias</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">find . -name "*.log" -exec rm {} \;</span>
+                                        <span class="cmd-desc">Remove todos os arquivos .log encontrados</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">find . -empty</span>
+                                        <span class="cmd-desc">Busca arquivos e diretórios vazios</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             GREP
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="grep">
+                                <span class="accordion-icon">🔎</span>
+                                <span class="accordion-title">grep</span>
+                                <span class="accordion-badge">Buscar texto</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="grep">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">grep "erro" log.txt</span>
+                                        <span class="cmd-desc">Busca "erro" no arquivo log.txt</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">grep -i "erro" log.txt</span>
+                                        <span class="cmd-desc">Busca ignorando maiúsculas/minúsculas</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">grep -r "erro" /var/log/</span>
+                                        <span class="cmd-desc">Busca recursivamente em todos os arquivos da pasta</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">grep -n "erro" log.txt</span>
+                                        <span class="cmd-desc">Mostra o número da linha onde encontrou</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">grep -l "erro" *.log</span>
+                                        <span class="cmd-desc">Lista apenas os nomes dos arquivos que contém "erro"</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">grep -v "erro" log.txt</span>
+                                        <span class="cmd-desc">Mostra linhas que NÃO contém "erro" (inverte)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">grep -c "erro" log.txt</span>
+                                        <span class="cmd-desc">Conta quantas vezes "erro" aparece</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">ps aux | grep nginx</span>
+                                        <span class="cmd-desc">Busca processos do nginx (pipe com ps)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             VIM
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="vim">
+                                <span class="accordion-icon">✏️</span>
+                                <span class="accordion-title">vim</span>
+                                <span class="accordion-badge">Editor de texto</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="vim">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">vim arquivo.txt</span>
+                                        <span class="cmd-desc">Abrir arquivo no VIM</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">i</span>
+                                        <span class="cmd-desc">Entrar no modo INSERT (editar texto)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Esc</span>
+                                        <span class="cmd-desc">Voltar para o modo NORMAL</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">:w</span>
+                                        <span class="cmd-desc">Salvar o arquivo</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">:wq</span>
+                                        <span class="cmd-desc">Salvar e sair</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">:q!</span>
+                                        <span class="cmd-desc">Sair sem salvar (forçado)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">dd</span>
+                                        <span class="cmd-desc">Apagar a linha atual</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">yy</span>
+                                        <span class="cmd-desc">Copiar (yank) a linha atual</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">p</span>
+                                        <span class="cmd-desc">Colar (paste) depois do cursor</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">u</span>
+                                        <span class="cmd-desc">Desfazer (undo) última ação</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Ctrl + r</span>
+                                        <span class="cmd-desc">Refazer (redo) ação desfeita</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">/palavra</span>
+                                        <span class="cmd-desc">Buscar "palavra" para frente</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">?palavra</span>
+                                        <span class="cmd-desc">Buscar "palavra" para trás</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">n</span>
+                                        <span class="cmd-desc">Próxima ocorrência da busca</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">gg</span>
+                                        <span class="cmd-desc">Ir para o início do arquivo</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">G</span>
+                                        <span class="cmd-desc">Ir para o final do arquivo</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">:set number</span>
+                                        <span class="cmd-desc">Mostrar números de linha</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">:set nonumber</span>
+                                        <span class="cmd-desc">Ocultar números de linha</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">:set relativenumber</span>
+                                        <span class="cmd-desc">Mostrar números relativos (útil para navegação)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">:%s/antigo/novo/g</span>
+                                        <span class="cmd-desc">Substituir "antigo" por "novo" em todo o arquivo</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">:w !sudo tee %</span>
+                                        <span class="cmd-desc">Salvar arquivo com permissão sudo (sem abrir como root)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             LESS
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="less">
+                                <span class="accordion-icon">📄</span>
+                                <span class="accordion-title">less</span>
+                                <span class="accordion-badge">Visualizador</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="less">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">less arquivo.txt</span>
+                                        <span class="cmd-desc">Abrir arquivo no less</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">less -N arquivo.txt</span>
+                                        <span class="cmd-desc">Mostrar números de linha</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">less -S arquivo.txt</span>
+                                        <span class="cmd-desc">Cortar linhas longas (útil para logs)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Espaço / Page Down</span>
+                                        <span class="cmd-desc">Avançar uma página</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">b / Page Up</span>
+                                        <span class="cmd-desc">Voltar uma página</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">g</span>
+                                        <span class="cmd-desc">Ir para o início do arquivo</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">G</span>
+                                        <span class="cmd-desc">Ir para o final do arquivo</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">j / ↓</span>
+                                        <span class="cmd-desc">Avançar uma linha</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">k / ↑</span>
+                                        <span class="cmd-desc">Voltar uma linha</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">/palavra</span>
+                                        <span class="cmd-desc">Buscar "palavra" para frente</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">?palavra</span>
+                                        <span class="cmd-desc">Buscar "palavra" para trás</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">n</span>
+                                        <span class="cmd-desc">Próxima ocorrência da busca</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">=</span>
+                                        <span class="cmd-desc">Mostrar informações do arquivo (linha, %, tamanho)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">R</span>
+                                        <span class="cmd-desc">Recarregar o arquivo (útil para logs em tempo real)</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">q</span>
+                                        <span class="cmd-desc">Sair do less</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">tail -f log.txt | less</span>
+                                        <span class="cmd-desc">Pipelina logs em tempo real para o less</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // ============================================
+        // ACORDEON
+        // ============================================
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const targetId = this.dataset.target;
+                const body = document.getElementById(targetId);
+                const arrow = this.querySelector('.accordion-arrow');
+                
+                document.querySelectorAll('.accordion-body').forEach(b => {
+                    if (b.id !== targetId) {
+                        b.classList.remove('active');
+                        b.style.maxHeight = '0';
+                        b.style.padding = '0 20px';
+                        const otherArrow = b.closest('.accordion-item').querySelector('.accordion-arrow');
+                        if (otherArrow) otherArrow.textContent = '▶';
+                    }
+                });
+
+                if (body.classList.contains('active')) {
+                    body.classList.remove('active');
+                    body.style.maxHeight = '0';
+                    body.style.padding = '0 20px';
+                    arrow.textContent = '▶';
+                } else {
+                    body.classList.add('active');
+                    body.style.maxHeight = body.scrollHeight + 'px';
+                    body.style.padding = '20px';
+                    arrow.textContent = '▼';
+                }
+            });
+        });
+
+        // ============================================
+        // COPIAR COMANDO
+        // ============================================
+        document.querySelectorAll('.btn-copy-cmd').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const cmdText = this.closest('.cmd-item').querySelector('.cmd-text').textContent;
+                navigator.clipboard.writeText(cmdText).then(() => {
+                    const originalText = this.textContent;
+                    this.textContent = '✅ Copiado!';
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                    }, 2000);
+                });
+            });
+        });
+
+        // ============================================
+        // BUSCA
+        // ============================================
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            const items = document.querySelectorAll('.cmd-item');
+            const headers = document.querySelectorAll('.accordion-header');
+            
+            if (!searchTerm) {
+                items.forEach(item => item.style.display = 'flex');
+                headers.forEach(h => h.style.display = 'flex');
+                return;
+            }
+
+            items.forEach(item => {
+                const text = item.querySelector('.cmd-text').textContent.toLowerCase();
+                const desc = item.querySelector('.cmd-desc').textContent.toLowerCase();
+                if (text.includes(searchTerm) || desc.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                    const parentBody = item.closest('.accordion-body');
+                    if (parentBody) {
+                        parentBody.classList.add('active');
+                        parentBody.style.maxHeight = parentBody.scrollHeight + 'px';
+                        parentBody.style.padding = '20px';
+                        const arrow = parentBody.closest('.accordion-item').querySelector('.accordion-arrow');
+                        if (arrow) arrow.textContent = '▼';
+                    }
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            headers.forEach(header => {
+                const body = document.getElementById(header.dataset.target);
+                if (body) {
+                    const visibleItems = body.querySelectorAll('.cmd-item[style*="display: flex"], .cmd-item:not([style*="display: none"])');
+                    const hasVisible = Array.from(visibleItems).some(el => el.style.display !== 'none');
+                    header.style.display = hasVisible ? 'flex' : 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
