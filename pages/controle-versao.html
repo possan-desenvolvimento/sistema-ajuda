@@ -92,6 +92,7 @@
                             <span class="nav-badge">Daily</span>
                         </a>
                     </li>
+                    <li class="nav-item"><a href="dicionario-dev.html"><span class="nav-icon">📚</span><span class="nav-text">Dicionário Dev</span><span class="nav-badge">Termos</span></a></li>
                     <li class="nav-divider"></li>
                     <li class="nav-item">
                         <a href="ia.html">
@@ -143,6 +144,7 @@
                 <div class="git-content">
                     <h2>📋 Comandos Git Essenciais</h2>
                     <p class="subtitle">Clique em uma categoria para ver os comandos com explicações</p>
+                    <div class="search-status" id="searchStatus" aria-live="polite"></div>
 
                     <!-- ==========================================
                          INTRODUÇÃO
@@ -155,6 +157,25 @@
                             Domine os comandos <code>commit</code>, <code>merge</code>, <code>rebase</code>, <code>stash</code> e <code>cherry-pick</code>.
                         </div>
                     </div>
+
+                    <div class="git-alert">
+                        <div class="git-alert-title">🧭 Regra de ouro do Git</div>
+                        <p>Antes de alterar histórico, descubra onde está: rode <code>git status</code>, confira a branch e leia o diff. Histórico publicado deve ser tratado como compartilhado.</p>
+                    </div>
+
+                    <section class="git-foundations" aria-labelledby="gitFoundationsTitle">
+                        <div class="section-heading">
+                            <span class="section-kicker">MAPA DE DOMÍNIO</span>
+                            <h2 id="gitFoundationsTitle">O fluxo que te torna confiável</h2>
+                            <p>Git profissional é menos decorar comandos e mais saber em que estado o trabalho está.</p>
+                        </div>
+                        <div class="foundation-grid">
+                            <article class="foundation-card"><span>01</span><strong>Inspecionar</strong><p>Veja status, diff, branch atual e histórico antes de agir.</p><code>status -> diff -> log</code></article>
+                            <article class="foundation-card"><span>02</span><strong>Isolar</strong><p>Faça uma mudança por vez e mantenha commits pequenos e explicáveis.</p><code>branch -> add -p -> commit</code></article>
+                            <article class="foundation-card"><span>03</span><strong>Sincronizar</strong><p>Atualize referências remotas e integre mudanças conscientemente.</p><code>fetch -> rebase/merge -> push</code></article>
+                            <article class="foundation-card"><span>04</span><strong>Recuperar</strong><p>Use reflog, restore e revert para desfazer sem destruir trabalho.</p><code>reflog -> restore/revert</code></article>
+                        </div>
+                    </section>
 
                     <!-- ==========================================
                          ACORDEON DE COMANDOS
@@ -600,15 +621,15 @@
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">git stash clear</span>
-                                        <span class="cmd-desc">Remove todos os stashes</span>
+                                        <span class="cmd-text cmd-danger">git stash clear</span>
+                                        <span class="cmd-desc cmd-danger">⚠️ Remove todos os stashes sem possibilidade simples de recuperação.</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">git clean -fd</span>
-                                        <span class="cmd-desc">Remove arquivos não rastreados</span>
+                                        <span class="cmd-text cmd-danger">git clean -fd</span>
+                                        <span class="cmd-desc cmd-danger">⚠️ Remove arquivos não rastreados. Simule antes com git clean -nd.</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
@@ -642,8 +663,8 @@
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">git reset --hard HEAD~1</span>
-                                        <span class="cmd-desc">Remove commit e descarta alterações (PERIGOSO!)</span>
+                                        <span class="cmd-text cmd-danger">git reset --hard HEAD~1</span>
+                                        <span class="cmd-desc cmd-danger">⚠️ Remove commit e descarta alterações. Evite em histórico compartilhado.</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
@@ -691,8 +712,8 @@
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">git push --force origin main</span>
-                                        <span class="cmd-desc">Força o envio (sobrescreve histórico - CUIDADO!)</span>
+                                        <span class="cmd-text cmd-danger">git push --force origin main</span>
+                                        <span class="cmd-desc cmd-danger">⚠️ Reescreve histórico remoto. Prefira --force-with-lease.</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
@@ -852,6 +873,56 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="colaboracao">
+                                <span class="accordion-icon">🤝</span>
+                                <span class="accordion-title">Colaboração e Pull Request</span>
+                                <span class="accordion-badge">Equipe</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="colaboracao">
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">git fetch --prune origin</span><span class="cmd-desc">Atualiza referências remotas e remove branches remotas que não existem mais.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">git switch -c feature/nome-da-tarefa</span><span class="cmd-desc">Cria uma branch com nome que comunica o objetivo da mudança.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">git diff main...HEAD</span><span class="cmd-desc">Revisa tudo que sua branch adicionou desde main.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">git push -u origin feature/nome-da-tarefa</span><span class="cmd-desc">Publica a branch e configura o upstream para os próximos pushes.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">git log --oneline main..HEAD</span><span class="cmd-desc">Lista os commits que entrarão no Pull Request.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">git branch --merged main</span><span class="cmd-desc">Encontra branches já integradas e candidatas à limpeza.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="recuperacao">
+                                <span class="accordion-icon">🛟</span>
+                                <span class="accordion-title">Recuperar trabalho</span>
+                                <span class="accordion-badge">Sem pânico</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="recuperacao">
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">git restore arquivo.txt</span><span class="cmd-desc">Descarta alterações não staged de um arquivo. Use somente se não precisar delas.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">git restore --staged arquivo.txt</span><span class="cmd-desc">Remove o arquivo do stage sem apagar sua alteração local.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">git reflog</span><span class="cmd-desc">Mostra movimentos recentes de HEAD e ajuda a localizar commits perdidos.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">git switch -c resgate HEAD@{2}</span><span class="cmd-desc">Cria uma branch apontando para uma posição encontrada no reflog.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">git revert HEAD</span><span class="cmd-desc">Cria um novo commit que desfaz o último commit sem reescrever o histórico.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">git clean -nd</span><span class="cmd-desc">Simula a remoção de arquivos não rastreados antes de usar a versão destrutiva.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="higiene">
+                                <span class="accordion-icon">🧼</span>
+                                <span class="accordion-title">Higiene e qualidade</span>
+                                <span class="accordion-badge">Boas práticas</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="higiene">
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">git diff --check</span><span class="cmd-desc">Detecta whitespace problemático antes do commit.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">git ls-files</span><span class="cmd-desc">Lista arquivos rastreados pelo repositório.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">git check-ignore -v arquivo.log</span><span class="cmd-desc">Descobre qual regra do .gitignore está ignorando um arquivo.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">git shortlog -sn --all</span><span class="cmd-desc">Resume quantidade de commits por autor.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">git blame -L 10,30 arquivo.js</span><span class="cmd-desc">Mostra o commit e autor associados a cada linha de um trecho.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -895,18 +966,24 @@
         // ============================================
         // COPIAR COMANDO
         // ============================================
-        document.querySelectorAll('.btn-copy-cmd').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const cmdText = this.closest('.cmd-item').querySelector('.cmd-text').textContent;
-                navigator.clipboard.writeText(cmdText).then(() => {
-                    const originalText = this.textContent;
-                    this.textContent = '✅ Copiado!';
-                    setTimeout(() => {
-                        this.textContent = originalText;
-                    }, 2000);
-                });
+        document.getElementById('commandsAccordion').addEventListener('click', function(e) {
+            const btn = e.target.closest('.btn-copy-cmd');
+            if (!btn) return;
+            e.stopPropagation();
+            const cmdText = btn.closest('.cmd-item').querySelector('.cmd-text').textContent;
+            navigator.clipboard.writeText(cmdText).then(() => {
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Copiado!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
             });
+        });
+
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            const navigation = document.querySelector('.sidebar-nav');
+            const isOpen = navigation.classList.toggle('open');
+            this.setAttribute('aria-expanded', String(isOpen));
         });
 
         // ============================================
@@ -916,18 +993,22 @@
             const searchTerm = this.value.toLowerCase().trim();
             const items = document.querySelectorAll('.cmd-item');
             const headers = document.querySelectorAll('.accordion-header');
+            const searchStatus = document.getElementById('searchStatus');
             
             if (!searchTerm) {
                 items.forEach(item => item.style.display = 'flex');
                 headers.forEach(h => h.style.display = 'flex');
+                searchStatus.textContent = '';
                 return;
             }
 
+            let matchCount = 0;
             items.forEach(item => {
                 const text = item.querySelector('.cmd-text').textContent.toLowerCase();
                 const desc = item.querySelector('.cmd-desc').textContent.toLowerCase();
                 if (text.includes(searchTerm) || desc.includes(searchTerm)) {
                     item.style.display = 'flex';
+                    matchCount += 1;
                     const parentBody = item.closest('.accordion-body');
                     if (parentBody) {
                         parentBody.classList.add('active');
@@ -940,6 +1021,10 @@
                     item.style.display = 'none';
                 }
             });
+
+            searchStatus.textContent = matchCount === 0
+                ? `Nenhum comando encontrado para “${this.value}”.`
+                : `${matchCount} comando${matchCount === 1 ? '' : 's'} encontrado${matchCount === 1 ? '' : 's'}.`;
 
             headers.forEach(header => {
                 const body = document.getElementById(header.dataset.target);

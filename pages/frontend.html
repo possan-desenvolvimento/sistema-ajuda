@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎨 F1 Front-End - HTML, CSS, JS & NGINX</title>
+    <title>🎨 F1 Front-End - HTML, CSS & JavaScript</title>
     <link rel="stylesheet" href="../css/frontend.css">
 </head>
 <body>
@@ -92,6 +92,7 @@
                             <span class="nav-badge">Daily</span>
                         </a>
                     </li>
+                    <li class="nav-item"><a href="dicionario-dev.html"><span class="nav-icon">📚</span><span class="nav-text">Dicionário Dev</span><span class="nav-badge">Termos</span></a></li>
                     <li class="nav-divider"></li>
                     <li class="nav-item">
                         <a href="ia.html">
@@ -118,7 +119,7 @@
             <header class="top-bar">
                 <div class="top-bar-left">
                     <button class="menu-toggle">☰</button>
-                    <h1>Front-End - HTML, CSS, JS & NGINX</h1>
+                    <h1>Front-End - HTML, CSS & JavaScript</h1>
                 </div>
                 <div class="top-bar-right">
                     <div class="search-box">
@@ -134,7 +135,7 @@
                     <div class="frontend-logo">
                         <span class="frontend-emoji">🎨</span>
                         <span class="frontend-title">F1 Front-End</span>
-                        <span class="frontend-subtitle">HTML, CSS, JS & NGINX</span>
+                        <span class="frontend-subtitle">HTML, CSS & JavaScript</span>
                     </div>
                     <div class="ferrari-badge">⚡ SCUDERIA FERRARI</div>
                 </div>
@@ -143,6 +144,7 @@
                 <div class="frontend-content">
                     <h2>📋 Guia Completo Front-End</h2>
                     <p class="subtitle">Clique em uma categoria para ver os comandos com explicações</p>
+                    <div class="search-status" id="searchStatus" aria-live="polite"></div>
 
                     <!-- ==========================================
                          INTRODUÇÃO
@@ -152,9 +154,28 @@
                         <div class="info-text">
                             Front-End é a parte visual e interativa de uma aplicação. <code>HTML</code> estrutura o conteúdo,
                             <code>CSS</code> estiliza e <code>JavaScript</code> dá vida à página.
-                            <code>NGINX</code> é o servidor web que entrega esses arquivos para o usuário.
+                            O navegador interpreta esses três pilares e transforma código em experiência.
                         </div>
                     </div>
+
+                    <div class="frontend-alert">
+                        <div class="frontend-alert-title">🎯 Regra de ouro do Front-End</div>
+                        <p>Construa primeiro uma estrutura semântica, depois estilize com CSS e só então adicione comportamento com JavaScript. Uma interface boa continua entendível sem depender de efeitos.</p>
+                    </div>
+
+                    <section class="frontend-foundations" aria-labelledby="foundationsTitle">
+                        <div class="section-heading">
+                            <span class="section-kicker">ROTEIRO DE ESTUDO</span>
+                            <h2 id="foundationsTitle">Como pensar antes de codar</h2>
+                            <p>Use este ciclo para transformar uma tela bonita em uma interface sólida.</p>
+                        </div>
+                        <div class="foundation-grid">
+                            <article class="foundation-card"><span>01</span><strong>Estrutura</strong><p>HTML semântico, formulários, hierarquia e acessibilidade.</p><code>main &gt; section &gt; article</code></article>
+                            <article class="foundation-card"><span>02</span><strong>Estilo</strong><p>CSS responsivo, layout, estados, contraste e manutenção.</p><code>grid + flex + variables</code></article>
+                            <article class="foundation-card"><span>03</span><strong>Comportamento</strong><p>Eventos, DOM, estado, validação e comunicação com APIs.</p><code>event -&gt; state -&gt; render</code></article>
+                            <article class="foundation-card"><span>04</span><strong>Qualidade</strong><p>Teste teclado, mobile, console, performance e estados de erro.</p><code>DevTools + Lighthouse</code></article>
+                        </div>
+                    </section>
 
                     <!-- ==========================================
                          ACORDEON DE COMANDOS
@@ -615,115 +636,51 @@
                             </div>
                         </div>
 
-                        <!-- ==========================================
-                             NGINX
-                        ========================================== -->
                         <div class="accordion-item">
-                            <div class="accordion-header" data-target="nginx">
-                                <span class="accordion-icon">🌐</span>
-                                <span class="accordion-title">NGINX</span>
-                                <span class="accordion-badge">Servidor Web</span>
+                            <div class="accordion-header" data-target="acessibilidade">
+                                <span class="accordion-icon">♿</span>
+                                <span class="accordion-title">HTML e acessibilidade</span>
+                                <span class="accordion-badge">Inclusão</span>
                                 <span class="accordion-arrow">▶</span>
                             </div>
-                            <div class="accordion-body" id="nginx">
-                                <div class="cmd-item">
-                                    <div class="cmd-left">
-                                        <span class="cmd-text">sudo apt update && sudo apt install nginx</span>
-                                        <span class="cmd-desc">Instala o NGINX no Ubuntu</span>
-                                    </div>
-                                    <button class="btn-copy-cmd">📋 Copiar</button>
-                                </div>
-                                <div class="cmd-item">
-                                    <div class="cmd-left">
-                                        <span class="cmd-text">sudo systemctl start nginx</span>
-                                        <span class="cmd-desc">Inicia o NGINX</span>
-                                    </div>
-                                    <button class="btn-copy-cmd">📋 Copiar</button>
-                                </div>
-                                <div class="cmd-item">
-                                    <div class="cmd-left">
-                                        <span class="cmd-text">sudo systemctl stop nginx</span>
-                                        <span class="cmd-desc">Para o NGINX</span>
-                                    </div>
-                                    <button class="btn-copy-cmd">📋 Copiar</button>
-                                </div>
-                                <div class="cmd-item">
-                                    <div class="cmd-left">
-                                        <span class="cmd-text">sudo systemctl restart nginx</span>
-                                        <span class="cmd-desc">Reinicia o NGINX</span>
-                                    </div>
-                                    <button class="btn-copy-cmd">📋 Copiar</button>
-                                </div>
-                                <div class="cmd-item">
-                                    <div class="cmd-left">
-                                        <span class="cmd-text">sudo systemctl reload nginx</span>
-                                        <span class="cmd-desc">Recarrega configuração sem parar</span>
-                                    </div>
-                                    <button class="btn-copy-cmd">📋 Copiar</button>
-                                </div>
-                                <div class="cmd-item">
-                                    <div class="cmd-left">
-                                        <span class="cmd-text">sudo nginx -t</span>
-                                        <span class="cmd-desc">Testa a configuração do NGINX</span>
-                                    </div>
-                                    <button class="btn-copy-cmd">📋 Copiar</button>
-                                </div>
-                                <div class="cmd-item">
-                                    <div class="cmd-left">
-                                        <span class="cmd-text">server { listen 80; server_name meusite.com; root /var/www/html; index index.html; }</span>
-                                        <span class="cmd-desc">Configuração básica de um site estático</span>
-                                    </div>
-                                    <button class="btn-copy-cmd">📋 Copiar</button>
-                                </div>
-                                <div class="cmd-item">
-                                    <div class="cmd-left">
-                                        <span class="cmd-text">location /api/ { proxy_pass http://localhost:8080; proxy_set_header Host $host; }</span>
-                                        <span class="cmd-desc">Proxy reverso para API na porta 8080</span>
-                                    </div>
-                                    <button class="btn-copy-cmd">📋 Copiar</button>
-                                </div>
-                                <div class="cmd-item">
-                                    <div class="cmd-left">
-                                        <span class="cmd-text">upstream backend { server 192.168.1.10:8080; server 192.168.1.11:8080; } server { location / { proxy_pass http://backend; } }</span>
-                                        <span class="cmd-desc">Load balancing com 2 servidores</span>
-                                    </div>
-                                    <button class="btn-copy-cmd">📋 Copiar</button>
-                                </div>
-                                <div class="cmd-item">
-                                    <div class="cmd-left">
-                                        <span class="cmd-text">location ~* \.(jpg|jpeg|png|gif|ico|css|js)$ { expires 30d; }</span>
-                                        <span class="cmd-desc">Cache de arquivos estáticos por 30 dias</span>
-                                    </div>
-                                    <button class="btn-copy-cmd">📋 Copiar</button>
-                                </div>
-                                <div class="cmd-item">
-                                    <div class="cmd-left">
-                                        <span class="cmd-text">location / { try_files $uri $uri/ /index.html; }</span>
-                                        <span class="cmd-desc">SPA - redireciona todas as rotas para index.html</span>
-                                    </div>
-                                    <button class="btn-copy-cmd">📋 Copiar</button>
-                                </div>
-                                <div class="cmd-item">
-                                    <div class="cmd-left">
-                                        <span class="cmd-text">gzip on; gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;</span>
-                                        <span class="cmd-desc">Habilita compressão GZIP</span>
-                                    </div>
-                                    <button class="btn-copy-cmd">📋 Copiar</button>
-                                </div>
-                                <div class="cmd-item">
-                                    <div class="cmd-left">
-                                        <span class="cmd-text">sudo ln -s /etc/nginx/sites-available/meusite /etc/nginx/sites-enabled/</span>
-                                        <span class="cmd-desc">Ativa um site (cria link simbólico)</span>
-                                    </div>
-                                    <button class="btn-copy-cmd">📋 Copiar</button>
-                                </div>
-                                <div class="cmd-item">
-                                    <div class="cmd-left">
-                                        <span class="cmd-text">error_log /var/log/nginx/error.log; access_log /var/log/nginx/access.log;</span>
-                                        <span class="cmd-desc">Configuração de logs</span>
-                                    </div>
-                                    <button class="btn-copy-cmd">📋 Copiar</button>
-                                </div>
+                            <div class="accordion-body" id="acessibilidade">
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">&lt;button type="button" aria-label="Abrir menu"&gt;☰&lt;/button&gt;</span><span class="cmd-desc">Use button para ações e um nome acessível para leitores de tela.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">&lt;label for="email"&gt;E-mail&lt;/label&gt;&lt;input id="email" type="email" required&gt;</span><span class="cmd-desc">Associe o label ao campo e use o tipo correto de input.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">&lt;img src="foto.jpg" alt="Descrição objetiva da imagem"&gt;</span><span class="cmd-desc">Fornece texto alternativo para conteúdo não textual.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">:focus-visible { outline: 3px solid #00ff88; }</span><span class="cmd-desc">Deixa o foco do teclado visível sem poluir todo clique do mouse.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">&lt;main aria-labelledby="titulo"&gt;</span><span class="cmd-desc">Dá uma região principal identificável à página.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="css-moderno">
+                                <span class="accordion-icon">🧩</span>
+                                <span class="accordion-title">CSS moderno</span>
+                                <span class="accordion-badge">Layout e manutenção</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="css-moderno">
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">:root { --space: 1rem; --surface: #1e1e1e; }</span><span class="cmd-desc">Centraliza tokens para manter consistência visual.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">.layout { display: grid; grid-template-columns: minmax(0, 1fr) 18rem; }</span><span class="cmd-desc">Cria uma estrutura responsiva com colunas estáveis.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">.cards { container-type: inline-size; }</span><span class="cmd-desc">Prepara um componente para responder ao tamanho do próprio container.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">@media (prefers-reduced-motion: reduce) { * { animation: none; transition: none; } }</span><span class="cmd-desc">Respeita a preferência de usuários que reduzem movimento.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">.texto { overflow-wrap: anywhere; }</span><span class="cmd-desc">Evita que URLs e palavras longas estourem o layout.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="js-estado">
+                                <span class="accordion-icon">🧠</span>
+                                <span class="accordion-title">JavaScript - estado e APIs</span>
+                                <span class="accordion-badge">Aplicações reais</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="js-estado">
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">const state = { loading: false, data: [], error: null };</span><span class="cmd-desc">Modele estados explícitos para evitar interfaces confusas.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">button.addEventListener('click', () =&gt; state.open = !state.open);</span><span class="cmd-desc">Atualiza estado a partir de uma interação do usuário.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">const response = await fetch('/api/usuarios'); if (!response.ok) throw new Error('Falha na API');</span><span class="cmd-desc">Trate status HTTP antes de tentar ler a resposta.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">localStorage.setItem('tema', 'dark');</span><span class="cmd-desc">Persiste uma preferência simples no navegador.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">form.addEventListener('submit', event =&gt; { event.preventDefault(); });</span><span class="cmd-desc">Controla o envio do formulário sem recarregar a página.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
                             </div>
                         </div>
 
@@ -839,18 +796,24 @@
         // ============================================
         // COPIAR COMANDO
         // ============================================
-        document.querySelectorAll('.btn-copy-cmd').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const cmdText = this.closest('.cmd-item').querySelector('.cmd-text').textContent;
-                navigator.clipboard.writeText(cmdText).then(() => {
-                    const originalText = this.textContent;
-                    this.textContent = '✅ Copiado!';
-                    setTimeout(() => {
-                        this.textContent = originalText;
-                    }, 2000);
-                });
+        document.getElementById('commandsAccordion').addEventListener('click', function(e) {
+            const btn = e.target.closest('.btn-copy-cmd');
+            if (!btn) return;
+            e.stopPropagation();
+            const cmdText = btn.closest('.cmd-item').querySelector('.cmd-text').textContent;
+            navigator.clipboard.writeText(cmdText).then(() => {
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Copiado!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
             });
+        });
+
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            const navigation = document.querySelector('.sidebar-nav');
+            const isOpen = navigation.classList.toggle('open');
+            this.setAttribute('aria-expanded', String(isOpen));
         });
 
         // ============================================
@@ -860,18 +823,22 @@
             const searchTerm = this.value.toLowerCase().trim();
             const items = document.querySelectorAll('.cmd-item');
             const headers = document.querySelectorAll('.accordion-header');
+            const searchStatus = document.getElementById('searchStatus');
             
             if (!searchTerm) {
                 items.forEach(item => item.style.display = 'flex');
                 headers.forEach(h => h.style.display = 'flex');
+                searchStatus.textContent = '';
                 return;
             }
 
+            let matchCount = 0;
             items.forEach(item => {
                 const text = item.querySelector('.cmd-text').textContent.toLowerCase();
                 const desc = item.querySelector('.cmd-desc').textContent.toLowerCase();
                 if (text.includes(searchTerm) || desc.includes(searchTerm)) {
                     item.style.display = 'flex';
+                    matchCount += 1;
                     const parentBody = item.closest('.accordion-body');
                     if (parentBody) {
                         parentBody.classList.add('active');
@@ -884,6 +851,10 @@
                     item.style.display = 'none';
                 }
             });
+
+            searchStatus.textContent = matchCount === 0
+                ? `Nenhum tópico encontrado para “${this.value}”.`
+                : `${matchCount} tópico${matchCount === 1 ? '' : 's'} encontrado${matchCount === 1 ? '' : 's'}.`;
 
             headers.forEach(header => {
                 const body = document.getElementById(header.dataset.target);

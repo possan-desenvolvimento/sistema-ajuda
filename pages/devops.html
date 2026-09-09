@@ -92,6 +92,7 @@
                             <span class="nav-badge">Daily</span>
                         </a>
                     </li>
+                    <li class="nav-item"><a href="dicionario-dev.html"><span class="nav-icon">📚</span><span class="nav-text">Dicionário Dev</span><span class="nav-badge">Termos</span></a></li>
                     <li class="nav-divider"></li>
                     <li class="nav-item">
                         <a href="ia.html">
@@ -143,6 +144,7 @@
                 <div class="devops-content">
                     <h2>📋 Comandos Essenciais</h2>
                     <p class="subtitle">Clique em uma categoria para ver os comandos com explicações</p>
+                    <div class="search-status" id="searchStatus" aria-live="polite"></div>
 
                     <!-- ==========================================
                          INTRODUÇÃO
@@ -152,9 +154,28 @@
                         <div class="info-text">
                             Docker é uma plataforma que permite criar, executar e gerenciar containers.
                             Containers são ambientes isolados que rodam aplicações com todas as suas dependências.
-                            <code>docker run</code>, <code>docker ps</code>, <code>docker-compose</code> são os comandos mais usados.
+                            Hoje, o Compose integrado é chamado com <code>docker compose</code>; o comando separado <code>docker-compose</code> aparece em instalações antigas.
                         </div>
                     </div>
+
+                    <div class="devops-alert">
+                        <div class="devops-alert-title">⚠️ Antes de apagar qualquer coisa</div>
+                        <p>Confira o alvo com <code>docker ps -a</code>, a imagem com <code>docker images</code> e os volumes antes de usar <code>docker system prune -a</code> ou <code>docker compose down -v</code>.</p>
+                    </div>
+
+                    <section class="devops-foundations" aria-labelledby="foundationsTitle">
+                        <div class="section-heading">
+                            <span class="section-kicker">MAPA MENTAL</span>
+                            <h2 id="foundationsTitle">Entenda as peças antes dos comandos</h2>
+                            <p>Docker fica muito mais simples quando cada recurso tem uma responsabilidade clara.</p>
+                        </div>
+                        <div class="foundation-grid">
+                            <article class="foundation-card"><span>📦</span><strong>Imagem</strong><p>Modelo imutável criado por um Dockerfile ou baixado de um registry.</p><code>docker pull nginx:1.25</code></article>
+                            <article class="foundation-card"><span>🚀</span><strong>Container</strong><p>Processo criado a partir de uma imagem, com estado e configuração próprios.</p><code>docker run --name web nginx</code></article>
+                            <article class="foundation-card"><span>💾</span><strong>Volume</strong><p>Dados persistentes que continuam existindo mesmo após recriar o container.</p><code>docker volume ls</code></article>
+                            <article class="foundation-card"><span>🔗</span><strong>Rede</strong><p>Canal privado para containers conversarem usando nomes de serviço.</p><code>curl http://api:8080</code></article>
+                        </div>
+                    </section>
 
                     <!-- ==========================================
                          ACORDEON DE COMANDOS
@@ -565,29 +586,29 @@
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">docker rm -f container_id</span>
-                                        <span class="cmd-desc">Remove um container forçadamente (mesmo rodando)</span>
+                                        <span class="cmd-text cmd-danger">docker rm -f container_id</span>
+                                        <span class="cmd-desc cmd-danger">⚠️ Remove um container forçadamente, mesmo rodando.</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">docker rm -v container_id</span>
-                                        <span class="cmd-desc">Remove container e volumes associados</span>
+                                        <span class="cmd-text cmd-danger">docker rm -v container_id</span>
+                                        <span class="cmd-desc cmd-danger">⚠️ Remove o container e os volumes associados.</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">docker rm $(docker ps -aq)</span>
-                                        <span class="cmd-desc">Remove TODOS os containers (parados)</span>
+                                        <span class="cmd-text cmd-danger">docker rm $(docker ps -aq)</span>
+                                        <span class="cmd-desc cmd-danger">⚠️ Remove TODOS os containers parados.</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">docker container prune</span>
-                                        <span class="cmd-desc">Remove todos os containers parados</span>
+                                        <span class="cmd-text cmd-danger">docker container prune</span>
+                                        <span class="cmd-desc cmd-danger">⚠️ Remove todos os containers parados.</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
@@ -600,8 +621,8 @@
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">docker system prune -a</span>
-                                        <span class="cmd-desc">Limpa TUDO (containers, imagens, redes, cache)</span>
+                                        <span class="cmd-text cmd-danger">docker system prune -a</span>
+                                        <span class="cmd-desc cmd-danger">⚠️ Limpa containers, imagens, redes e cache não utilizados.</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
@@ -684,102 +705,137 @@
                             <div class="accordion-body" id="docker-compose">
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">docker-compose up</span>
+                                        <span class="cmd-text">docker compose up</span>
                                         <span class="cmd-desc">Sobe os serviços (logs no terminal)</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">docker-compose up -d</span>
+                                        <span class="cmd-text">docker compose up -d</span>
                                         <span class="cmd-desc">Sobe os serviços em background</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">docker-compose down</span>
+                                        <span class="cmd-text">docker compose down</span>
                                         <span class="cmd-desc">Para e remove serviços, redes e volumes</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">docker-compose down -v</span>
+                                        <span class="cmd-text cmd-danger">docker compose down -v</span>
                                         <span class="cmd-desc">Remove também os volumes</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">docker-compose logs -f</span>
+                                        <span class="cmd-text">docker compose logs -f</span>
                                         <span class="cmd-desc">Logs de todos os serviços em tempo real</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">docker-compose logs -f serviço</span>
+                                        <span class="cmd-text">docker compose logs -f serviço</span>
                                         <span class="cmd-desc">Logs de um serviço específico</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">docker-compose ps</span>
+                                        <span class="cmd-text">docker compose ps</span>
                                         <span class="cmd-desc">Status dos serviços</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">docker-compose restart</span>
+                                        <span class="cmd-text">docker compose restart</span>
                                         <span class="cmd-desc">Reinicia todos os serviços</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">docker-compose restart serviço</span>
+                                        <span class="cmd-text">docker compose restart serviço</span>
                                         <span class="cmd-desc">Reinicia um serviço específico</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">docker-compose exec serviço bash</span>
+                                        <span class="cmd-text">docker compose exec serviço bash</span>
                                         <span class="cmd-desc">Entra no container do serviço</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">docker-compose exec serviço comando</span>
+                                        <span class="cmd-text">docker compose exec serviço comando</span>
                                         <span class="cmd-desc">Executa comando no serviço</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">docker-compose up -d --build</span>
+                                        <span class="cmd-text">docker compose up -d --build</span>
                                         <span class="cmd-desc">Sobe com rebuild das imagens</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">docker-compose config</span>
+                                        <span class="cmd-text">docker compose config</span>
                                         <span class="cmd-desc">Valida e mostra o docker-compose.yml</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">docker-compose -f docker-compose.prod.yml up</span>
+                                        <span class="cmd-text">docker compose -f docker-compose.prod.yml up</span>
                                         <span class="cmd-desc">Usa um arquivo específico</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="dockerfile">
+                                <span class="accordion-icon">🧱</span>
+                                <span class="accordion-title">Dockerfile</span>
+                                <span class="accordion-badge">Criar imagens</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="dockerfile">
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">FROM node:22-alpine</span><span class="cmd-desc">Escolhe a imagem base da aplicação.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">WORKDIR /app</span><span class="cmd-desc">Define o diretório de trabalho dentro da imagem.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">COPY package*.json ./</span><span class="cmd-desc">Copia arquivos de dependência antes do código para aproveitar o cache.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">RUN npm ci --omit=dev</span><span class="cmd-desc">Instala dependências de forma reprodutível durante o build.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">COPY . .</span><span class="cmd-desc">Copia o código da aplicação para a imagem.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">EXPOSE 3000</span><span class="cmd-desc">Documenta a porta usada pela aplicação (não publica a porta sozinho).</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">CMD ["node", "server.js"]</span><span class="cmd-desc">Define o processo padrão que inicia o container.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="diagnostico">
+                                <span class="accordion-icon">🩺</span>
+                                <span class="accordion-title">Troubleshooting</span>
+                                <span class="accordion-badge">Investigar falhas</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="diagnostico">
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">docker inspect container_id</span><span class="cmd-desc">Consulta configuração, rede, mounts e estado detalhado.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">docker stats</span><span class="cmd-desc">Acompanha CPU, memória, rede e I/O dos containers.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">docker compose ps</span><span class="cmd-desc">Mostra o estado dos serviços do projeto Compose.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">docker compose logs --tail=100 servico</span><span class="cmd-desc">Lê os logs recentes de um serviço específico.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">docker compose config</span><span class="cmd-desc">Renderiza o Compose final e ajuda a encontrar erros de YAML e variáveis.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">docker compose exec servico sh</span><span class="cmd-desc">Entra no serviço usando sh quando bash não está instalado.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
                             </div>
                         </div>
                     </div>
@@ -825,18 +881,24 @@
         // ============================================
         // COPIAR COMANDO
         // ============================================
-        document.querySelectorAll('.btn-copy-cmd').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const cmdText = this.closest('.cmd-item').querySelector('.cmd-text').textContent;
-                navigator.clipboard.writeText(cmdText).then(() => {
-                    const originalText = this.textContent;
-                    this.textContent = '✅ Copiado!';
-                    setTimeout(() => {
-                        this.textContent = originalText;
-                    }, 2000);
-                });
+        document.getElementById('commandsAccordion').addEventListener('click', function(e) {
+            const btn = e.target.closest('.btn-copy-cmd');
+            if (!btn) return;
+            e.stopPropagation();
+            const cmdText = btn.closest('.cmd-item').querySelector('.cmd-text').textContent;
+            navigator.clipboard.writeText(cmdText).then(() => {
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Copiado!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
             });
+        });
+
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            const navigation = document.querySelector('.sidebar-nav');
+            const isOpen = navigation.classList.toggle('open');
+            this.setAttribute('aria-expanded', String(isOpen));
         });
 
         // ============================================
@@ -846,18 +908,22 @@
             const searchTerm = this.value.toLowerCase().trim();
             const items = document.querySelectorAll('.cmd-item');
             const headers = document.querySelectorAll('.accordion-header');
+            const searchStatus = document.getElementById('searchStatus');
             
             if (!searchTerm) {
                 items.forEach(item => item.style.display = 'flex');
                 headers.forEach(h => h.style.display = 'flex');
+                searchStatus.textContent = '';
                 return;
             }
 
+            let matchCount = 0;
             items.forEach(item => {
                 const text = item.querySelector('.cmd-text').textContent.toLowerCase();
                 const desc = item.querySelector('.cmd-desc').textContent.toLowerCase();
                 if (text.includes(searchTerm) || desc.includes(searchTerm)) {
                     item.style.display = 'flex';
+                    matchCount += 1;
                     const parentBody = item.closest('.accordion-body');
                     if (parentBody) {
                         parentBody.classList.add('active');
@@ -870,6 +936,10 @@
                     item.style.display = 'none';
                 }
             });
+
+            searchStatus.textContent = matchCount === 0
+                ? `Nenhum comando encontrado para “${this.value}”.`
+                : `${matchCount} comando${matchCount === 1 ? '' : 's'} encontrado${matchCount === 1 ? '' : 's'}.`;
 
             headers.forEach(header => {
                 const body = document.getElementById(header.dataset.target);

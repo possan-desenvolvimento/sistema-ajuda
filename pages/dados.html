@@ -92,6 +92,7 @@
                             <span class="nav-badge">Daily</span>
                         </a>
                     </li>
+                    <li class="nav-item"><a href="dicionario-dev.html"><span class="nav-icon">📚</span><span class="nav-text">Dicionário Dev</span><span class="nav-badge">Termos</span></a></li>
                     <li class="nav-divider"></li>
                     <li class="nav-item">
                         <a href="ia.html">
@@ -165,6 +166,48 @@
                         <button class="db-btn" data-db="sqlserver">💾 SQL Server</button>
                         <button class="db-btn" data-db="informix">📊 Informix</button>
                     </div>
+
+                    <div class="db-context" id="dbContext" aria-live="polite">
+                        <div class="db-context-icon">🐘</div>
+                        <div>
+                            <strong id="dbContextTitle">PostgreSQL selecionado</strong>
+                            <p id="dbContextText">Use LIMIT, SERIAL, RETURNING e a função NOW() nos exemplos abaixo.</p>
+                        </div>
+                    </div>
+
+                    <section class="data-foundations" aria-labelledby="foundationsTitle">
+                        <div class="section-heading">
+                            <span class="section-kicker">BASE PARA TRABALHAR BEM</span>
+                            <h2 id="foundationsTitle">Além dos comandos: pense no banco inteiro</h2>
+                            <p>Os comandos ficam mais fáceis quando você entende como estruturar, proteger e observar os dados.</p>
+                        </div>
+                        <div class="foundation-grid">
+                            <article class="foundation-card">
+                                <span class="foundation-icon">🧱</span>
+                                <h3>Modelagem</h3>
+                                <p>Defina entidades, chaves primárias e relacionamentos antes de criar as tabelas.</p>
+                                <code>1:N = usuario.id -> pedido.usuario_id</code>
+                            </article>
+                            <article class="foundation-card">
+                                <span class="foundation-icon">⚡</span>
+                                <h3>Índices</h3>
+                                <p>Acelere filtros e relacionamentos nas colunas realmente usadas nas consultas.</p>
+                                <code>CREATE INDEX idx_pedido_status ON pedidos(status);</code>
+                            </article>
+                            <article class="foundation-card">
+                                <span class="foundation-icon">🔒</span>
+                                <h3>Transações</h3>
+                                <p>Garanta que operações relacionadas sejam confirmadas juntas ou desfeitas juntas.</p>
+                                <code>BEGIN; ... COMMIT;</code>
+                            </article>
+                            <article class="foundation-card">
+                                <span class="foundation-icon">🛡️</span>
+                                <h3>Segurança</h3>
+                                <p>Use parâmetros, permissões mínimas e nunca monte SQL com entrada do usuário.</p>
+                                <code>WHERE id = :id</code>
+                            </article>
+                        </div>
+                    </section>
 
                     <!-- ==========================================
                          ACORDEON DE COMANDOS
@@ -702,6 +745,98 @@
     </div>
 
     <script>
+        const databaseExamples = {
+            postgres: {
+                icon: '🐘', name: 'PostgreSQL',
+                text: 'Use LIMIT, SERIAL, RETURNING e a função NOW() nos exemplos abaixo.',
+                groups: {
+                    select: [['SELECT * FROM usuarios LIMIT 10;', 'Limita o resultado aos 10 primeiros registros.'], ['SELECT nome FROM usuarios WHERE nome ILIKE \'a%\';', 'Busca sem diferenciar maiúsculas e minúsculas.'], ['SELECT cidade, COUNT(*) FROM usuarios GROUP BY cidade;', 'Agrupa e conta registros por cidade.']],
+                    insert: [['INSERT INTO usuarios (nome, email) VALUES (\'Ana\', \'ana@email.com\') RETURNING id;', 'Insere e devolve o ID gerado.'], ['INSERT INTO usuarios (nome) SELECT nome FROM usuarios_backup;', 'Insere dados vindos de outra consulta.']],
+                    update: [['UPDATE usuarios SET status = \'ativo\' WHERE id = 10 RETURNING *;', 'Atualiza e devolve as linhas alteradas.'], ['UPDATE usuarios SET idade = idade + 1 WHERE status = \'ativo\';', 'Atualiza uma coluna com base no valor atual.']],
+                    delete: [['DELETE FROM usuarios WHERE id = 10 RETURNING id;', 'Remove e confirma quais IDs foram apagados.'], ['DELETE FROM usuarios WHERE status = \'inativo\';', 'Remove os registros inativos.']],
+                    create: [['CREATE TABLE usuarios (id SERIAL PRIMARY KEY, nome VARCHAR(100) NOT NULL, email TEXT UNIQUE);', 'Cria uma tabela com ID auto incrementável.'], ['CREATE TABLE pedidos (id BIGSERIAL PRIMARY KEY, usuario_id INT REFERENCES usuarios(id));', 'Cria uma relação com chave estrangeira.']],
+                    alter: [['ALTER TABLE usuarios ADD COLUMN telefone VARCHAR(20);', 'Adiciona uma coluna à tabela.'], ['ALTER TABLE usuarios ALTER COLUMN nome SET NOT NULL;', 'Torna a coluna obrigatória.']],
+                    drop: [['DROP TABLE IF EXISTS usuarios CASCADE;', 'Remove a tabela e dependências relacionadas.'], ['DROP INDEX IF EXISTS idx_usuarios_email;', 'Remove um índice sem gerar erro se ele não existir.']],
+                    joins: [['SELECT u.nome, p.id FROM usuarios u INNER JOIN pedidos p ON p.usuario_id = u.id;', 'Retorna somente usuários que possuem pedidos.'], ['SELECT u.nome, p.id FROM usuarios u LEFT JOIN pedidos p ON p.usuario_id = u.id;', 'Mantém usuários mesmo sem pedidos.']],
+                    group: [['SELECT status, COUNT(*) AS total FROM usuarios GROUP BY status HAVING COUNT(*) > 5;', 'Filtra grupos depois da agregação.'], ['SELECT DATE_TRUNC(\'month\', created_at), COUNT(*) FROM pedidos GROUP BY 1;', 'Agrupa pedidos por mês.']]
+                }
+            },
+            mysql: {
+                icon: '🐬', name: 'MySQL',
+                text: 'Use LIMIT, AUTO_INCREMENT, NOW() e backticks para identificar nomes reservados.',
+                groups: {
+                    select: [['SELECT * FROM usuarios LIMIT 10;', 'Limita o resultado aos 10 primeiros registros.'], ['SELECT nome FROM usuarios WHERE nome LIKE \'a%\' COLLATE utf8mb4_general_ci;', 'Busca sem diferenciar maiúsculas e minúsculas.'], ['SELECT cidade, COUNT(*) FROM usuarios GROUP BY cidade;', 'Agrupa e conta registros por cidade.']],
+                    insert: [['INSERT INTO usuarios (nome, email) VALUES (\'Ana\', \'ana@email.com\');', 'Insere um novo registro.'], ['INSERT INTO usuarios (nome) SELECT nome FROM usuarios_backup;', 'Insere dados vindos de outra consulta.']],
+                    update: [['UPDATE usuarios SET status = \'ativo\' WHERE id = 10;', 'Atualiza um registro específico.'], ['UPDATE usuarios SET idade = idade + 1 WHERE status = \'ativo\';', 'Atualiza uma coluna com base no valor atual.']],
+                    delete: [['DELETE FROM usuarios WHERE id = 10;', 'Remove um registro específico.'], ['DELETE FROM usuarios WHERE status = \'inativo\';', 'Remove os registros inativos.']],
+                    create: [['CREATE TABLE usuarios (id INT PRIMARY KEY AUTO_INCREMENT, nome VARCHAR(100) NOT NULL, email VARCHAR(255) UNIQUE);', 'Cria uma tabela com ID auto incrementável.'], ['CREATE TABLE pedidos (id BIGINT AUTO_INCREMENT PRIMARY KEY, usuario_id INT, FOREIGN KEY (usuario_id) REFERENCES usuarios(id));', 'Cria uma relação com chave estrangeira.']],
+                    alter: [['ALTER TABLE usuarios ADD COLUMN telefone VARCHAR(20);', 'Adiciona uma coluna à tabela.'], ['ALTER TABLE usuarios MODIFY nome VARCHAR(150) NOT NULL;', 'Altera o tipo e a obrigatoriedade da coluna.']],
+                    drop: [['DROP TABLE IF EXISTS usuarios;', 'Remove a tabela sem gerar erro se ela não existir.'], ['DROP INDEX idx_usuarios_email ON usuarios;', 'Remove um índice da tabela.']],
+                    joins: [['SELECT u.nome, p.id FROM usuarios u INNER JOIN pedidos p ON p.usuario_id = u.id;', 'Retorna somente usuários que possuem pedidos.'], ['SELECT u.nome, p.id FROM usuarios u LEFT JOIN pedidos p ON p.usuario_id = u.id;', 'Mantém usuários mesmo sem pedidos.']],
+                    group: [['SELECT status, COUNT(*) AS total FROM usuarios GROUP BY status HAVING COUNT(*) > 5;', 'Filtra grupos depois da agregação.'], ['SELECT YEAR(created_at) AS ano, COUNT(*) FROM pedidos GROUP BY YEAR(created_at);', 'Agrupa pedidos por ano.']]
+                }
+            },
+            sqlserver: {
+                icon: '💾', name: 'SQL Server',
+                text: 'Use TOP, IDENTITY, GETDATE() e colchetes para nomes que conflitam com palavras reservadas.',
+                groups: {
+                    select: [['SELECT TOP 10 * FROM usuarios;', 'Limita o resultado aos 10 primeiros registros.'], ['SELECT nome FROM usuarios WHERE nome LIKE \'a%\';', 'Filtra nomes pelo início do texto.'], ['SELECT cidade, COUNT(*) AS total FROM usuarios GROUP BY cidade;', 'Agrupa e conta registros por cidade.']],
+                    insert: [['INSERT INTO usuarios (nome, email) OUTPUT INSERTED.id VALUES (\'Ana\', \'ana@email.com\');', 'Insere e devolve o ID gerado.'], ['INSERT INTO usuarios (nome) SELECT nome FROM usuarios_backup;', 'Insere dados vindos de outra consulta.']],
+                    update: [['UPDATE usuarios SET status = \'ativo\' OUTPUT INSERTED.* WHERE id = 10;', 'Atualiza e devolve as linhas alteradas.'], ['UPDATE usuarios SET idade = idade + 1 WHERE status = \'ativo\';', 'Atualiza uma coluna com base no valor atual.']],
+                    delete: [['DELETE FROM usuarios OUTPUT DELETED.id WHERE id = 10;', 'Remove e devolve o ID apagado.'], ['DELETE FROM usuarios WHERE status = \'inativo\';', 'Remove os registros inativos.']],
+                    create: [['CREATE TABLE usuarios (id INT IDENTITY(1,1) PRIMARY KEY, nome VARCHAR(100) NOT NULL, email VARCHAR(255) UNIQUE);', 'Cria uma tabela com ID auto incrementável.'], ['CREATE TABLE pedidos (id BIGINT IDENTITY PRIMARY KEY, usuario_id INT FOREIGN KEY REFERENCES usuarios(id));', 'Cria uma relação com chave estrangeira.']],
+                    alter: [['ALTER TABLE usuarios ADD telefone VARCHAR(20);', 'Adiciona uma coluna à tabela.'], ['ALTER TABLE usuarios ALTER COLUMN nome VARCHAR(150) NOT NULL;', 'Altera o tipo e a obrigatoriedade da coluna.']],
+                    drop: [['DROP TABLE IF EXISTS usuarios;', 'Remove a tabela sem gerar erro se ela não existir.'], ['DROP INDEX idx_usuarios_email ON usuarios;', 'Remove um índice da tabela.']],
+                    joins: [['SELECT u.nome, p.id FROM usuarios u INNER JOIN pedidos p ON p.usuario_id = u.id;', 'Retorna somente usuários que possuem pedidos.'], ['SELECT u.nome, p.id FROM usuarios u LEFT JOIN pedidos p ON p.usuario_id = u.id;', 'Mantém usuários mesmo sem pedidos.']],
+                    group: [['SELECT status, COUNT(*) AS total FROM usuarios GROUP BY status HAVING COUNT(*) > 5;', 'Filtra grupos depois da agregação.'], ['SELECT YEAR(created_at) AS ano, COUNT(*) FROM pedidos GROUP BY YEAR(created_at);', 'Agrupa pedidos por ano.']]
+                }
+            },
+            informix: {
+                icon: '📊', name: 'Informix',
+                text: 'Use FIRST, SERIAL, TODAY e CURRENT para trabalhar com a sintaxe própria do Informix.',
+                groups: {
+                    select: [['SELECT FIRST 10 * FROM usuarios;', 'Limita o resultado aos 10 primeiros registros.'], ['SELECT nome FROM usuarios WHERE nome MATCHES \'a*\';', 'Busca nomes usando o padrão do Informix.'], ['SELECT cidade, COUNT(*) FROM usuarios GROUP BY cidade;', 'Agrupa e conta registros por cidade.']],
+                    insert: [['INSERT INTO usuarios (nome, email) VALUES (\'Ana\', \'ana@email.com\');', 'Insere um novo registro.'], ['INSERT INTO usuarios (nome) SELECT nome FROM usuarios_backup;', 'Insere dados vindos de outra consulta.']],
+                    update: [['UPDATE usuarios SET status = \'ativo\' WHERE id = 10;', 'Atualiza um registro específico.'], ['UPDATE usuarios SET idade = idade + 1 WHERE status = \'ativo\';', 'Atualiza uma coluna com base no valor atual.']],
+                    delete: [['DELETE FROM usuarios WHERE id = 10;', 'Remove um registro específico.'], ['DELETE FROM usuarios WHERE status = \'inativo\';', 'Remove os registros inativos.']],
+                    create: [['CREATE TABLE usuarios (id SERIAL PRIMARY KEY, nome VARCHAR(100) NOT NULL, email VARCHAR(255) UNIQUE);', 'Cria uma tabela com ID serial.'], ['CREATE TABLE pedidos (id SERIAL PRIMARY KEY, usuario_id INT REFERENCES usuarios(id));', 'Cria uma relação com chave estrangeira.']],
+                    alter: [['ALTER TABLE usuarios ADD telefone VARCHAR(20);', 'Adiciona uma coluna à tabela.'], ['ALTER TABLE usuarios MODIFY (nome VARCHAR(150) NOT NULL);', 'Altera a definição da coluna.']],
+                    drop: [['DROP TABLE usuarios;', 'Remove a tabela permanentemente.'], ['DROP INDEX idx_usuarios_email;', 'Remove um índice.']],
+                    joins: [['SELECT u.nome, p.id FROM usuarios u, pedidos p WHERE p.usuario_id = u.id;', 'Relaciona tabelas pela sintaxe tradicional.'], ['SELECT u.nome, p.id FROM usuarios u LEFT JOIN pedidos p ON p.usuario_id = u.id;', 'Mantém usuários mesmo sem pedidos.']],
+                    group: [['SELECT status, COUNT(*) AS total FROM usuarios GROUP BY status HAVING COUNT(*) > 5;', 'Filtra grupos depois da agregação.'], ['SELECT YEAR(created_at), COUNT(*) FROM pedidos GROUP BY 1;', 'Agrupa pedidos por ano.']]
+                }
+            }
+        };
+
+        function renderDatabaseExamples(dbKey) {
+            const database = databaseExamples[dbKey];
+            const context = document.getElementById('dbContext');
+            document.querySelector('.db-context-icon').textContent = database.icon;
+            document.getElementById('dbContextTitle').textContent = `${database.name} selecionado`;
+            document.getElementById('dbContextText').textContent = database.text;
+
+            Object.entries(database.groups).forEach(([group, commands]) => {
+                const body = document.getElementById(group);
+                if (!body) return;
+                body.innerHTML = commands.map(([command, description]) => `
+                    <div class="cmd-item">
+                        <div class="cmd-left">
+                            <span class="cmd-text">${command}</span>
+                            <span class="cmd-desc">${description}</span>
+                        </div>
+                        <button class="btn-copy-cmd">📋 Copiar</button>
+                    </div>
+                `).join('');
+                body.classList.remove('active');
+                body.style.maxHeight = '0';
+                body.style.padding = '0 20px';
+                body.closest('.accordion-item').querySelector('.accordion-arrow').textContent = '▶';
+            });
+            context.dataset.database = dbKey;
+        }
+
+        renderDatabaseExamples('postgres');
+
         // ============================================
         // ACORDEON
         // ============================================
@@ -738,17 +873,17 @@
         // ============================================
         // COPIAR COMANDO
         // ============================================
-        document.querySelectorAll('.btn-copy-cmd').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const cmdText = this.closest('.cmd-item').querySelector('.cmd-text').textContent;
-                navigator.clipboard.writeText(cmdText).then(() => {
-                    const originalText = this.textContent;
-                    this.textContent = '✅ Copiado!';
-                    setTimeout(() => {
-                        this.textContent = originalText;
-                    }, 2000);
-                });
+        document.getElementById('commandsAccordion').addEventListener('click', function(e) {
+            const btn = e.target.closest('.btn-copy-cmd');
+            if (!btn) return;
+            e.stopPropagation();
+            const cmdText = btn.closest('.cmd-item').querySelector('.cmd-text').textContent;
+            navigator.clipboard.writeText(cmdText).then(() => {
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Copiado!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
             });
         });
 
@@ -760,7 +895,7 @@
                 document.querySelectorAll('.db-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 const db = this.dataset.db;
-                console.log('Banco selecionado:', db);
+                renderDatabaseExamples(db);
             });
         });
 

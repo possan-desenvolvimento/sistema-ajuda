@@ -92,6 +92,7 @@
                             <span class="nav-badge">Daily</span>
                         </a>
                     </li>
+                    <li class="nav-item"><a href="dicionario-dev.html"><span class="nav-icon">📚</span><span class="nav-text">Dicionário Dev</span><span class="nav-badge">Termos</span></a></li>
                     <li class="nav-divider"></li>
                     <li class="nav-item">
                         <a href="ia.html">
@@ -143,6 +144,7 @@
                 <div class="backend-content">
                     <h2>📋 Roadmap para Especialista</h2>
                     <p class="subtitle">Clique em uma categoria para ver os comandos com explicações</p>
+                    <div class="search-status" id="searchStatus" aria-live="polite"></div>
 
                     <!-- ==========================================
                          INTRODUÇÃO
@@ -154,6 +156,39 @@
                             Domine esses três pilares para se tornar um especialista back-end.
                         </div>
                     </div>
+
+                    <div class="backend-alert">
+                        <div class="backend-alert-title">🧪 Regra de ouro dos testes</div>
+                        <p>Um teste unitário deve ser rápido, isolado e determinístico. Se precisa de banco, rede ou fila real, ele provavelmente é um teste de integração, não unitário.</p>
+                    </div>
+
+                    <section class="project-map" aria-labelledby="projectMapTitle">
+                        <div class="section-heading"><span class="section-kicker">ESPELHO DE PROJETO</span><h2 id="projectMapTitle">Onde cada coisa mora?</h2><p>Uma estrutura comum de projeto Spring Boot e a responsabilidade de cada camada.</p></div>
+                        <div class="project-map-grid">
+                            <pre class="project-tree"><code>src/
+├── main/java/com/exemplo/app/
+│   ├── Application.java
+│   ├── controller/       # HTTP e contratos
+│   ├── service/          # casos de uso e regras
+│   ├── repository/       # acesso a dados
+│   ├── model/            # entidades e domínio
+│   ├── dto/              # entrada e saída da API
+│   ├── mapper/           # conversões entre modelos
+│   ├── exception/        # erros e handlers
+│   └── config/            # configurações e beans
+└── test/java/com/exemplo/app/
+    ├── controller/       # testes da camada web
+    ├── service/          # testes unitários isolados
+    └── integration/      # testes com infraestrutura</code></pre>
+                            <div class="layer-list">
+                                <article><strong>Controller</strong><p>Recebe HTTP, valida entrada e devolve status/DTO. Não deve conter regra de negócio.</p></article>
+                                <article><strong>Service</strong><p>Orquestra o caso de uso. É o melhor alvo para testes unitários com mocks.</p></article>
+                                <article><strong>Repository</strong><p>Abstrai persistência. Teste queries e mapeamentos com integração quando necessário.</p></article>
+                                <article><strong>Model</strong><p>Representa domínio e estado. Entidade JPA não precisa ser o mesmo objeto exposto pela API.</p></article>
+                                <article><strong>DTO</strong><p>Define o contrato externo e evita vazar detalhes da entidade.</p></article>
+                            </div>
+                        </div>
+                    </section>
 
                     <!-- ==========================================
                          ACORDEON DE COMANDOS
@@ -1012,6 +1047,89 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="testes-unitarios">
+                                <span class="accordion-icon">🧪</span>
+                                <span class="accordion-title">Testes Unitários - JUnit 5</span>
+                                <span class="accordion-badge">Prioridade</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="testes-unitarios">
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">@ExtendWith(MockitoExtension.class)</span><span class="cmd-desc">Inicializa mocks do Mockito em cada teste sem subir o contexto Spring.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">@Test void deveCriarPedido() { var result = service.criar(input); assertEquals(Status.CRIADO, result.status()); }</span><span class="cmd-desc">Nomeie o comportamento esperado e verifique o resultado observável.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">@ParameterizedTest @ValueSource(strings = {"", " "}) void deveRejeitarNomeVazio(String nome) { assertThrows(IllegalArgumentException.class, () -&gt; validar(nome)); }</span><span class="cmd-desc">Repete o mesmo cenário com várias entradas.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">assertAll(() -&gt; assertEquals("Ana", user.nome()), () -&gt; assertTrue(user.ativo()));</span><span class="cmd-desc">Agrupa verificações relacionadas sem parar no primeiro erro.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">assertTimeout(Duration.ofMillis(100), () -&gt; service.processar());</span><span class="cmd-desc">Protege um comportamento contra regressões grosseiras de tempo.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">@Nested class QuandoUsuarioInexistente { @Test void deveLancarNotFound() { ... } }</span><span class="cmd-desc">Organiza testes por contexto e deixa a intenção legível.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="mockito">
+                                <span class="accordion-icon">🎭</span>
+                                <span class="accordion-title">Mockito - Isolamento</span>
+                                <span class="accordion-badge">Testes unitários</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="mockito">
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">@Mock private UsuarioRepository repository;</span><span class="cmd-desc">Cria uma dependência falsa para o teste não acessar banco.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">when(repository.findById(1L)).thenReturn(Optional.of(usuario));</span><span class="cmd-desc">Define o retorno esperado de uma chamada.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">when(repository.findById(1L)).thenThrow(new NotFoundException());</span><span class="cmd-desc">Simula uma falha ou exceção da dependência.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">verify(repository).save(any(Usuario.class));</span><span class="cmd-desc">Confirma que uma interação esperada aconteceu.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">verify(repository, never()).deleteById(anyLong());</span><span class="cmd-desc">Confirma que uma ação proibida não aconteceu.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">ArgumentCaptor&lt;Usuario&gt; captor = ArgumentCaptor.forClass(Usuario.class); verify(repository).save(captor.capture());</span><span class="cmd-desc">Captura o argumento enviado para validar seu conteúdo.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="spring-testes">
+                                <span class="accordion-icon">🌱</span>
+                                <span class="accordion-title">Spring Test - Web e Integração</span>
+                                <span class="accordion-badge">Contexto Spring</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="spring-testes">
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">@WebMvcTest(UsuarioController.class)</span><span class="cmd-desc">Sobe apenas a camada MVC para testar controller com MockMvc.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">@MockBean private UsuarioService service;</span><span class="cmd-desc">Substitui o service por mock dentro do contexto do teste web.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">mockMvc.perform(get("/usuarios/1")).andExpect(status().isOk()).andExpect(jsonPath("$.nome").value("Ana"));</span><span class="cmd-desc">Testa status, corpo e contrato de uma requisição HTTP.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">@SpringBootTest @AutoConfigureMockMvc</span><span class="cmd-desc">Sobe o contexto completo para um teste de integração.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">@DataJpaTest</span><span class="cmd-desc">Testa repositórios JPA com configuração focada em persistência.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">@Transactional @Rollback</span><span class="cmd-desc">Isola alterações de banco e desfaz o cenário ao fim do teste.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="arquitetura">
+                                <span class="accordion-icon">🧭</span>
+                                <span class="accordion-title">Arquitetura e boas práticas</span>
+                                <span class="accordion-badge">Projeto sustentável</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="arquitetura">
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">Controller -&gt; Service -&gt; Repository</span><span class="cmd-desc">Fluxo simples de responsabilidades: HTTP, regra de negócio e persistência.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">public record UsuarioResponse(Long id, String nome) {}</span><span class="cmd-desc">DTO de saída imutável para não expor diretamente a entidade.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">@ControllerAdvice class ApiExceptionHandler { @ExceptionHandler(NotFoundException.class) ... }</span><span class="cmd-desc">Centraliza o tratamento de exceções da API.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">@Valid @RequestBody CriarUsuarioRequest request</span><span class="cmd-desc">Executa validações declarativas na entrada da API.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">@Transactional public Pedido criar(...) { ... }</span><span class="cmd-desc">Garante atomicidade no caso de uso que altera múltiplos dados.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="java-avancado">
+                                <span class="accordion-icon">⚙️</span>
+                                <span class="accordion-title">Java - API e fundamentos avançados</span>
+                                <span class="accordion-badge">Profundidade</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="java-avancado">
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">public sealed interface Resultado&lt;T&gt; permits Sucesso, Falha {}</span><span class="cmd-desc">Modela estados permitidos de forma explícita.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">try (var reader = Files.newBufferedReader(path)) { ... }</span><span class="cmd-desc">Fecha recursos automaticamente com try-with-resources.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">record Pagina&lt;T&gt;(List&lt;T&gt; itens, int pagina, int total) {}</span><span class="cmd-desc">Representa uma resposta paginada com um tipo genérico.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();</span><span class="cmd-desc">Executa tarefas concorrentes com virtual threads (Java 21+).</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                                <div class="cmd-item"><div class="cmd-left"><span class="cmd-text">stream.filter(...).map(...).toList()</span><span class="cmd-desc">Compõe transformações sem alterar a coleção original.</span></div><button class="btn-copy-cmd">📋 Copiar</button></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1055,18 +1173,24 @@
         // ============================================
         // COPIAR COMANDO
         // ============================================
-        document.querySelectorAll('.btn-copy-cmd').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const cmdText = this.closest('.cmd-item').querySelector('.cmd-text').textContent;
-                navigator.clipboard.writeText(cmdText).then(() => {
-                    const originalText = this.textContent;
-                    this.textContent = '✅ Copiado!';
-                    setTimeout(() => {
-                        this.textContent = originalText;
-                    }, 2000);
-                });
+        document.getElementById('commandsAccordion').addEventListener('click', function(e) {
+            const btn = e.target.closest('.btn-copy-cmd');
+            if (!btn) return;
+            e.stopPropagation();
+            const cmdText = btn.closest('.cmd-item').querySelector('.cmd-text').textContent;
+            navigator.clipboard.writeText(cmdText).then(() => {
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Copiado!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
             });
+        });
+
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            const navigation = document.querySelector('.sidebar-nav');
+            const isOpen = navigation.classList.toggle('open');
+            this.setAttribute('aria-expanded', String(isOpen));
         });
 
         // ============================================
@@ -1076,18 +1200,22 @@
             const searchTerm = this.value.toLowerCase().trim();
             const items = document.querySelectorAll('.cmd-item');
             const headers = document.querySelectorAll('.accordion-header');
+            const searchStatus = document.getElementById('searchStatus');
             
             if (!searchTerm) {
                 items.forEach(item => item.style.display = 'flex');
                 headers.forEach(h => h.style.display = 'flex');
+                searchStatus.textContent = '';
                 return;
             }
 
+            let matchCount = 0;
             items.forEach(item => {
                 const text = item.querySelector('.cmd-text').textContent.toLowerCase();
                 const desc = item.querySelector('.cmd-desc').textContent.toLowerCase();
                 if (text.includes(searchTerm) || desc.includes(searchTerm)) {
                     item.style.display = 'flex';
+                    matchCount += 1;
                     const parentBody = item.closest('.accordion-body');
                     if (parentBody) {
                         parentBody.classList.add('active');
@@ -1100,6 +1228,10 @@
                     item.style.display = 'none';
                 }
             });
+
+            searchStatus.textContent = matchCount === 0
+                ? `Nenhum tópico encontrado para “${this.value}”.`
+                : `${matchCount} tópico${matchCount === 1 ? '' : 's'} encontrado${matchCount === 1 ? '' : 's'}.`;
 
             headers.forEach(header => {
                 const body = document.getElementById(header.dataset.target);

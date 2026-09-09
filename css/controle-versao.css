@@ -419,6 +419,115 @@ body::before {
     font-size: 13px;
 }
 
+.git-alert {
+    background: rgba(255, 178, 0, 0.1);
+    border: 1px solid rgba(255, 178, 0, 0.4);
+    border-left: 4px solid #ffb200;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 28px;
+}
+
+.git-alert-title {
+    color: #ffb200;
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.git-alert p {
+    color: #d0d0d0;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.git-alert code,
+.foundation-card code {
+    color: #00ff88;
+    font-family: 'Courier New', monospace;
+}
+
+.git-foundations {
+    margin-bottom: 30px;
+}
+
+.section-heading {
+    margin-bottom: 16px;
+}
+
+.section-kicker {
+    color: #00ff88;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.section-heading h2 {
+    margin: 5px 0 6px;
+    font-size: 21px;
+}
+
+.section-heading p {
+    color: #b0b0b0;
+    font-size: 14px;
+}
+
+.foundation-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.foundation-card {
+    background: rgba(30, 30, 30, 0.85);
+    border: 1px solid rgba(255, 40, 0, 0.18);
+    border-radius: 10px;
+    padding: 16px;
+    min-height: 175px;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.foundation-card:hover {
+    border-color: rgba(0, 255, 136, 0.5);
+    transform: translateY(-3px);
+}
+
+.foundation-card > span {
+    color: #ff2800;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.foundation-card strong {
+    display: block;
+    color: #ffffff;
+    font-size: 15px;
+    margin: 10px 0 7px;
+}
+
+.foundation-card p {
+    color: #b0b0b0;
+    font-size: 12px;
+    line-height: 1.55;
+    min-height: 58px;
+}
+
+.foundation-card code {
+    display: block;
+    font-size: 11px;
+    line-height: 1.4;
+    margin-top: 10px;
+    overflow-wrap: anywhere;
+}
+
+.search-status {
+    color: #00ff88;
+    font-size: 13px;
+    min-height: 18px;
+    margin: -12px 0 16px;
+}
+
 /* ============================================
    ACORDEON
    ============================================ */
@@ -563,6 +672,11 @@ body::before {
     padding-left: 4px;
 }
 
+.cmd-item .cmd-danger {
+    color: #ffb200;
+    font-style: normal;
+}
+
 .cmd-item .btn-copy-cmd {
     background: rgba(255, 40, 0, 0.15);
     color: #ff2800;
@@ -580,6 +694,10 @@ body::before {
 .cmd-item .btn-copy-cmd:hover {
     background: #ff2800;
     color: white;
+}
+
+.sidebar-nav.open {
+    display: block;
 }
 
 /* ============================================
@@ -644,6 +762,11 @@ body::before {
         padding: 0;
         flex: 1;
         width: 100%;
+        display: none;
+    }
+
+    .sidebar-nav.open {
+        display: block;
     }
 
     .nav-list {
@@ -722,6 +845,10 @@ body::before {
         padding: 12px 16px;
     }
 
+    .foundation-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .cmd-item {
         flex-wrap: wrap;
         gap: 8px;
@@ -781,5 +908,17 @@ body::before {
     .accordion-body.active {
         max-height: 250px;
         padding: 10px 14px;
+    }
+
+    .foundation-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .foundation-card {
+        min-height: auto;
+    }
+
+    .foundation-card p {
+        min-height: auto;
     }
 }

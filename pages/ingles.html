@@ -23,6 +23,7 @@
                     <li class="nav-item"><a href="controle-versao.html"><span class="nav-icon">🔀</span><span class="nav-text">Controle de Versão</span><span class="nav-badge">Git</span></a></li>
                     <li class="nav-item"><a href="http.html"><span class="nav-icon">🌐</span><span class="nav-text">HTTP</span><span class="nav-badge">Web</span></a></li>
                     <li class="nav-item active"><a href="ingles.html"><span class="nav-icon">🇺🇸</span><span class="nav-text">Inglês</span><span class="nav-badge">Daily</span></a></li>
+                    <li class="nav-item"><a href="dicionario-dev.html"><span class="nav-icon">📚</span><span class="nav-text">Dicionário Dev</span><span class="nav-badge">Termos</span></a></li>
                     <li class="nav-divider"></li>
                     <li class="nav-item"><a href="ia.html"><span class="nav-icon">🤖</span><span class="nav-text">Assistente IA</span><span class="nav-badge">AI</span></a></li>
                 </ul>
@@ -39,8 +40,9 @@
                     <div class="language-tools">
                         <section class="translator-panel" aria-labelledby="translator-title">
                             <div class="panel-heading"><span class="panel-icon">↔</span><div><h2 id="translator-title">Tradutor rápido</h2><p>Palavras e frases do dia a dia</p></div></div>
-                            <div class="translate-fields"><label>Português ou inglês<textarea id="translateInput" rows="4" placeholder="Digite uma palavra ou frase..."></textarea></label><button id="translateButton" type="button">Traduzir →</button><label>Resultado<textarea id="translateOutput" rows="4" readonly placeholder="A tradução aparece aqui"></textarea></label></div>
-                            <p id="translateHint" class="tool-hint">Experimente: “bom trabalho”, “meeting”, “preciso de ajuda”</p>
+                            <div class="translation-options"><label for="translationDirection">Direção</label><select id="translationDirection"><option value="en-pt">Inglês → Português</option><option value="pt-en">Português → Inglês</option></select><button id="swapTranslation" type="button" aria-label="Inverter direção da tradução" title="Inverter direção">⇄</button></div>
+                            <div class="translate-fields"><label><span id="sourceLabel">Inglês</span><textarea id="translateInput" rows="4" placeholder="Digite uma palavra ou frase em inglês..."></textarea></label><button id="translateButton" type="button">Traduzir →</button><label><span id="resultLabel">Português</span><textarea id="translateOutput" rows="4" readonly placeholder="A tradução aparece aqui"></textarea></label></div>
+                            <p id="translateHint" class="tool-hint">A tradução online funciona quando o navegador tiver acesso à internet; o dicionário local continua disponível offline.</p>
                         </section>
                         <section class="daily-panel" aria-labelledby="daily-title"><span class="daily-label">PALAVRA DO DIA</span><h2 id="daily-title">Reliable</h2><p class="daily-translation">confiável</p><p>“We need a reliable solution for this problem.”</p><button type="button" class="speak-button" data-speak="Reliable. Confiável.">🔊 Ouvir palavra</button></section>
                     </div>
@@ -85,6 +87,10 @@
         const translateInput = document.querySelector('#translateInput');
         const translateOutput = document.querySelector('#translateOutput');
         const translateHint = document.querySelector('#translateHint');
+        const translationDirection = document.querySelector('#translationDirection');
+        const sourceLabel = document.querySelector('#sourceLabel');
+        const resultLabel = document.querySelector('#resultLabel');
+        let translationRequest = 0;
         let selectedCategory = 'all';
         const speechSupported = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
         let speechVoices = [];
@@ -115,9 +121,36 @@
             utterance.onerror = () => window.alert('Não foi possível reproduzir a pronúncia. Verifique o volume e as vozes instaladas no navegador.');
             window.speechSynthesis.speak(utterance);
         };
-        const translate = () => { const original = translateInput.value.trim(); const query = normalize(original); if (!query) { translateOutput.value = ''; translateHint.textContent = 'Digite uma palavra ou frase para traduzir.'; return; } if (phrases[query]) { translateOutput.value = phrases[query]; translateHint.textContent = 'Frase encontrada no dicionário de expressões diárias.'; return; } const exact = words.find(([english, portuguese]) => normalize(english) === query || normalize(portuguese) === query); if (exact) { translateOutput.value = normalize(exact[0]) === query ? exact[1] : exact[0]; translateHint.textContent = 'Palavra encontrada no dicionário.'; return; } const pieces = query.split(/\s+/).map((piece) => { const match = words.find(([english]) => normalize(english) === piece); return match ? match[1] : piece; }); translateOutput.value = pieces.join(' '); translateHint.textContent = pieces.some((piece, index) => piece !== query.split(/\s+/)[index]) ? 'Tradução aproximada por palavras do dicionário.' : 'Ainda não encontrei essa expressão. Adicione-a ao dicionário quando quiser.'; };
+        const updateTranslationLabels = () => { const englishToPortuguese = translationDirection.value === 'en-pt'; sourceLabel.textContent = englishToPortuguese ? 'Inglês' : 'Português'; resultLabel.textContent = englishToPortuguese ? 'Português' : 'Inglês'; translateInput.placeholder = englishToPortuguese ? 'Digite uma palavra ou frase em inglês...' : 'Digite uma palavra ou frase em português...'; };
+        const localTranslation = (query, direction) => {
+            if (direction === 'pt-en') {
+                const phrase = Object.entries(phrases).find(([, translation]) => normalize(translation) === query);
+                if (phrase) return phrase[0];
+            } else if (phrases[query]) return phrases[query];
+            const exact = words.find(([english, portuguese]) => direction === 'en-pt' ? normalize(english) === query : normalize(portuguese) === query);
+            if (exact) return direction === 'en-pt' ? exact[1] : exact[0];
+            const pieces = query.split(/\s+/).map((piece) => { const match = words.find(([english, portuguese]) => direction === 'en-pt' ? normalize(english) === piece : normalize(portuguese) === piece); return match ? (direction === 'en-pt' ? match[1] : match[0]) : piece; });
+            return pieces.some((piece, index) => piece !== query.split(/\s+/)[index]) ? pieces.join(' ') : '';
+        };
+        const translate = async () => {
+            const original = translateInput.value.trim(); const query = normalize(original); const direction = translationDirection.value;
+            if (!query) { translateOutput.value = ''; translateHint.textContent = 'Digite uma palavra ou frase para traduzir.'; return; }
+            const requestId = ++translationRequest; translateHint.textContent = 'Traduzindo...';
+            try {
+                const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(original)}&langpair=${direction === 'en-pt' ? 'en|pt-BR' : 'pt-BR|en'}`);
+                if (!response.ok) throw new Error('translation request failed');
+                const data = await response.json();
+                if (requestId !== translationRequest) return;
+                const result = data.responseData && data.responseData.translatedText;
+                if (!result) throw new Error('empty translation');
+                translateOutput.value = result; translateHint.textContent = 'Traduzido online. Revise expressões técnicas e contexto antes de usar.';
+            } catch (error) {
+                const fallback = localTranslation(query, direction); translateOutput.value = fallback || original;
+                translateHint.textContent = fallback ? 'A internet não respondeu; usei o dicionário local.' : 'Não consegui traduzir offline. Tente novamente com internet.';
+            }
+        };
         document.querySelectorAll('[data-category]').forEach((button) => button.addEventListener('click', () => { selectedCategory = button.dataset.category; document.querySelectorAll('[data-category]').forEach((item) => item.classList.toggle('active', item === button)); renderWords(); }));
-        dictionarySearch.addEventListener('input', renderWords); document.querySelector('#translateButton').addEventListener('click', translate); translateInput.addEventListener('keydown', (event) => { if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') translate(); }); document.querySelectorAll('[data-speak]').forEach((button) => button.addEventListener('click', () => speak(button.dataset.speak))); document.querySelector('.menu-toggle').addEventListener('click', () => document.querySelector('.sidebar-nav').classList.toggle('open')); renderWords();
+        dictionarySearch.addEventListener('input', renderWords); document.querySelector('#translateButton').addEventListener('click', translate); translationDirection.addEventListener('change', updateTranslationLabels); document.querySelector('#swapTranslation').addEventListener('click', () => { translationDirection.value = translationDirection.value === 'en-pt' ? 'pt-en' : 'en-pt'; const previousResult = translateOutput.value; translateInput.value = previousResult; translateOutput.value = ''; updateTranslationLabels(); }); translateInput.addEventListener('keydown', (event) => { if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') translate(); }); document.querySelectorAll('[data-speak]').forEach((button) => button.addEventListener('click', () => speak(button.dataset.speak))); document.querySelector('.menu-toggle').addEventListener('click', () => document.querySelector('.sidebar-nav').classList.toggle('open')); updateTranslationLabels(); renderWords();
     </script>
 </body>
 </html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Dicionário Dev</title>
+    <link rel="stylesheet" href="../css/dicionario-dev.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header"><div class="logo"><span class="logo-icon">🏎️</span><span class="logo-text">F1</span><span class="logo-badge">PRO</span></div></div>
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="../index.html"><span class="nav-icon">📊</span><span class="nav-text">Dashboard</span></a></li>
+                    <li class="nav-divider"></li>
+                    <li class="nav-item"><a href="dados.html"><span class="nav-icon">🗄️</span><span class="nav-text">Dados</span><span class="nav-badge">SQL</span></a></li>
+                    <li class="nav-item"><a href="linux.html"><span class="nav-icon">🐧</span><span class="nav-text">Linux</span><span class="nav-badge">Terminal</span></a></li>
+                    <li class="nav-item"><a href="devops.html"><span class="nav-icon">🐳</span><span class="nav-text">DevOps</span><span class="nav-badge">Docker</span></a></li>
+                    <li class="nav-item"><a href="backend.html"><span class="nav-icon">☕</span><span class="nav-text">Back-End</span><span class="nav-badge">Spring</span></a></li>
+                    <li class="nav-item"><a href="frontend.html"><span class="nav-icon">🎨</span><span class="nav-text">Front-End</span><span class="nav-badge">JS</span></a></li>
+                    <li class="nav-item"><a href="automacao.html"><span class="nav-icon">⚡</span><span class="nav-text">Automação</span><span class="nav-badge">N8N</span></a></li>
+                    <li class="nav-item"><a href="controle-versao.html"><span class="nav-icon">🔀</span><span class="nav-text">Controle de Versão</span><span class="nav-badge">Git</span></a></li>
+                    <li class="nav-item"><a href="http.html"><span class="nav-icon">🌐</span><span class="nav-text">HTTP</span><span class="nav-badge">Web</span></a></li>
+                    <li class="nav-item"><a href="ingles.html"><span class="nav-icon">🇺🇸</span><span class="nav-text">Inglês</span><span class="nav-badge">Daily</span></a></li>
+                    <li class="nav-item active"><a href="dicionario-dev.html"><span class="nav-icon">📚</span><span class="nav-text">Dicionário Dev</span><span class="nav-badge">Termos</span></a></li>
+                    <li class="nav-divider"></li>
+                    <li class="nav-item"><a href="ia.html"><span class="nav-icon">🤖</span><span class="nav-text">Assistente IA</span><span class="nav-badge">AI</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer"><div class="user-info"><span class="user-avatar">👤</span><span class="user-name">Leonardo Possan</span></div></div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar"><div class="top-bar-left"><button class="menu-toggle" type="button" aria-label="Abrir menu">☰</button><h1>Dicionário Dev</h1></div><div class="top-bar-right"><a class="quick-link" href="ingles.html">🇺🇸 Inglês</a></div></header>
+            <div class="content-area">
+                <div class="dictionary-header"><div><span class="dictionary-kicker">LINGUAGEM DE EQUIPE</span><h2>📚 Dicionário Dev</h2><p>Entenda as palavras que aparecem em tickets, reuniões, PRs e no dia a dia de desenvolvimento.</p></div><div class="dictionary-mark">DEV<br><span>WORDS</span></div></div>
+                <section class="study-note"><strong>Como estudar:</strong> escolha um termo, leia o significado técnico e tente usar a frase em uma conversa ou descrição de commit hoje.</section>
+                <div class="dictionary-toolbar"><label class="dictionary-search"><span>🔍</span><input id="termSearch" type="search" placeholder="Buscar: propagar, deploy, legado..." autocomplete="off"></label><div class="category-filters"><button type="button" class="category-button active" data-category="all">Todos</button><button type="button" class="category-button" data-category="workflow">Fluxo</button><button type="button" class="category-button" data-category="code">Código</button><button type="button" class="category-button" data-category="team">Equipe</button><button type="button" class="category-button" data-category="infra">Infra</button><button type="button" class="category-button" data-category="operation">Operação</button></div></div>
+                <p id="termStatus" class="term-status" aria-live="polite"></p>
+                <section id="termGrid" class="term-grid" aria-live="polite"></section>
+                <p id="termEmpty" class="term-empty" hidden>Nenhum termo encontrado. Tente pesquisar em português ou inglês.</p>
+            </div>
+        </main>
+    </div>
+    <script>
+        const terms = [
+            ['Deploy', 'Publicar uma versão da aplicação em um ambiente onde ela possa ser acessada.', 'Coloquei a correção em deploy no ambiente de homologação.', 'workflow'],
+            ['Rollback', 'Voltar uma aplicação ou mudança para uma versão anterior porque a atual apresentou problema.', 'Precisamos fazer rollback do deploy até investigar o erro.', 'workflow'],
+            ['Pipeline', 'Sequência automatizada de etapas para validar, construir e entregar software.', 'O pipeline falhou nos testes antes de gerar a imagem.', 'infra'],
+            ['Build', 'Processo de transformar o código-fonte em um artefato executável ou publicável.', 'O build quebrou porque faltou uma dependência.', 'code'],
+            ['Pull Request (PR)', 'Pedido para revisar e integrar uma branch em outra, normalmente com discussão e checks automáticos.', 'Abri um PR para a alteração do login.', 'team'],
+            ['Code review', 'Análise do código feita por outra pessoa antes da integração.', 'O code review encontrou um caso de erro que eu não tinha considerado.', 'team'],
+            ['Commit', 'Registro de uma unidade de mudança no histórico do Git.', 'Esse commit corrige a validação do formulário.', 'workflow'],
+            ['Branch', 'Linha independente de desenvolvimento usada para isolar uma tarefa ou experimento.', 'Criei uma branch para atualizar as dependências.', 'workflow'],
+            ['Merge', 'Integração das mudanças de uma linha de desenvolvimento em outra.', 'O merge trouxe os commits da feature para a main.', 'workflow'],
+            ['Refactor', 'Melhorar a estrutura interna do código sem mudar o comportamento esperado.', 'Fiz um refactor para remover duplicação.', 'code'],
+            ['Legacy', 'Código ou sistema antigo que continua em uso, mesmo com limitações ou difícil manutenção.', 'Essa integração é legacy e precisa de testes antes da mudança.', 'code'],
+            ['Tech debt', 'Custo futuro criado por uma solução rápida, incompleta ou difícil de manter.', 'Esse atalho resolveu hoje, mas aumentou nossa dívida técnica.', 'code'],
+            ['Scope', 'Limite do que uma tarefa, projeto ou mudança inclui.', 'Vamos manter o ajuste de CSS dentro do escopo deste ticket.', 'team'],
+            ['Deadline', 'Prazo final para concluir uma entrega.', 'O deadline da primeira versão é sexta-feira.', 'team'],
+            ['Blocker', 'Impedimento que impede uma pessoa ou tarefa de avançar.', 'A falta de acesso ao ambiente é um blocker.', 'team'],
+            ['Onboarding', 'Processo de entrada e adaptação de uma pessoa ao time, projeto e ferramentas.', 'O onboarding inclui acesso ao repositório e leitura da documentação.', 'team'],
+            ['Hotfix', 'Correção urgente aplicada para resolver um problema em produção.', 'Publicamos um hotfix para corrigir o erro de pagamento.', 'workflow'],
+            ['Incident', 'Evento que degrada ou interrompe um serviço e exige investigação e resposta.', 'O time abriu um incident depois do aumento de erros 500.', 'infra'],
+            ['Observability', 'Capacidade de entender o estado interno do sistema por logs, métricas e traces.', 'A observabilidade ajudou a localizar a lentidão na API.', 'infra'],
+            ['Scalability', 'Capacidade de suportar crescimento de carga mantendo desempenho e estabilidade.', 'Precisamos avaliar a escalabilidade antes da campanha.', 'infra'],
+            ['Endpoint', 'Ponto de entrada de uma API que representa uma operação ou recurso.', 'O endpoint de usuários agora aceita paginação.', 'code'],
+            ['Payload', 'Dados enviados em uma requisição ou evento.', 'O payload do webhook veio sem o campo esperado.', 'code'],
+            ['Mock', 'Objeto ou resposta simulada usada para testar sem depender de um serviço real.', 'Usei um mock da API no teste do componente.', 'code'],
+            ['Feature flag', 'Chave que permite ativar ou desativar uma funcionalidade sem novo deploy.', 'A feature flag deixou o novo checkout disponível só para testes.', 'code'],
+            ['Breaking change', 'Mudança que quebra compatibilidade com consumidores ou código existente.', 'A remoção desse campo é uma breaking change para os clientes da API.', 'code'],
+            ['Refinement', 'Momento de esclarecer, dividir e estimar tarefas antes do desenvolvimento.', 'No refinement descobrimos que o ticket precisava de dois serviços.', 'team'],
+            ['KPI', 'Indicador usado para medir resultado ou saúde de um processo.', 'O tempo de resposta é um KPI importante para esta tela.', 'team'],
+            ['Staging', 'Ambiente próximo de produção usado para validar uma versão antes da publicação.', 'A funcionalidade já está em staging para o QA testar.', 'infra'],
+            ['Production', 'Ambiente real usado pelos usuários finais.', 'Não execute esse comando diretamente em production.', 'infra'],
+            ['Propagar', 'Fazer uma mudança, configuração ou informação chegar a outros ambientes, serviços ou partes do sistema.', 'A configuração precisa ser propagada para todos os ambientes.', 'operation'],
+            ['Subir', 'Iniciar ou disponibilizar um serviço, aplicação, ambiente ou alteração.', 'Vou subir a API localmente para testar o endpoint.', 'operation'],
+            ['Baixar', 'Desligar um serviço ou retirar uma aplicação de funcionamento temporariamente.', 'Vamos baixar o ambiente antes da manutenção.', 'operation'],
+            ['Integrar', 'Incorporar uma mudança, serviço ou sistema a outro.', 'Depois do code review, vamos integrar a branch principal.', 'workflow'],
+            ['Homologar', 'Validar uma funcionalidade em um ambiente de teste antes de liberá-la para usuários.', 'O cliente precisa homologar o novo fluxo de pagamento.', 'workflow'],
+            ['Validar', 'Verificar se algo atende a uma regra, contrato ou comportamento esperado.', 'Precisamos validar o payload antes de salvar no banco.', 'code'],
+            ['Implementar', 'Construir uma funcionalidade ou regra no código.', 'Vou implementar a paginação neste endpoint.', 'code'],
+            ['Disponibilizar', 'Tornar um recurso acessível para usuários, sistemas ou outro ambiente.', 'A documentação já foi disponibilizada no portal.', 'operation'],
+            ['Versionar', 'Registrar mudanças em versões para manter histórico e rastreabilidade.', 'Precisamos versionar o contrato da API.', 'workflow'],
+            ['Rastrear', 'Acompanhar a origem, caminho ou evolução de uma informação, requisição ou alteração.', 'O trace ajuda a rastrear a requisição entre os serviços.', 'infra'],
+            ['Depurar', 'Investigar a execução para encontrar a causa de um erro.', 'Vou depurar o fluxo com breakpoint no navegador.', 'code'],
+            ['Corrigir', 'Eliminar a causa de um erro ou comportamento incorreto.', 'Corrigi a validação que aceitava e-mail inválido.', 'code'],
+            ['Refatorar', 'Reorganizar o código para melhorar sua estrutura sem alterar o resultado esperado.', 'Vamos refatorar esse serviço antes de adicionar outra regra.', 'code'],
+            ['Desacoplar', 'Reduzir dependências diretas entre partes do sistema.', 'Precisamos desacoplar o envio de e-mail da criação do pedido.', 'code'],
+            ['Encapsular', 'Esconder detalhes internos e expor apenas uma interface controlada.', 'Encapsulamos o acesso ao banco em um repositório.', 'code'],
+            ['Escalar', 'Aumentar a capacidade de um sistema para suportar mais carga.', 'Vamos escalar horizontalmente o serviço de leitura.', 'infra'],
+            ['Monitorar', 'Acompanhar métricas, logs e sinais de saúde de um sistema.', 'Precisamos monitorar a taxa de erro depois do deploy.', 'infra'],
+            ['Provisionar', 'Criar e preparar recursos de infraestrutura para uso.', 'O Terraform vai provisionar o banco e a rede.', 'infra'],
+            ['Configurar', 'Definir opções e parâmetros necessários para um componente funcionar.', 'É preciso configurar a variável de ambiente da API.', 'operation'],
+            ['Parametrizar', 'Tornar um comportamento ajustável por parâmetros em vez de fixo no código.', 'Vamos parametrizar o limite de tentativas.', 'code'],
+            ['Automatizar', 'Fazer uma tarefa ser executada por código ou ferramenta sem ação manual repetitiva.', 'Automatizamos o deploy depois que os testes passam.', 'operation'],
+            ['Orquestrar', 'Coordenar vários serviços, tarefas ou etapas para funcionarem em conjunto.', 'O Compose orquestra a API, o banco e o cache.', 'infra'],
+            ['Persistir', 'Guardar dados de forma que sobrevivam ao fim da execução ou reinício do serviço.', 'Precisamos persistir os arquivos em um volume.', 'code'],
+            ['Serializar', 'Transformar dados em um formato adequado para armazenar ou transmitir.', 'A aplicação serializa o objeto para JSON.', 'code'],
+            ['Desserializar', 'Reconstruir um objeto a partir de dados serializados.', 'O backend desserializa o JSON recebido no request.', 'code'],
+            ['Autenticar', 'Confirmar quem é o usuário ou sistema que está fazendo uma requisição.', 'O middleware autentica o token antes de acessar a rota.', 'code'],
+            ['Autorizar', 'Verificar se uma identidade autenticada pode executar determinada ação.', 'Autenticar não basta: precisamos autorizar o acesso ao recurso.', 'code'],
+            ['Cachear', 'Guardar temporariamente um resultado para reduzir custo e tempo de próximas consultas.', 'Vamos cachear essa resposta por cinco minutos.', 'infra'],
+            ['Invalidar cache', 'Remover ou marcar como desatualizado um dado armazenado em cache.', 'É preciso invalidar o cache quando o usuário alterar o perfil.', 'infra'],
+            ['Logar', 'Registrar informações sobre execução, eventos ou erros do sistema.', 'Vamos logar o ID da requisição para facilitar a investigação.', 'infra'],
+            ['Derrubar', 'Parar ou deixar um serviço indisponível, geralmente de forma intencional ou por falha.', 'O deploy derrubou a aplicação por alguns minutos.', 'operation'],
+            ['Reiniciar', 'Parar e iniciar novamente um processo ou serviço.', 'Vamos reiniciar o worker depois de atualizar a configuração.', 'operation'],
+            ['Reprocessar', 'Executar novamente uma operação que falhou ou precisa ser repetida.', 'Podemos reprocessar as mensagens que ficaram na fila.', 'operation'],
+            ['Contornar', 'Aplicar uma solução temporária enquanto a correção definitiva não está pronta.', 'Criamos um workaround para contornar a limitação do fornecedor.', 'workflow'],
+            ['Mitigar', 'Reduzir o impacto ou o risco de um problema sem necessariamente eliminá-lo.', 'Aumentamos o timeout para mitigar as falhas temporárias.', 'operation'],
+            ['Investigar', 'Coletar evidências e testar hipóteses para descobrir a causa de um problema.', 'Estamos investigando o aumento de latência em produção.', 'operation']
+        ];
+        const grid = document.querySelector('#termGrid'); const empty = document.querySelector('#termEmpty'); const search = document.querySelector('#termSearch'); const status = document.querySelector('#termStatus'); let category = 'all';
+        const render = () => { const query = search.value.toLowerCase().trim(); const filtered = terms.filter(([term, meaning, example, group]) => (category === 'all' || group === category) && `${term} ${meaning} ${example}`.toLowerCase().includes(query)); grid.replaceChildren(); filtered.forEach(([term, meaning, example, group]) => { const card = document.createElement('article'); card.className = 'term-card'; card.innerHTML = `<div class="term-card-top"><span class="term-category">${group}</span><span class="term-number">${String(terms.indexOf(terms.find(item => item[0] === term)) + 1).padStart(2, '0')}</span></div><h3>${term}</h3><p class="term-meaning">${meaning}</p><p class="term-example">“${example}”</p>`; grid.append(card); }); empty.hidden = filtered.length > 0; status.textContent = `${filtered.length} termo${filtered.length === 1 ? '' : 's'} encontrado${filtered.length === 1 ? '' : 's'}.`; };
+        document.querySelectorAll('[data-category]').forEach(button => button.addEventListener('click', () => { category = button.dataset.category; document.querySelectorAll('[data-category]').forEach(item => item.classList.toggle('active', item === button)); render(); })); search.addEventListener('input', render); document.querySelector('.menu-toggle').addEventListener('click', () => document.querySelector('.sidebar-nav').classList.toggle('open')); render();
+    </script>
+</body>
+</html>
