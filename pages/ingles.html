@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🇺🇸 F1 English - Dicionário</title>
+    <link rel="stylesheet" href="../css/ingles.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header"><div class="logo"><span class="logo-icon">🏎️</span><span class="logo-text">F1</span><span class="logo-badge">PRO</span></div></div>
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="../index.html"><span class="nav-icon">📊</span><span class="nav-text">Dashboard</span></a></li>
+                    <li class="nav-divider"></li>
+                    <li class="nav-item"><a href="dados.html"><span class="nav-icon">🗄️</span><span class="nav-text">Dados</span><span class="nav-badge">SQL</span></a></li>
+                    <li class="nav-item"><a href="linux.html"><span class="nav-icon">🐧</span><span class="nav-text">Linux</span><span class="nav-badge">Terminal</span></a></li>
+                    <li class="nav-item"><a href="devops.html"><span class="nav-icon">🐳</span><span class="nav-text">DevOps</span><span class="nav-badge">Docker</span></a></li>
+                    <li class="nav-item"><a href="backend.html"><span class="nav-icon">☕</span><span class="nav-text">Back-End</span><span class="nav-badge">Spring</span></a></li>
+                    <li class="nav-item"><a href="frontend.html"><span class="nav-icon">🎨</span><span class="nav-text">Front-End</span><span class="nav-badge">JS</span></a></li>
+                    <li class="nav-item"><a href="automacao.html"><span class="nav-icon">⚡</span><span class="nav-text">Automação</span><span class="nav-badge">N8N</span></a></li>
+                    <li class="nav-item"><a href="controle-versao.html"><span class="nav-icon">🔀</span><span class="nav-text">Controle de Versão</span><span class="nav-badge">Git</span></a></li>
+                    <li class="nav-item"><a href="http.html"><span class="nav-icon">🌐</span><span class="nav-text">HTTP</span><span class="nav-badge">Web</span></a></li>
+                    <li class="nav-item active"><a href="ingles.html"><span class="nav-icon">🇺🇸</span><span class="nav-text">Inglês</span><span class="nav-badge">Daily</span></a></li>
+                    <li class="nav-divider"></li>
+                    <li class="nav-item"><a href="ia.html"><span class="nav-icon">🤖</span><span class="nav-text">Assistente IA</span><span class="nav-badge">AI</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer"><div class="user-info"><span class="user-avatar">👤</span><span class="user-name">Leonardo Possan</span></div></div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar"><div class="top-bar-left"><button class="menu-toggle" type="button" aria-label="Abrir menu">☰</button><h1>Inglês - Dicionário Diário</h1></div><div class="top-bar-right"><a class="quick-link" href="../index.html">← Dashboard</a></div></header>
+            <div class="content-area">
+                <div class="english-header"><div class="english-logo"><span class="english-emoji">🇺🇸</span><span class="english-title">F1 English</span><span class="english-subtitle">Daily Dictionary</span></div><div class="flag-badge">ENGLISH EVERY DAY</div></div>
+                <section class="english-content">
+                    <div class="hero-copy"><span class="section-kicker">VOCABULÁRIO PARA A VIDA REAL</span><h2>Encontre a palavra certa e traduza na hora</h2><p>Pesquise em português ou inglês. Use os exemplos para aprender a palavra dentro de uma frase, não solta no dicionário.</p></div>
+                    <div class="language-tools">
+                        <section class="translator-panel" aria-labelledby="translator-title">
+                            <div class="panel-heading"><span class="panel-icon">↔</span><div><h2 id="translator-title">Tradutor rápido</h2><p>Palavras e frases do dia a dia</p></div></div>
+                            <div class="translate-fields"><label>Português ou inglês<textarea id="translateInput" rows="4" placeholder="Digite uma palavra ou frase..."></textarea></label><button id="translateButton" type="button">Traduzir →</button><label>Resultado<textarea id="translateOutput" rows="4" readonly placeholder="A tradução aparece aqui"></textarea></label></div>
+                            <p id="translateHint" class="tool-hint">Experimente: “bom trabalho”, “meeting”, “preciso de ajuda”</p>
+                        </section>
+                        <section class="daily-panel" aria-labelledby="daily-title"><span class="daily-label">PALAVRA DO DIA</span><h2 id="daily-title">Reliable</h2><p class="daily-translation">confiável</p><p>“We need a reliable solution for this problem.”</p><button type="button" class="speak-button" data-speak="Reliable. Confiável.">🔊 Ouvir palavra</button></section>
+                    </div>
+                    <div class="dictionary-toolbar"><label class="dictionary-search"><span>🔍</span><input id="dictionarySearch" type="search" placeholder="Buscar: deploy, reunião, ajuda..." autocomplete="off"></label><div class="category-filters"><button type="button" class="category-button active" data-category="all">Todos</button><button type="button" class="category-button" data-category="work">Trabalho</button><button type="button" class="category-button" data-category="tech">Tecnologia</button><button type="button" class="category-button" data-category="daily">Dia a dia</button><button type="button" class="category-button" data-category="verbs">Verbos</button></div></div>
+                    <div id="wordResults" class="word-grid"></div><p id="wordEmpty" class="word-empty" hidden>Nenhuma palavra encontrada. Tente buscar em português ou inglês.</p>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script>
+        const words = [
+            ['deadline', 'prazo final', 'ˈded-laɪn', 'work', 'The deadline for the project is Friday.', 'O prazo final do projeto é sexta-feira.'],
+            ['meeting', 'reunião', 'ˈmiː-tɪŋ', 'work', 'I have a meeting at three o’clock.', 'Eu tenho uma reunião às três horas.'],
+            ['feedback', 'retorno / feedback', 'ˈfiːd-bæk', 'work', 'Can you give me feedback on this idea?', 'Você pode me dar um retorno sobre esta ideia?'],
+            ['schedule', 'agenda / agendar', 'ˈske-djuːl', 'work', 'Let’s schedule a call for tomorrow.', 'Vamos agendar uma chamada para amanhã.'],
+            ['requirement', 'requisito', 'ri-ˈkwaɪr-mənt', 'work', 'This requirement is important for the client.', 'Este requisito é importante para o cliente.'],
+            ['issue', 'problema / ocorrência', 'ˈɪʃ-uː', 'tech', 'I found an issue in the production environment.', 'Encontrei um problema no ambiente de produção.'],
+            ['feature', 'funcionalidade', 'ˈfiː-tʃər', 'tech', 'This feature will improve the user experience.', 'Esta funcionalidade vai melhorar a experiência do usuário.'],
+            ['deploy', 'fazer deploy / publicar', 'dɪˈplɔɪ', 'tech', 'We will deploy the new version tonight.', 'Vamos publicar a nova versão hoje à noite.'],
+            ['rollback', 'reverter versão', 'ˈroʊl-bæk', 'tech', 'We need to rollback the release.', 'Precisamos reverter a versão.'],
+            ['debug', 'depurar / investigar erro', 'diːˈbʌɡ', 'tech', 'I am debugging the login error.', 'Estou investigando o erro de login.'],
+            ['branch', 'ramificação', 'bræntʃ', 'tech', 'Create a new branch for this feature.', 'Crie uma nova ramificação para esta funcionalidade.'],
+            ['commit', 'commit / confirmar alterações', 'kəˈmɪt', 'tech', 'Please commit your changes with a clear message.', 'Faça o commit das suas alterações com uma mensagem clara.'],
+            ['reliable', 'confiável', 'rɪˈlaɪ-ə-bəl', 'daily', 'This is a reliable tool for daily work.', 'Esta é uma ferramenta confiável para o trabalho diário.'],
+            ['available', 'disponível', 'əˈveɪ-lə-bəl', 'daily', 'Are you available this afternoon?', 'Você está disponível hoje à tarde?'],
+            ['actually', 'na verdade', 'ˈæk-tʃu-ə-li', 'daily', 'Actually, I agree with you.', 'Na verdade, eu concordo com você.'],
+            ['probably', 'provavelmente', 'ˈprɑː-bə-bli', 'daily', 'It will probably rain later.', 'Provavelmente vai chover mais tarde.'],
+            ['improve', 'melhorar', 'ɪmˈpruːv', 'verbs', 'I want to improve my English.', 'Eu quero melhorar meu inglês.'],
+            ['achieve', 'alcançar / conquistar', 'əˈtʃiːv', 'verbs', 'You can achieve your goals with practice.', 'Você pode alcançar seus objetivos com prática.'],
+            ['handle', 'lidar com / tratar', 'ˈhæn-dəl', 'verbs', 'I can handle this task.', 'Eu consigo lidar com esta tarefa.'],
+            ['figure out', 'descobrir / entender', 'ˈfɪɡ-jər aʊt', 'verbs', 'I need to figure out what happened.', 'Preciso descobrir o que aconteceu.'],
+            ['keep up', 'acompanhar / manter o ritmo', 'kiːp ʌp', 'verbs', 'Keep up the good work!', 'Continue com o bom trabalho!'],
+            ['help', 'ajuda / ajudar', 'help', 'daily', 'Could you help me, please?', 'Você poderia me ajudar, por favor?'],
+            ['issue', 'problema / assunto', 'ˈɪʃ-uː', 'daily', 'There is an issue with my order.', 'Existe um problema com meu pedido.'],
+            ['enough', 'suficiente', 'ɪˈnʌf', 'daily', 'That is enough for today.', 'Isso é suficiente por hoje.'],
+            ['although', 'embora', 'ɔːlˈðoʊ', 'daily', 'Although it was difficult, we finished it.', 'Embora tenha sido difícil, nós terminamos.']
+        ];
+        const phrases = {'bom trabalho': 'good job', 'preciso de ajuda': 'i need help', 'como você está': 'how are you', 'até logo': 'see you later', 'bom dia': 'good morning', 'boa noite': 'good night', 'não entendi': "i didn't understand", 'pode repetir': 'could you repeat that', 'qual é o prazo': 'what is the deadline', 'vamos começar': "let's get started", 'obrigado pela ajuda': 'thanks for your help', 'estou aprendendo': 'i am learning'};
+        const wordResults = document.querySelector('#wordResults');
+        const wordEmpty = document.querySelector('#wordEmpty');
+        const dictionarySearch = document.querySelector('#dictionarySearch');
+        const translateInput = document.querySelector('#translateInput');
+        const translateOutput = document.querySelector('#translateOutput');
+        const translateHint = document.querySelector('#translateHint');
+        let selectedCategory = 'all';
+        const speechSupported = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+        let speechVoices = [];
+        const loadSpeechVoices = () => { speechVoices = window.speechSynthesis.getVoices(); };
+        if (speechSupported) { loadSpeechVoices(); window.speechSynthesis.addEventListener('voiceschanged', loadSpeechVoices); }
+        const normalize = (value) => value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+        const renderWords = () => {
+            const query = normalize(dictionarySearch.value);
+            wordResults.replaceChildren();
+            const filtered = words.filter(([english, portuguese, , category, sentence, translation]) => (selectedCategory === 'all' || category === selectedCategory) && normalize(`${english} ${portuguese} ${sentence} ${translation}`).includes(query));
+            filtered.forEach(([english, portuguese, pronunciation, category, sentence, translation]) => {
+                const card = document.createElement('article'); card.className = 'word-card';
+                card.innerHTML = `<div class="word-card-top"><span class="word-category">${category}</span><button type="button" class="speak-button" data-speak="${english}">🔊</button></div><h3>${english}</h3><div class="word-translation">${portuguese}</div><div class="pronunciation">${pronunciation}</div><p class="example">“${sentence}”</p><p class="example-translation">${translation}</p>`;
+                card.querySelector('.speak-button').addEventListener('click', () => speak(english)); wordResults.append(card);
+            });
+            wordEmpty.hidden = filtered.length > 0;
+        };
+        const speak = (text) => {
+            if (!speechSupported) { window.alert('Seu navegador não oferece leitura de voz. Tente abrir esta página no Chrome ou Edge.'); return; }
+            loadSpeechVoices();
+            if (!speechVoices.length) { window.alert('Nenhuma voz está instalada no navegador. Instale uma voz em inglês nas configurações de fala do sistema e tente novamente.'); return; }
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            const englishVoice = speechVoices.find((voice) => voice.lang.toLowerCase().startsWith('en-'));
+            utterance.voice = englishVoice || null;
+            utterance.lang = englishVoice ? englishVoice.lang : 'en-US';
+            utterance.rate = 0.85;
+            utterance.onerror = () => window.alert('Não foi possível reproduzir a pronúncia. Verifique o volume e as vozes instaladas no navegador.');
+            window.speechSynthesis.speak(utterance);
+        };
+        const translate = () => { const original = translateInput.value.trim(); const query = normalize(original); if (!query) { translateOutput.value = ''; translateHint.textContent = 'Digite uma palavra ou frase para traduzir.'; return; } if (phrases[query]) { translateOutput.value = phrases[query]; translateHint.textContent = 'Frase encontrada no dicionário de expressões diárias.'; return; } const exact = words.find(([english, portuguese]) => normalize(english) === query || normalize(portuguese) === query); if (exact) { translateOutput.value = normalize(exact[0]) === query ? exact[1] : exact[0]; translateHint.textContent = 'Palavra encontrada no dicionário.'; return; } const pieces = query.split(/\s+/).map((piece) => { const match = words.find(([english]) => normalize(english) === piece); return match ? match[1] : piece; }); translateOutput.value = pieces.join(' '); translateHint.textContent = pieces.some((piece, index) => piece !== query.split(/\s+/)[index]) ? 'Tradução aproximada por palavras do dicionário.' : 'Ainda não encontrei essa expressão. Adicione-a ao dicionário quando quiser.'; };
+        document.querySelectorAll('[data-category]').forEach((button) => button.addEventListener('click', () => { selectedCategory = button.dataset.category; document.querySelectorAll('[data-category]').forEach((item) => item.classList.toggle('active', item === button)); renderWords(); }));
+        dictionarySearch.addEventListener('input', renderWords); document.querySelector('#translateButton').addEventListener('click', translate); translateInput.addEventListener('keydown', (event) => { if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') translate(); }); document.querySelectorAll('[data-speak]').forEach((button) => button.addEventListener('click', () => speak(button.dataset.speak))); document.querySelector('.menu-toggle').addEventListener('click', () => document.querySelector('.sidebar-nav').classList.toggle('open')); renderWords();
+    </script>
+</body>
+</html>
