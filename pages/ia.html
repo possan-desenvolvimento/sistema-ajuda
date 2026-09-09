@@ -360,6 +360,9 @@
                         <input type="text" id="selectColumns" placeholder="Colunas (ex: nome, idade)" value="*">
                         <input type="text" id="selectTable" placeholder="Tabela" value="usuarios">
                         <input type="text" id="selectCondition" placeholder="Condição WHERE (ex: idade > 18)">
+                        <input type="text" id="selectGroup" placeholder="GROUP BY (ex: cidade)">
+                        <input type="text" id="selectOrder" placeholder="ORDER BY (ex: nome DESC)">
+                        <input type="text" id="selectLimit" placeholder="LIMIT (ex: 10)">
                     </div>
                 `,
                 insert: `
@@ -466,13 +469,29 @@
                 `
             };
             container.innerHTML = options[type] || '<p>Selecione um tipo de script</p>';
+            const defaults = {
+                select: ['all'], insert: ['values'], update: ['set', 'where'], delete: ['where'],
+                create: ['basic'], alter: ['add'], drop: ['table'], join: ['inner'], group: ['count']
+            };
+            (defaults[type] || []).forEach(setOption);
         }
 
         function setOption(opt) {
-            document.querySelectorAll('.opt-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.dataset.opt === opt) btn.classList.add('active');
-            });
+            const button = document.querySelector(`#optionsContainer .opt-btn[data-opt="${opt}"]`);
+            if (!button) return;
+            button.classList.toggle('active');
+            if (opt === 'all' && button.classList.contains('active')) {
+                document.querySelectorAll('#optionsContainer .opt-btn').forEach(btn => {
+                    if (btn !== button && ['count', 'distinct'].includes(btn.dataset.opt)) btn.classList.remove('active');
+                });
+            }
+            if (['count', 'distinct'].includes(opt) && button.classList.contains('active')) {
+                document.querySelector('#optionsContainer .opt-btn[data-opt="all"]')?.classList.remove('active');
+            }
+        }
+
+        function hasOption(option) {
+            return Boolean(document.querySelector(`#optionsContainer .opt-btn[data-opt="${option}"].active`));
         }
 
         // ============================================
@@ -489,8 +508,15 @@
                     const cols = document.getElementById('selectColumns')?.value || '*';
                     const table = document.getElementById('selectTable')?.value || 'usuarios';
                     const where = document.getElementById('selectCondition')?.value || '';
-                    script = `SELECT ${cols} FROM ${table}`;
-                    if (where) script += ` WHERE ${where}`;
+                    const group = document.getElementById('selectGroup')?.value || '';
+                    const order = document.getElementById('selectOrder')?.value || '';
+                    const limit = document.getElementById('selectLimit')?.value || '';
+                    const selectedColumns = hasOption('count') ? `COUNT(${cols === '*' ? '*' : cols})` : cols;
+                    script = `SELECT ${hasOption('distinct') ? 'DISTINCT ' : ''}${selectedColumns} FROM ${table}`;
+                    if (hasOption('where') && where) script += ` WHERE ${where}`;
+                    if (hasOption('group') && group) script += ` GROUP BY ${group}`;
+                    if (hasOption('order') && order) script += ` ORDER BY ${order}`;
+                    if (hasOption('limit') && limit) script += ` LIMIT ${limit}`;
                     script += ';';
                     description = 'Script SELECT gerado com sucesso!';
                     break;
@@ -500,8 +526,10 @@
                     const insertCols = document.getElementById('insertColumns')?.value || 'nome, email';
                     const insertVals = document.getElementById('insertValues')?.value || "'João', 'joao@email.com'";
                     const insertSelect = document.getElementById('insertSelect')?.value || '';
-                    if (insertSelect) {
+                    if (hasOption('select') && insertSelect) {
                         script = `INSERT INTO ${insertTable} (${insertCols}) ${insertSelect};`;
+                    } else if (hasOption('multiple')) {
+                        script = `INSERT INTO ${insertTable} (${insertCols}) VALUES (${insertVals}), (${insertVals});`;
                     } else {
                         script = `INSERT INTO ${insertTable} (${insertCols}) VALUES (${insertVals});`;
                     }
@@ -512,14 +540,18 @@
                     const updateTable = document.getElementById('updateTable')?.value || 'usuarios';
                     const updateSet = document.getElementById('updateSet')?.value || "nome = 'Novo'";
                     const updateCond = document.getElementById('updateCondition')?.value || 'id = 1';
-                    script = `UPDATE ${updateTable} SET ${updateSet} WHERE ${updateCond};`;
+                    script = `UPDATE ${updateTable} SET ${updateSet}`;
+                    if (hasOption('where') && updateCond) script += ` WHERE ${updateCond}`;
+                    script += ';';
                     description = 'Script UPDATE gerado com sucesso!';
                     break;
 
                 case 'delete':
                     const deleteTable = document.getElementById('deleteTable')?.value || 'usuarios';
                     const deleteCond = document.getElementById('deleteCondition')?.value || 'id = 1';
-                    script = `DELETE FROM ${deleteTable} WHERE ${deleteCond};`;
+                    script = `DELETE FROM ${deleteTable}`;
+                    if (hasOption('where')) script += ` WHERE ${deleteCond}`;
+                    script += ';';
                     description = 'Script DELETE gerado com sucesso!';
                     break;
 
@@ -600,54 +632,44 @@
                 showResult('', '⚠️ Digite um script ou comando para validar');
                 return;
             }
+            const analysis = analyzeCommand(input);
+            showResult(analysis.normalized, analysis.status, analysis.errors);
+        }
 
-            let validated = input;
-            let status = '✅ Script validado com sucesso!';
-            let errors = [];
+        function analyzeCommand(input) {
+            const normalized = input.replace(/\s+/g, ' ').trim();
+            const lower = normalized.toLowerCase();
+            const upper = normalized.toUpperCase();
+            const errors = [];
+            let family = 'comando';
+            let corrected = normalized;
 
-            const sqlKeywords = ['SELECT', 'INSERT', 'UPDATE', 'DELETE', 'CREATE', 'ALTER', 'DROP', 'JOIN', 'GROUP BY'];
-            const upperInput = input.toUpperCase();
-            const isSQL = sqlKeywords.some(kw => upperInput.includes(kw));
-
-            if (isSQL) {
-                validated = validated.replace(/selec\s*/gi, 'SELECT ');
-                validated = validated.replace(/inser\s*/gi, 'INSERT ');
-                validated = validated.replace(/atuali\s*/gi, 'UPDATE ');
-                validated = validated.replace(/delet\s*/gi, 'DELETE ');
-                validated = validated.replace(/cri\s*/gi, 'CREATE ');
-                validated = validated.replace(/tabel\s*/gi, 'TABLE ');
-                validated = validated.replace(/onde\s*/gi, 'WHERE ');
-                validated = validated.replace(/ordena\s*/gi, 'ORDER BY ');
-                validated = validated.replace(/grup\s*/gi, 'GROUP BY ');
-                validated = validated.replace(/limi\s*/gi, 'LIMIT ');
-                validated = validated.replace(/\s*\*\s*/g, ' * ');
-                validated = validated.replace(/\s+/g, ' ').trim();
-
-                if (validated !== input) {
-                    status = '✅ Script corrigido automaticamente!';
-                }
+            if (/^(SELECT|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|WITH|TRUNCATE)\b/i.test(normalized)) {
+                family = 'SQL';
+                if (/^SELECT\b/i.test(normalized) && !/\bFROM\b/i.test(normalized)) errors.push('SELECT precisa de FROM, salvo quando consultar apenas uma expressão.');
+                if (/^UPDATE\b/i.test(normalized) && !/\bSET\b/i.test(normalized)) errors.push('UPDATE precisa de SET.');
+                if (/^(UPDATE|DELETE)\b/i.test(normalized) && !/\bWHERE\b/i.test(normalized)) errors.push('Atenção: operação sem WHERE pode alterar ou remover a tabela inteira.');
+                if (/^INSERT\b/i.test(normalized) && !/\bVALUES\b|\bSELECT\b/i.test(normalized)) errors.push('INSERT precisa de VALUES ou SELECT.');
+                if (!/[;]$/.test(normalized)) corrected += ';';
+            } else if (/^(git|docker|docker-compose|npm|npx|yarn|pnpm|bun|mvn|gradle|gradlew|java|javac|python|python3|pip|pip3|php|composer|go|cargo|rustc|dotnet|kubectl|terraform|ansible|curl|wget|ssh|chmod|chown|sudo|systemctl|ip|ss|ps|top|find|grep|ls|cd|pwd|cp|mv|rm|mkdir|cat|less|vim|echo|export|make)\b/i.test(normalized)) {
+                family = /^(git)\b/i.test(normalized) ? 'Git' : /^(docker|docker-compose)\b/i.test(normalized) ? 'Docker' : /^(mvn|gradle|gradlew|java|javac)\b/i.test(normalized) ? 'Java' : /^(npm|npx|yarn|pnpm|bun)\b/i.test(normalized) ? 'Node.js' : /^(kubectl|terraform|ansible)\b/i.test(normalized) ? 'Cloud/Infra' : /^(curl|wget|ssh|ip|ss)\b/i.test(normalized) ? 'Rede' : 'Terminal';
+                if (/^git\s+(commit|branch|switch|checkout|merge|rebase|reset|revert|push|pull|fetch)\b/i.test(normalized)) errors.push('Confirme a branch e o estado com git status antes de executar.');
+                if (/\b(--force|-f|rm\s+-rf|system prune|reset --hard|clean -f)\b/i.test(lower)) errors.push('Comando potencialmente destrutivo: revise o alvo antes de executar.');
+                if (/^(cd)\b/i.test(normalized) && !/^cd\s+\S+/i.test(normalized)) errors.push('cd precisa receber um caminho.');
+                if (/^(docker compose|docker-compose)\b/i.test(normalized) && /\bdown\b/i.test(normalized) && /\-v/.test(normalized)) errors.push('down -v também remove volumes do projeto.');
+            } else if (/^(const|let|var|function|class|import|export|document\.|window\.|console\.|fetch\(|async\b|await\b)/i.test(normalized)) {
+                family = 'JavaScript';
+                if (/\bfetch\s*\(/i.test(normalized) && !/catch|try/i.test(normalized)) errors.push('Considere tratar falhas de rede com try/catch ou catch.');
+            } else if (/(@Test|@SpringBootTest|@Mock|public\s+(class|record|interface)|System\.out|assertEquals|mvn\s+test)/i.test(normalized)) {
+                family = 'Java';
+                if (/@Test/i.test(normalized) && !/assert|verify|assertThrows/i.test(normalized)) errors.push('Um teste deve ter pelo menos uma verificação observável.');
             } else {
-                const linuxCmds = ['ls', 'cd', 'pwd', 'cp', 'mv', 'rm', 'mkdir', 'grep', 'find', 'cat', 'less', 'vim'];
-                const inputLower = input.toLowerCase();
-                const hasCmd = linuxCmds.some(cmd => inputLower.includes(cmd));
-                if (hasCmd) {
-                    validated = validated.replace(/li\s*/gi, 'ls ');
-                    validated = validated.replace(/copi\s*/gi, 'cp ');
-                    validated = validated.replace(/mov\s*/gi, 'mv ');
-                    validated = validated.replace(/remov\s*/gi, 'rm ');
-                    validated = validated.replace(/cri\s*past\s*/gi, 'mkdir ');
-                    validated = validated.replace(/busc\s*/gi, 'find ');
-                    validated = validated.replace(/procur\s*/gi, 'grep ');
-                    if (validated !== input) {
-                        status = '✅ Comando Linux corrigido automaticamente!';
-                    }
-                } else {
-                    status = '⚠️ Comando não reconhecido. Verifique a sintaxe.';
-                    errors.push('Comando não identificado como SQL ou Linux');
-                }
+                family = 'Comando genérico';
             }
 
-            showResult(validated, status, errors);
+            const changed = corrected !== input;
+            const status = errors.length > 0 ? `⚠️ ${family} analisado com recomendações` : changed ? `✅ ${family} normalizado` : `✅ ${family} recebido e analisado`;
+            return { normalized: corrected, status, errors };
         }
 
         // ============================================
@@ -663,60 +685,20 @@
                 return;
             }
 
-            let original = input;
-            let corrected = input;
-            let suggestions = [];
-
-            const sqlCorrections = {
-                'selec': 'SELECT', 'selct': 'SELECT', 'selc': 'SELECT',
-                'inser': 'INSERT', 'insrt': 'INSERT',
-                'updat': 'UPDATE', 'updte': 'UPDATE',
-                'delet': 'DELETE', 'delt': 'DELETE',
-                'creat': 'CREATE', 'crat': 'CREATE',
-                'alt': 'ALTER', 'altr': 'ALTER',
-                'drop': 'DROP', 'drp': 'DROP',
-                'form': 'FROM', 'frm': 'FROM',
-                'wher': 'WHERE', 'whr': 'WHERE',
-                'order by': 'ORDER BY', 'ordr by': 'ORDER BY',
-                'group by': 'GROUP BY', 'grp by': 'GROUP BY',
-                'limit': 'LIMIT', 'lmt': 'LIMIT',
-                'join': 'JOIN', 'jn': 'JOIN',
-                'inner': 'INNER', 'left': 'LEFT', 'right': 'RIGHT'
-            };
-
-            let words = input.split(' ');
-            let correctedWords = words.map(word => {
-                const lower = word.toLowerCase();
-                for (let [key, value] of Object.entries(sqlCorrections)) {
-                    if (lower.includes(key)) {
-                        suggestions.push(`"${word}" → "${value}"`);
-                        return word.replace(new RegExp(key, 'i'), value);
-                    }
-                }
-                return word;
-            });
-
-            corrected = correctedWords.join(' ');
-
-            if (corrected !== original) {
-                resultDiv.innerHTML = `
-                    <div class="validator-success">
-                        <span class="validator-icon">✅</span>
-                        <div class="validator-details">
-                            <strong>Comando corrigido:</strong>
-                            <code>${corrected}</code>
-                            ${suggestions.length > 0 ? `<div class="validator-suggestions">${suggestions.join(' • ')}</div>` : ''}
-                        </div>
+            const analysis = analyzeCommand(input);
+            const hasWarnings = analysis.errors.length > 0;
+            const icon = hasWarnings ? '⚠️' : '✅';
+            const title = analysis.normalized !== input ? `${analysis.status}:` : `${analysis.status}:`;
+            resultDiv.innerHTML = `
+                <div class="${hasWarnings ? 'validator-success' : 'validator-ok'}">
+                    <span class="validator-icon">${icon}</span>
+                    <div class="validator-details">
+                        <strong>${title}</strong>
+                        <code>${analysis.normalized.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code>
+                        ${analysis.errors.length ? `<div class="validator-suggestions">${analysis.errors.join(' • ')}</div>` : ''}
                     </div>
-                `;
-            } else {
-                resultDiv.innerHTML = `
-                    <div class="validator-ok">
-                        <span class="validator-icon">✅</span>
-                        <span>Comando válido! <code>${corrected}</code></span>
-                    </div>
-                `;
-            }
+                </div>
+            `;
         }
 
         // ============================================
