@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🏎️ F1 Knowledge Base Pro</title>
     <link rel="stylesheet" href="css/index.css">
 </head>
+
 <body>
     <div class="app-container">
         <!-- ============================================
@@ -72,10 +74,17 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="controle-versao.html">
-                            <span class="nav-icon">⚡</span>
+                        <a href="pages/controle-versao.html">
+                            <span class="nav-icon">🔀</span>
                             <span class="nav-text">Controle de Versão</span>
                             <span class="nav-badge">Git</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pages/http.html">
+                            <span class="nav-icon">🌐</span>
+                            <span class="nav-text">HTTP</span>
+                            <span class="nav-badge">Web</span>
                         </a>
                     </li>
                     <li class="nav-divider"></li>
@@ -92,7 +101,7 @@
             <div class="sidebar-footer">
                 <div class="user-info">
                     <span class="user-avatar">👤</span>
-                    <span class="user-name">Usuário</span>
+                    <span class="user-name">Leonardo Possan</span>
                 </div>
             </div>
         </aside>
@@ -108,10 +117,10 @@
                     <h1>Dashboard</h1>
                 </div>
                 <div class="top-bar-right">
-                    <div class="search-box">
-                        <input type="text" placeholder="🔍 Buscar...">
-                    </div>
-                    <button class="btn-ai">🤖 IA</button>
+                    <form class="search-box" id="smartSearchForm">
+                        <input type="search" id="searchInput" placeholder="🔍 O que você precisa fazer?" autocomplete="off">
+                    </form>
+                    <button class="btn-ai" id="smartSearchButton" type="submit" form="smartSearchForm">🤖 Consultar</button>
                 </div>
             </header>
 
@@ -121,7 +130,7 @@
                 <div class="f1-header">
                     <div class="f1-logo">
                         <span class="f1-emoji">🏎️</span>
-                        <span class="f1-title">F1 Knowledge</span>
+                        <span class="f1-title">F1 Base de conhecimento</span>
                         <span class="f1-subtitle">Base Pro</span>
                     </div>
                     <div class="ferrari-badge">⚡ SCUDERIA FERRARI</div>
@@ -131,6 +140,26 @@
                 <div class="dash-content">
                     <h2 class="dash-title">📊 Dashboard</h2>
                     <p class="dash-subtitle">Sua central de conhecimento para desenvolvimento e DevOps</p>
+
+                    <section class="smart-search-panel" aria-labelledby="smart-search-title">
+                        <div class="smart-search-copy">
+                            <span class="smart-search-kicker">CONSULTA INTELIGENTE</span>
+                            <h2 id="smart-search-title">Digite o que você quer fazer</h2>
+                            <p>Encontre comandos, explicações e o módulo certo a partir de uma frase simples.</p>
+                        </div>
+                        <div class="smart-suggestions" aria-label="Exemplos de consultas">
+                            <button type="button" data-query="ver pastas e diretórios ocultos">pastas ocultas</button>
+                            <button type="button" data-query="ver processos rodando">processos</button>
+                            <button type="button" data-query="ver containers Docker">containers Docker</button>
+                            <button type="button" data-query="ver alterações do Git">alterações do Git</button>
+                            <button type="button" data-query="reorganizar commits">rebase</button>
+                            <button type="button" data-query="relacionar tabelas">joins SQL</button>
+                            <button type="button" data-query="acompanhar logs de um container">logs Docker</button>
+                        </div>
+                        <div id="smartSearchResults" class="smart-search-results" hidden>
+                            <div id="smartSearchSummary" class="smart-search-summary"></div>
+                        </div>
+                    </section>
 
                     <!-- Stats -->
                     <div class="dash-stats">
@@ -154,51 +183,71 @@
 
                     <!-- Grid de Módulos -->
                     <div class="dash-grid">
-                        <div class="dash-card">
-                            <div class="card-icon">🗄️</div>
-                            <h3>Dados</h3>
-                            <p>Gerador de scripts SQL com filtros avançados</p>
-                            <span class="card-badge">4 bancos</span>
-                        </div>
+                        <!-- Card Dados -->
+                        <a href="pages/dados.html" class="dash-card-link">
+                            <div class="dash-card">
+                                <div class="card-icon">🗄️</div>
+                                <h3>Dados</h3>
+                                <p>Gerador de scripts SQL com filtros avançados</p>
+                                <span class="card-badge">4 bancos</span>
+                            </div>
+                        </a>
 
-                        <div class="dash-card">
-                            <div class="card-icon">🐧</div>
-                            <h3>Linux</h3>
-                            <p>Comandos, dicas e referência rápida</p>
-                            <span class="card-badge">250+ comandos</span>
-                        </div>
+                        <!-- Card Linux -->
+                        <a href="pages/linux.html" class="dash-card-link">
+                            <div class="dash-card">
+                                <div class="card-icon">🐧</div>
+                                <h3>Linux</h3>
+                                <p>Comandos, dicas e referência rápida</p>
+                                <span class="card-badge">250+ comandos</span>
+                            </div>
+                        </a>
 
-                        <div class="dash-card">
-                            <div class="card-icon">🐳</div>
-                            <h3>DevOps</h3>
-                            <p>Docker, Docker-Compose e containers</p>
-                            <span class="card-badge">Guia completo</span>
-                        </div>
+                        <!-- Card DevOps -->
+                        <a href="pages/devops.html" class="dash-card-link">
+                            <div class="dash-card">
+                                <div class="card-icon">🐳</div>
+                                <h3>DevOps</h3>
+                                <p>Docker, Docker-Compose e containers</p>
+                                <span class="card-badge">Guia completo</span>
+                            </div>
+                        </a>
 
-                        <div class="dash-card">
-                            <div class="card-icon">☕</div>
-                            <h3>Back-End</h3>
-                            <p>Java e Spring Boot 3</p>
-                            <span class="card-badge">Framework</span>
-                        </div>
+                        <!-- Card Back-End -->
+                        <a href="pages/backend.html" class="dash-card-link">
+                            <div class="dash-card">
+                                <div class="card-icon">☕</div>
+                                <h3>Back-End</h3>
+                                <p>Java e Spring Boot 3</p>
+                                <span class="card-badge">Framework</span>
+                            </div>
+                        </a>
 
-                        <div class="dash-card">
-                            <div class="card-icon">🎨</div>
-                            <h3>Front-End</h3>
-                            <p>HTML, CSS e JavaScript</p>
-                            <span class="card-badge">Fundamentos</span>
-                        </div>
+                        <!-- Card Front-End -->
+                        <a href="pages/frontend.html" class="dash-card-link">
+                            <div class="dash-card">
+                                <div class="card-icon">🎨</div>
+                                <h3>Front-End</h3>
+                                <p>HTML, CSS e JavaScript</p>
+                                <span class="card-badge">Fundamentos</span>
+                            </div>
+                        </a>
 
-                        <div class="dash-card">
-                            <div class="card-icon">⚡</div>
-                            <h3>Automação</h3>
-                            <p>Jenkins e N8N</p>
-                            <span class="card-badge">CI/CD</span>
-                        </div>
+                        <!-- Card Automação -->
+                        <a href="pages/automacao.html" class="dash-card-link">
+                            <div class="dash-card">
+                                <div class="card-icon">⚡</div>
+                                <h3>Automação</h3>
+                                <p>Jenkins e N8N</p>
+                                <span class="card-badge">CI/CD</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
         </main>
     </div>
+    <script src="js/dashboard.js"></script>
 </body>
+
 </html>

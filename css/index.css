@@ -314,6 +314,136 @@ body::before {
 }
 
 /* ============================================
+   CONSULTA INTELIGENTE
+   ============================================ */
+.smart-search-panel {
+    margin-bottom: 30px;
+    padding: 24px;
+    background: linear-gradient(135deg, rgba(255, 40, 0, 0.16), rgba(30, 30, 30, 0.9));
+    border: 1px solid rgba(255, 40, 0, 0.45);
+    border-radius: 14px;
+}
+
+.smart-search-copy {
+    margin-bottom: 16px;
+}
+
+.smart-search-kicker {
+    color: #ff6a4d;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.smart-search-copy h2 {
+    margin: 5px 0 6px;
+    color: #ffffff;
+    font-size: 22px;
+}
+
+.smart-search-copy p {
+    color: #c2c2c2;
+    font-size: 14px;
+}
+
+.smart-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.smart-suggestions button,
+.smart-action {
+    border: 1px solid rgba(255, 40, 0, 0.5);
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.32);
+    color: #f0f0f0;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 8px 12px;
+    transition: all 0.2s ease;
+}
+
+.smart-suggestions button:hover,
+.smart-action:hover {
+    background: rgba(255, 40, 0, 0.2);
+    border-color: #ff2800;
+}
+
+.smart-search-results {
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 16px;
+}
+
+.smart-search-summary {
+    color: #ff8066;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.smart-result {
+    background: rgba(0, 0, 0, 0.28);
+    border-left: 3px solid #ff2800;
+    border-radius: 8px;
+    margin-top: 10px;
+    padding: 14px;
+}
+
+.smart-result-heading {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.smart-result h3 {
+    color: #ffffff;
+    font-size: 15px;
+}
+
+.smart-result-module {
+    color: #ff8066;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.smart-result p {
+    color: #c2c2c2;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 7px 0 10px;
+}
+
+.smart-command {
+    background: #090909;
+    border-radius: 6px;
+    color: #ffb09d;
+    display: block;
+    font-family: Consolas, monospace;
+    font-size: 13px;
+    overflow-x: auto;
+    padding: 10px;
+    white-space: pre;
+}
+
+.smart-result-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.smart-link {
+    text-decoration: none;
+}
+
+.smart-empty {
+    color: #c2c2c2;
+    font-size: 13px;
+}
+
+/* ============================================
    CONTENT AREA
    ============================================ */
 .content-area {
@@ -612,6 +742,12 @@ body::before {
 
     .search-box input {
         width: 120px;
+    }
+
+    .smart-result-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
     }
 
     .content-area {

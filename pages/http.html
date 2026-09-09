@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌐 F1 HTTP - Códigos de Status</title>
+    <link rel="stylesheet" href="../css/http.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo"><span class="logo-icon">🏎️</span><span class="logo-text">F1</span><span class="logo-badge">PRO</span></div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="../index.html"><span class="nav-icon">📊</span><span class="nav-text">Dashboard</span></a></li>
+                    <li class="nav-divider"></li>
+                    <li class="nav-item"><a href="dados.html"><span class="nav-icon">🗄️</span><span class="nav-text">Dados</span><span class="nav-badge">SQL</span></a></li>
+                    <li class="nav-item"><a href="linux.html"><span class="nav-icon">🐧</span><span class="nav-text">Linux</span><span class="nav-badge">Terminal</span></a></li>
+                    <li class="nav-item"><a href="devops.html"><span class="nav-icon">🐳</span><span class="nav-text">DevOps</span><span class="nav-badge">Docker</span></a></li>
+                    <li class="nav-item"><a href="backend.html"><span class="nav-icon">☕</span><span class="nav-text">Back-End</span><span class="nav-badge">Spring</span></a></li>
+                    <li class="nav-item"><a href="frontend.html"><span class="nav-icon">🎨</span><span class="nav-text">Front-End</span><span class="nav-badge">JS</span></a></li>
+                    <li class="nav-item"><a href="automacao.html"><span class="nav-icon">⚡</span><span class="nav-text">Automação</span><span class="nav-badge">N8N</span></a></li>
+                    <li class="nav-item"><a href="controle-versao.html"><span class="nav-icon">🔀</span><span class="nav-text">Controle de Versão</span><span class="nav-badge">Git</span></a></li>
+                    <li class="nav-item active"><a href="http.html"><span class="nav-icon">🌐</span><span class="nav-text">HTTP</span><span class="nav-badge">Web</span></a></li>
+                    <li class="nav-divider"></li>
+                    <li class="nav-item"><a href="ia.html"><span class="nav-icon">🤖</span><span class="nav-text">Assistente IA</span><span class="nav-badge">AI</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer"><div class="user-info"><span class="user-avatar">👤</span><span class="user-name">Leonardo Possan</span></div></div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="top-bar-left"><button class="menu-toggle" type="button" aria-label="Abrir menu">☰</button><h1>HTTP - Códigos de Status</h1></div>
+                <div class="top-bar-right"><label class="search-box"><span aria-hidden="true">🔍</span><input id="httpSearch" type="search" placeholder="Buscar código ou significado..." autocomplete="off"></label></div>
+            </header>
+            <div class="content-area">
+                <div class="http-header">
+                    <div class="http-logo"><span class="http-emoji">🌐</span><span class="http-title">F1 HTTP</span><span class="http-subtitle">Status Code Reference</span></div>
+                    <div class="ferrari-badge">⚡ WEB PROTOCOL</div>
+                </div>
+                <section class="http-content">
+                    <div class="intro-card">
+                        <span class="section-kicker">REFERÊNCIA RÁPIDA</span>
+                        <h2>Todos os códigos HTTP que você precisa consultar</h2>
+                        <p>Os códigos indicam o resultado de uma requisição. Pesquise pelo número, nome ou situação, como “não encontrado”, “redirecionamento” ou “erro no servidor”.</p>
+                    </div>
+                    <div class="http-legend" aria-label="Famílias de códigos HTTP">
+                        <button type="button" data-filter="all" class="filter-button active">Todos</button>
+                        <button type="button" data-filter="1xx" class="filter-button">1xx Informação</button>
+                        <button type="button" data-filter="2xx" class="filter-button">2xx Sucesso</button>
+                        <button type="button" data-filter="3xx" class="filter-button">3xx Redirecionamento</button>
+                        <button type="button" data-filter="4xx" class="filter-button">4xx Cliente</button>
+                        <button type="button" data-filter="5xx" class="filter-button">5xx Servidor</button>
+                    </div>
+                    <div id="httpResults" class="http-groups"></div>
+                    <p id="httpEmpty" class="http-empty" hidden>Nenhum código encontrado. Tente buscar por número, nome ou situação.</p>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script>
+        const httpCodes = [
+            { family: '1xx', label: 'Informação', codes: [
+                ['100', 'Continue', 'O servidor recebeu os cabeçalhos e o cliente pode continuar a requisição.', 'Uploads grandes e requisições com Expect: 100-continue.'],
+                ['101', 'Switching Protocols', 'O servidor aceitou trocar o protocolo conforme solicitado pelo cliente.', 'Upgrade para WebSocket.'],
+                ['102', 'Processing', 'A requisição foi recebida, mas ainda está sendo processada.', 'Operações demoradas em WebDAV.'],
+                ['103', 'Early Hints', 'O servidor envia dicas preliminares para o cliente começar a carregar recursos.', 'Preload de CSS, fontes ou scripts antes da resposta final.']
+            ]},
+            { family: '2xx', label: 'Sucesso', codes: [
+                ['200', 'OK', 'A requisição foi processada com sucesso.', 'GET, PUT ou chamadas de API concluídas normalmente.'],
+                ['201', 'Created', 'Um novo recurso foi criado com sucesso.', 'POST que cria usuário, pedido ou outro recurso.'],
+                ['202', 'Accepted', 'A requisição foi aceita para processamento, mas ainda não terminou.', 'Jobs assíncronos e filas de processamento.'],
+                ['204', 'No Content', 'A operação teve sucesso e não há conteúdo para retornar.', 'DELETE ou atualização sem corpo de resposta.'],
+                ['206', 'Partial Content', 'O servidor retornou apenas uma parte do recurso.', 'Downloads com Range e streaming de mídia.'],
+                ['207', 'Multi-Status', 'A resposta traz resultados de múltiplas operações.', 'Operações em lote com WebDAV.'],
+                ['208', 'Already Reported', 'Os membros de uma resposta WebDAV já foram enumerados.', 'Evitar repetição em respostas de coleções.'],
+                ['226', 'IM Used', 'O servidor cumpriu uma requisição GET aplicando modificações delta.', 'Respostas incrementais e cache delta.']
+            ]},
+            { family: '3xx', label: 'Redirecionamento', codes: [
+                ['300', 'Multiple Choices', 'Existem várias representações possíveis para o recurso.', 'Negociação de conteúdo ou escolha de versão.'],
+                ['301', 'Moved Permanently', 'O recurso mudou permanentemente para outra URL.', 'Mudança definitiva de domínio ou rota.'],
+                ['302', 'Found', 'O recurso está temporariamente em outra URL.', 'Redirecionamento temporário após uma ação.'],
+                ['303', 'See Other', 'A resposta pode ser encontrada em outra URL usando GET.', 'Padrão Post/Redirect/Get após envio de formulário.'],
+                ['304', 'Not Modified', 'O recurso não mudou desde a última versão em cache.', 'Cache condicional com ETag ou If-Modified-Since.'],
+                ['307', 'Temporary Redirect', 'Redireciona temporariamente sem mudar o método HTTP.', 'Preservar POST durante uma mudança temporária.'],
+                ['308', 'Permanent Redirect', 'Redireciona permanentemente sem mudar o método HTTP.', 'Mover uma API mantendo o método original.']
+            ]},
+            { family: '4xx', label: 'Erro do cliente', codes: [
+                ['400', 'Bad Request', 'A requisição está malformada ou contém parâmetros inválidos.', 'JSON inválido, campo obrigatório ausente ou formato incorreto.'],
+                ['401', 'Unauthorized', 'É necessário autenticar para acessar o recurso.', 'Token ausente, inválido ou expirado.'],
+                ['402', 'Payment Required', 'O acesso depende de pagamento ou assinatura.', 'Limites de planos e recursos pagos.'],
+                ['403', 'Forbidden', 'O cliente foi identificado, mas não tem permissão.', 'Usuário sem papel ou autorização suficiente.'],
+                ['404', 'Not Found', 'O recurso solicitado não foi encontrado.', 'URL errada, ID inexistente ou rota não registrada.'],
+                ['405', 'Method Not Allowed', 'O método HTTP não é permitido para essa rota.', 'Enviar POST em uma rota que só aceita GET.'],
+                ['406', 'Not Acceptable', 'O servidor não consegue responder em um formato aceito pelo cliente.', 'Incompatibilidade no header Accept.'],
+                ['408', 'Request Timeout', 'O servidor esperou a requisição por tempo demais.', 'Cliente lento ou conexão interrompida.'],
+                ['409', 'Conflict', 'A requisição conflita com o estado atual do recurso.', 'Duplicidade, concorrência ou conflito de versão.'],
+                ['410', 'Gone', 'O recurso existia, mas foi removido permanentemente.', 'Endpoint ou conteúdo descontinuado.'],
+                ['413', 'Content Too Large', 'O corpo da requisição excede o tamanho permitido.', 'Upload acima do limite configurado.'],
+                ['415', 'Unsupported Media Type', 'O formato enviado não é suportado.', 'Enviar XML quando a API exige JSON.'],
+                ['422', 'Unprocessable Content', 'A sintaxe é válida, mas os dados não passam na validação.', 'Campos com valores inválidos em formulários ou APIs.'],
+                ['425', 'Too Early', 'O servidor não está disposto a processar uma requisição que pode ser repetida.', 'Proteção contra replay em requisições antecipadas.'],
+                ['426', 'Upgrade Required', 'O cliente precisa mudar de protocolo para continuar.', 'Exigir TLS ou outra versão de protocolo.'],
+                ['428', 'Precondition Required', 'O servidor exige uma condição para evitar conflitos.', 'Atualizações condicionais com If-Match.'],
+                ['429', 'Too Many Requests', 'O cliente excedeu o limite de requisições.', 'Rate limiting e proteção contra abuso.'],
+                ['431', 'Request Header Fields Too Large', 'Os cabeçalhos da requisição são grandes demais.', 'Cookies ou headers que ultrapassam o limite do servidor.'],
+                ['451', 'Unavailable For Legal Reasons', 'O recurso não está disponível por motivo legal.', 'Bloqueio exigido por legislação ou ordem judicial.'],
+                ['418', "I'm a teapot", 'Código definido originalmente como uma brincadeira no protocolo HTCPCP.', 'Testes, easter eggs e respostas humorísticas.']
+            ]},
+            { family: '5xx', label: 'Erro do servidor', codes: [
+                ['500', 'Internal Server Error', 'O servidor encontrou uma falha inesperada.', 'Exceção não tratada ou erro de aplicação.'],
+                ['501', 'Not Implemented', 'O servidor não suporta a funcionalidade solicitada.', 'Recurso ainda não implementado.'],
+                ['502', 'Bad Gateway', 'Um gateway recebeu resposta inválida do servidor upstream.', 'Proxy, balanceador ou API dependente com falha.'],
+                ['503', 'Service Unavailable', 'O serviço está temporariamente indisponível.', 'Manutenção, sobrecarga ou serviço fora do ar.'],
+                ['504', 'Gateway Timeout', 'O gateway não recebeu resposta a tempo do upstream.', 'Dependência lenta ou indisponível.'],
+                ['505', 'HTTP Version Not Supported', 'A versão HTTP usada não é suportada pelo servidor.', 'Cliente usando uma versão incompatível.'],
+                ['506', 'Variant Also Negotiates', 'A negociação de conteúdo encontrou uma configuração circular.', 'Erro de configuração em variantes de representação.'],
+                ['507', 'Insufficient Storage', 'O servidor não tem espaço suficiente para concluir a operação.', 'Armazenamento cheio durante upload ou geração de arquivo.'],
+                ['508', 'Loop Detected', 'O servidor detectou um loop infinito ao processar a requisição.', 'Referências circulares em WebDAV.'],
+                ['510', 'Not Extended', 'A extensão necessária para cumprir a requisição não foi atendida.', 'Requisições que dependem de extensões específicas.'],
+                ['511', 'Network Authentication Required', 'O cliente precisa se autenticar na rede antes de acessar o recurso.', 'Portais cativos de Wi-Fi e redes com autenticação.']
+            ]}
+        ];
+
+        const results = document.querySelector('#httpResults');
+        const empty = document.querySelector('#httpEmpty');
+        const search = document.querySelector('#httpSearch');
+        let selectedFamily = 'all';
+
+        const renderCodes = () => {
+            const query = search.value.toLowerCase().trim();
+            results.replaceChildren();
+            let visibleCodes = 0;
+
+            httpCodes.filter((group) => selectedFamily === 'all' || group.family === selectedFamily).forEach((group) => {
+                const matchingCodes = group.codes.filter((code) => code.join(' ').toLowerCase().includes(query));
+                if (!matchingCodes.length) return;
+                visibleCodes += matchingCodes.length;
+                const section = document.createElement('section');
+                section.className = `http-group ${group.family}`;
+                section.innerHTML = `<div class="group-heading"><h2>${group.family} <span>${group.label}</span></h2><strong>${matchingCodes.length} código${matchingCodes.length === 1 ? '' : 's'}</strong></div>`;
+                const grid = document.createElement('div');
+                grid.className = 'status-grid';
+                matchingCodes.forEach(([code, name, meaning, usage]) => {
+                    const card = document.createElement('article');
+                    card.className = 'status-card';
+                    card.innerHTML = `<div class="status-top"><span class="status-code">${code}</span><button type="button" class="copy-status" aria-label="Copiar código ${code}">📋</button></div><h3>${name}</h3><p>${meaning}</p><div class="status-use"><strong>Use quando</strong><span>${usage}</span></div>`;
+                    card.querySelector('.copy-status').addEventListener('click', async (event) => {
+                        await navigator.clipboard.writeText(code);
+                        event.currentTarget.textContent = '✓';
+                        window.setTimeout(() => { event.currentTarget.textContent = '📋'; }, 1200);
+                    });
+                    grid.append(card);
+                });
+                section.append(grid);
+                results.append(section);
+            });
+            empty.hidden = visibleCodes > 0;
+        };
+
+        document.querySelectorAll('[data-filter]').forEach((button) => button.addEventListener('click', () => {
+            selectedFamily = button.dataset.filter;
+            document.querySelectorAll('[data-filter]').forEach((item) => item.classList.toggle('active', item === button));
+            renderCodes();
+        }));
+        search.addEventListener('input', renderCodes);
+        document.querySelector('.menu-toggle').addEventListener('click', () => document.querySelector('.sidebar-nav').classList.toggle('open'));
+        renderCodes();
+    </script>
+</body>
+</html>
