@@ -97,8 +97,8 @@
                     <li class="nav-item">
                         <a href="ia.html">
                             <span class="nav-icon">🤖</span>
-                            <span class="nav-text">Assistente IA</span>
-                            <span class="nav-badge">AI</span>
+                            <span class="nav-text">IA &amp; Copilot</span>
+                            <span class="nav-badge">PRO</span>
                         </a>
                     </li>
                 </ul>
@@ -195,83 +195,734 @@
                     ========================================== -->
                     <div class="accordion" id="commandsAccordion">
                         <!-- ==========================================
-                             JAVA - FUNDAMENTOS
+                             JAVA - HISTÓRIA, JVM, MEMÓRIA & TIPAGEM
                         ========================================== -->
                         <div class="accordion-item">
-                            <div class="accordion-header" data-target="java-fundamentos">
-                                <span class="accordion-icon">☕</span>
-                                <span class="accordion-title">Java - Fundamentos</span>
-                                <span class="accordion-badge">Linguagem</span>
+                            <div class="accordion-header" data-target="java-arquitetura-historia">
+                                <span class="accordion-icon">🏛️</span>
+                                <span class="accordion-title">Java - História, JVM, Memória &amp; Tipagem</span>
+                                <span class="accordion-badge">Arquitetura &amp; Base</span>
                                 <span class="accordion-arrow">▶</span>
                             </div>
-                            <div class="accordion-body" id="java-fundamentos">
+                            <div class="accordion-body" id="java-arquitetura-historia">
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">public class Main { public static void main(String[] args) { ... } }</span>
-                                        <span class="cmd-desc">Estrutura básica de uma classe Java com método main</span>
+                                        <span class="cmd-text">História: Criado em 1995 (James Gosling / Sun Microsystems) -&gt; Oracle (2010)</span>
+                                        <span class="cmd-desc">Origem: Nasceu como "Green Project" e "Oak" para dispositivos inteligentes. Focou em segurança e portabilidade total, tornando-se a espinha dorsal de sistemas corporativos mundiais. Ciclo LTS moderno: 8, 11, 17, 21.</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">List<String> nomes = new ArrayList<>();</span>
-                                        <span class="cmd-desc">ArrayList - estrutura de dados dinâmica</span>
+                                        <span class="cmd-text">Onde Java é Usado: Fintechs, Bancos, Microsserviços, Big Data (Kafka/Spark), Android</span>
+                                        <span class="cmd-desc">O que posso criar: Sistemas bancários de alta concorrência (Pix, cartões), APIs corporativas com Spring Boot, processamento massivo de dados (Big Data), apps Android e plataformas de missão crítica.</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">Map<String, Integer> mapa = new HashMap<>();</span>
-                                        <span class="cmd-desc">HashMap - chave/valor para buscas rápidas</span>
+                                        <span class="cmd-text">Linguagem Estática e Fortemente Tipada: int x = 10; // Não compila se trocar o tipo</span>
+                                        <span class="cmd-desc">Fortemente Tipada: NADA no Java existe sem tipo definido. O compilador checa e garante compatibilidade de tipos antes de rodar (type-safety), impedindo erros catastróficos em produção.</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">Optional<String> nome = Optional.ofNullable(valor);</span>
-                                        <span class="cmd-desc">Optional - evita NullPointerException</span>
+                                        <span class="cmd-text">Inferência com 'var': var taxa = 0.15; // O tipo double é fixado na compilação</span>
+                                        <span class="cmd-desc">var não é tipagem dinâmica: o Java continua 100% estático. O compilador descobre o tipo no ato da atribuição e não permite que a variável mude de tipo depois.</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">list.stream().filter(s -> s.startsWith("A")).collect(Collectors.toList());</span>
-                                        <span class="cmd-desc">Streams - filtra elementos que começam com "A"</span>
+                                        <span class="cmd-text">Tríade: JDK (Desenvolvimento + javac) -&gt; JRE (Execução) -&gt; JVM (Máquina Virtual)</span>
+                                        <span class="cmd-desc">JDK contém o compilador e ferramentas; JRE fornece as bibliotecas de execução; a JVM executa as instruções do bytecode interpretando e otimizando para o hardware.</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">list.stream().map(String::toUpperCase).collect(Collectors.toList());</span>
-                                        <span class="cmd-desc">Streams - transforma todos para maiúsculo</span>
+                                        <span class="cmd-text">WORA: javac MeuApp.java -&gt; MeuApp.class (Bytecode) -&gt; Roda em qualquer SO com JVM</span>
+                                        <span class="cmd-desc">Write Once, Run Anywhere: você compila seu código uma única vez para Bytecode (.class) neutro, e a JVM de qualquer sistema operacional (Linux, Windows, macOS, ARM) o executa perfeitamente.</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">list.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());</span>
-                                        <span class="cmd-desc">Streams - ordenação reversa</span>
+                                        <span class="cmd-text">JVM por Dentro: ClassLoader -&gt; Bytecode Verifier -&gt; JIT Compiler (Just-In-Time)</span>
+                                        <span class="cmd-desc">Como a JVM roda tão rápido: O JIT Compiler identifica trechos quentes de código repetitivo (hotspots) e compila em tempo de execução diretamente para código de máquina nativo super otimizado.</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">record Pessoa(String nome, int idade) {}</span>
-                                        <span class="cmd-desc">Record - classe imutável (Java 17+)</span>
+                                        <span class="cmd-text">Memória Stack vs Heap: Stack guarda métodos/primitivos; Heap armazena instâncias (new)</span>
+                                        <span class="cmd-desc">Estrutura de Memória: Stack (Pilha LIFO rápida, limpa ao sair do escopo) vs Heap (Memória dinâmica compartilhada onde vivem todos os objetos e arrays criados pela aplicação).</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">sealed class Animal permits Cachorro, Gato {}</span>
-                                        <span class="cmd-desc">Sealed Class - controla herança (Java 17+)</span>
+                                        <span class="cmd-text">Garbage Collector (GC): Limpeza automática de objetos sem referência na Heap</span>
+                                        <span class="cmd-desc">Gerenciamento Automático: O GC rastreia objetos inalcançáveis e libera memória sozinho, eliminando ponteiros manuais, falhas de segmentação (Segmentation Faults) e vazamentos crônicos de memória.</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>
                                 <div class="cmd-item">
                                     <div class="cmd-left">
-                                        <span class="cmd-text">String texto = """ Linha 1 Linha 2 """;</span>
-                                        <span class="cmd-desc">Text Blocks - strings multilinha (Java 15+)</span>
+                                        <span class="cmd-text">Metaspace &amp; String Pool: Metaspace guarda metadados de classes; Pool reutiliza textos</span>
+                                        <span class="cmd-desc">Otimizações Nativas da JVM: Metaspace gerencia definições de classes fora da Heap comum, e a String Constant Pool reaproveita literais de texto para máxima economia de RAM.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             JAVA - SINTAXE, TIPOS & VARIÁVEIS (INICIANTE)
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="java-variaveis">
+                                <span class="accordion-icon">☕</span>
+                                <span class="accordion-title">Java - Sintaxe, Tipos &amp; Variáveis</span>
+                                <span class="accordion-badge">Iniciante</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="java-variaveis">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">public class Main { public static void main(String[] args) { System.out.println("Olá, Mundo!"); } }</span>
+                                        <span class="cmd-desc">Estrutura básica e método main: ponto de entrada que a JVM executa para iniciar a aplicação.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">byte nivel = 127; // 8 bits (-128 a 127)</span>
+                                        <span class="cmd-desc">byte: tipo inteiro compacto de 8 bits. Serve para economizar memória em streams de arquivos e buffers de dados brutos.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">short ano = 2026; // 16 bits (-32.768 a 32.767)</span>
+                                        <span class="cmd-desc">short: tipo inteiro de 16 bits. Usado quando a economia de memória em arrays volumosos é necessária.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">int quantidade = 100; // 32 bits (-2 bilhões a +2 bilhões)</span>
+                                        <span class="cmd-desc">int: tipo inteiro padrão no Java. Serve para contadores de loops, índices, quantidades e cálculos gerais.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">long identificador = 9876543210L; // 64 bits (sufixo L)</span>
+                                        <span class="cmd-desc">long: tipo inteiro de 64 bits para números astronômicos. Padrão na indústria para chaves primárias (IDs) de banco de dados e timestamps.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">float cotacao = 5.75f; // 32 bits (sufixo f)</span>
+                                        <span class="cmd-desc">float: número decimal de precisão simples de 32 bits. Utilizado em gráficos e processamento em lote com restrição de memória.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">double preco = 199.90; // 64 bits (padrão decimal)</span>
+                                        <span class="cmd-desc">double: tipo decimal padrão com dupla precisão (15 dígitos decimais). Usado em cálculos matemáticos e grandezas contínuas.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">boolean isAtivo = true; // true ou false (1 bit lógico)</span>
+                                        <span class="cmd-desc">boolean: armazena apenas verdadeiro ou falso. Essencial para controle de fluxo, validações e flags de status.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">char inicial = 'A'; // Caractere Unicode (aspas simples)</span>
+                                        <span class="cmd-desc">char: armazena um único caractere Unicode de 16 bits entre aspas simples. Usado para siglas, letras e códigos.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">String mensagem = "Bem-vindo ao Java!";</span>
+                                        <span class="cmd-desc">String: tipo por referência que representa texto imutável. Possui métodos úteis como .toUpperCase(), .trim() e .contains().</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Integer total = Integer.valueOf(50); // Wrapper Class</span>
+                                        <span class="cmd-desc">Wrappers (Integer, Double, Long, Boolean): transformam primitivos em objetos, permitindo uso em coleções (List, Map) e valores nulos.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">var nome = "Leonardo"; var idade = 25; // Java 10+</span>
+                                        <span class="cmd-desc">var (Inferência de Tipo): o compilador descobre o tipo da variável a partir do valor inicial, mantendo tipagem estática e código limpo.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">final double TAXA_FIXA = 0.15; // Constante imutável</span>
+                                        <span class="cmd-desc">final: impede que o valor da variável seja reatribuído após sua criação, garantindo imutabilidade e segurança no código.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Scanner sc = new Scanner(System.in); String texto = sc.nextLine();</span>
+                                        <span class="cmd-desc">Scanner: classe utilitária da JDK para ler dados digitados pelo usuário no terminal de forma interativa.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">System.out.printf("Produto: %s | Preço: R$ %.2f%n", "Mouse", 89.90);</span>
+                                        <span class="cmd-desc">System.out.printf: exibe texto formatado com placeholders (%s para string, %.2f para decimais com 2 casas, %d para inteiros).</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             JAVA - CASTING & CONVERSÕES DE TIPOS
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="java-casting">
+                                <span class="accordion-icon">🔄</span>
+                                <span class="accordion-title">Java - Casting &amp; Conversão de Tipos</span>
+                                <span class="accordion-badge">Essencial</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="java-casting">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">int num = 10; double d = num; // Widening automático (10.0)</span>
+                                        <span class="cmd-desc">Widening Casting (Implícito): converte automaticamente um tipo menor para um maior (byte &gt; short &gt; int &gt; long &gt; float &gt; double) sem perda de dados.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">double preco = 9.99; int inteiro = (int) preco; // Narrowing (resultado: 9)</span>
+                                        <span class="cmd-desc">Narrowing Casting (Explícito): converte manualmente um tipo maior para menor com parênteses. Trunca as casas decimais e pode perder precisão.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">int valor = Integer.parseInt("123");</span>
+                                        <span class="cmd-desc">Integer.parseInt: converte uma String contendo dígitos numéricos no primitivo int. Muito usado ao ler parâmetros de formulários e APIs.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">double saldo = Double.parseDouble("45.67");</span>
+                                        <span class="cmd-desc">Double.parseDouble: transforma uma representação textual de número decimal para o tipo primitivo double.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">String texto = String.valueOf(100);</span>
+                                        <span class="cmd-desc">String.valueOf: converte qualquer tipo primitivo ou objeto em sua representação em texto (String) de forma segura contra null.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">char letra = 'A'; int codigoAscii = (int) letra; // Retorna 65</span>
+                                        <span class="cmd-desc">Casting char para int: obtém o valor numérico da tabela Unicode/ASCII correspondente ao caractere.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Animal a = new Cachorro(); // Upcasting implícito</span>
+                                        <span class="cmd-desc">Upcasting (Polimorfismo): trata uma subclasse como o tipo genérico pai. Sempre é 100% seguro e não exige sintaxe de cast.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Cachorro c = (Cachorro) a; // Downcasting explícito</span>
+                                        <span class="cmd-desc">Downcasting: recupera a referência da subclasse para acessar seus métodos específicos. Deve ser validado para evitar ClassCastException.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">if (obj instanceof String s) { System.out.println(s.toUpperCase()); } // Java 16+</span>
+                                        <span class="cmd-desc">Pattern Matching com instanceof: checa o tipo do objeto e já declara e atribui a variável com cast automático em uma única linha segura.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             JAVA - OPERADORES & CONDICIONAIS
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="java-operadores">
+                                <span class="accordion-icon">🔀</span>
+                                <span class="accordion-title">Java - Operadores &amp; Condicionais</span>
+                                <span class="accordion-badge">Iniciante</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="java-operadores">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">int resto = 10 % 3; // Operador Módulo (retorna 1)</span>
+                                        <span class="cmd-desc">Módulo (%): calcula o resto de uma divisão inteira. Muito utilizado para verificar se um número é par (n % 2 == 0) ou múltiplos.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">x += 5; x++; ++y; // Atribuição composta e incremento</span>
+                                        <span class="cmd-desc">x += 5 equivale a x = x + 5. Pós-incremento (x++) usa o valor e soma depois; Pré-incremento (++y) soma antes de usar o valor.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">if (texto != null &amp;&amp; !texto.isBlank()) { ... }</span>
+                                        <span class="cmd-desc">E Lógico (&amp;&amp;) com Curto-Circuito: se a primeira condição for falsa, a segunda nem é avaliada, prevenindo erros de NullPointerException.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">if (isAdmin || isSuperUser) { ... }</span>
+                                        <span class="cmd-desc">OU Lógico (||) com Curto-Circuito: executa o bloco se ao menos uma das expressões for verdadeira.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">nome1.equals(nome2) // Comparação de conteúdo vs '==' (endereço de memória)</span>
+                                        <span class="cmd-desc">Regra de Ouro: NUNCA use '==' para comparar textos/Strings ou objetos em Java. Use .equals() para comparar o conteúdo real.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">String status = (pontos &gt;= 70) ? "Aprovado" : "Reprovado";</span>
+                                        <span class="cmd-desc">Operador Ternário (? :): condicional conciso em uma linha ideal para atribuições baseadas em condições booleanas.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">if (media &gt;= 7) { ... } else if (media &gt;= 5) { ... } else { ... }</span>
+                                        <span class="cmd-desc">if / else if / else: estrutura clássica para controle de fluxo com múltiplos ramos de decisão encadeados.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">String diaTexto = switch (dia) { case 1 -&gt; "Dom"; case 2 -&gt; "Seg"; default -&gt; "Outro"; }; // Java 14+</span>
+                                        <span class="cmd-desc">Switch Expression Moderno: retorna valores diretamente com seta (-&gt;) sem precisar de break manual, evitando bugs de queda (fall-through).</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">int bonus = switch (cargo) { case "DEV" -&gt; 1000; default -&gt; { log.warn("Desconhecido"); yield 0; } };</span>
+                                        <span class="cmd-desc">yield no Switch: devolve um resultado de dentro de um bloco de código multilinhas em uma switch expression.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             JAVA - LOOPS & CONTROLE DE FLUXO
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="java-loops">
+                                <span class="accordion-icon">🔁</span>
+                                <span class="accordion-title">Java - Loops &amp; Controle de Fluxo</span>
+                                <span class="accordion-badge">Essencial</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="java-loops">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">for (int i = 0; i &lt; 5; i++) { System.out.println("Índice: " + i); }</span>
+                                        <span class="cmd-desc">for tradicional: laço com contador fixo (inicialização; condição de parada; incremento). Ideal quando o total de voltas é pré-determinado.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">for (String nome : listaNomes) { System.out.println(nome); }</span>
+                                        <span class="cmd-desc">for-each (Enhanced For): itera sobre todos os elementos de arrays e coleções (List, Set) de forma limpa, segura e sem gerenciar índices manuais.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">while (sensor.isLigado()) { sensor.lerDados(); }</span>
+                                        <span class="cmd-desc">while: executa repetidamente enquanto a condição for verdadeira. A condição é testada no início (pode executar 0 vezes).</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">do { menu.exibir(); opcao = sc.nextInt(); } while (opcao != 0);</span>
+                                        <span class="cmd-desc">do-while: garante que o bloco de código seja executado pelo menos UMA vez antes de verificar a condição de continuidade no final.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">if (encontrado) break; // Interrompe o loop imediatamente</span>
+                                        <span class="cmd-desc">break: aborta a execução do laço de repetição imediatamente, transferindo o fluxo para a linha seguinte fora do loop.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">if (item.isNulo()) continue; // Pula para a próxima iteração</span>
+                                        <span class="cmd-desc">continue: interrompe a iteração atual e avança direto para a próxima volta do laço sem executar as linhas restantes do bloco.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">externo: for (int i = 0; i &lt; 10; i++) { for (int j = 0; j &lt; 10; j++) { if (achou) break externo; } }</span>
+                                        <span class="cmd-desc">Labeled Loop (Rótulo): permite que um break ou continue atue diretamente sobre um loop pai em laços aninhados profundos.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">return resultado; // Finaliza o método e entrega a resposta</span>
+                                        <span class="cmd-desc">return: encerra imediatamente a execução do método atual e devolve o valor para quem o invocou.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             JAVA - MÉTODOS, ARRAYS & POO
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="java-metodos-poo">
+                                <span class="accordion-icon">🧱</span>
+                                <span class="accordion-title">Java - Métodos, Arrays &amp; POO</span>
+                                <span class="accordion-badge">Intermediário</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="java-metodos-poo">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">public int somar(int a, int b) { return a + b; }</span>
+                                        <span class="cmd-desc">Anatomia do Método: define modificador de acesso, tipo de retorno, nome da função, lista de parâmetros e corpo de execução.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">public int somar(int a, int b, int c) { return a + b + c; } // Sobrecarga (Overload)</span>
+                                        <span class="cmd-desc">Sobrecarga de Métodos: permite múltiplos métodos com o mesmo nome na mesma classe, diferenciando pelos tipos ou quantidade de parâmetros.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">int[] numeros = new int[5]; int[] lista = {10, 20, 30};</span>
+                                        <span class="cmd-desc">Arrays: estruturas de tamanho fixo em memória para armazenar valores do mesmo tipo. O primeiro índice é sempre 0.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Arrays.sort(numeros); System.out.println(Arrays.toString(numeros));</span>
+                                        <span class="cmd-desc">Classe Arrays: utilitário da JDK para ordenar (.sort), buscar (.binarySearch) e exibir (.toString) arrays em formato legível.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">public class Cliente { private String nome; public Cliente(String nome) { this.nome = nome; } }</span>
+                                        <span class="cmd-desc">Classe e Construtor: o molde para objetos. O construtor inicializa o estado interno e a palavra 'this' referencia a própria instância.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">public String getNome() { return nome; } public void setNome(String nome) { this.nome = nome; }</span>
+                                        <span class="cmd-desc">Encapsulamento: mantém atributos privados e expõe Getters e Setters para controlar e validar acessos e alterações de dados.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">public class Gerente extends Funcionario { public Gerente(String n) { super(n); } }</span>
+                                        <span class="cmd-desc">Herança (extends): herda atributos e métodos da classe pai, reutilizando lógica e chamando o construtor pai com super().</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">@Override public void emitirSom() { System.out.println("Latido"); }</span>
+                                        <span class="cmd-desc">Polimorfismo e @Override: sobrescreve a implementação padrão de um método herdado para fornecer um comportamento especializado.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">public abstract class Conta { public abstract void debitar(double valor); }</span>
+                                        <span class="cmd-desc">Classe e Método Abstrato (abstract): serve como modelo e não pode ser instanciada diretamente, forçando subclasses a implementar seus métodos.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">public interface Pagamento { void processar(double valor); }</span>
+                                        <span class="cmd-desc">Interface (implements): define um contrato 100% público de operações que classes devem assinar e implementar.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">public static final double PI = 3.14159; Math.sqrt(25);</span>
+                                        <span class="cmd-desc">Membros Estáticos (static): pertencem à própria classe e não a uma instância individual. Podem ser chamados diretamente sem instanciar com new.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             JAVA - COLEÇÕES & ESTRUTURAS DE DADOS
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="java-colecoes">
+                                <span class="accordion-icon">📦</span>
+                                <span class="accordion-title">Java - Coleções &amp; Estruturas de Dados</span>
+                                <span class="accordion-badge">Intermediário</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="java-colecoes">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">List&lt;String&gt; lista = new ArrayList&lt;&gt;(); lista.add("Java"); lista.get(0);</span>
+                                        <span class="cmd-desc">ArrayList: lista dinâmica indexada mais comum do Java. Permite elementos duplicados e oferece busca rápida por índice O(1).</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">List&lt;String&gt; linked = new LinkedList&lt;&gt;();</span>
+                                        <span class="cmd-desc">LinkedList: lista duplamente encadeada. É mais rápida para inserções e remoções frequentes no início ou meio da estrutura.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Set&lt;String&gt; unicos = new HashSet&lt;&gt;(); unicos.add("A"); unicos.add("A"); // Armazena apenas 1</span>
+                                        <span class="cmd-desc">HashSet: conjunto não ordenado que não aceita elementos duplicados. Operações de busca (.contains) e inserção ultrarrápidas O(1).</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Set&lt;Integer&gt; ordenados = new TreeSet&lt;&gt;(List.of(5, 1, 9)); // [1, 5, 9]</span>
+                                        <span class="cmd-desc">TreeSet: conjunto que armazena elementos automaticamente ordenados em árvore rubro-negra (ordem natural ou personalizada via Comparator).</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Map&lt;String, String&gt; capitais = new HashMap&lt;&gt;(); capitais.put("SP", "São Paulo");</span>
+                                        <span class="cmd-desc">HashMap: estrutura de dicionário em pares chave-valor únicos. Recuperação instantânea O(1) pelo método .get(chave).</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Queue&lt;String&gt; fila = new LinkedList&lt;&gt;(); fila.offer("Primeiro"); String proximo = fila.poll();</span>
+                                        <span class="cmd-desc">Queue (Fila FIFO): primeiro elemento a entrar é o primeiro a sair. poll() remove o topo e peek() apenas consulta sem remover.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Deque&lt;String&gt; pilha = new ArrayDeque&lt;&gt;(); pilha.push("Item 1"); pilha.pop();</span>
+                                        <span class="cmd-desc">Deque / Pilha (LIFO): estrutura moderna para pilhas (último a entrar, primeiro a sair), muito mais rápida que a classe legada Stack.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">List&lt;String&gt; imutavel = List.of("A", "B", "C"); // Java 9+</span>
+                                        <span class="cmd-desc">List.of / Set.of / Map.of: fábricas de coleções 100% imutáveis e seguras contra alterações concorrentes em tempo de execução.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Collections.sort(lista); Collections.reverse(lista);</span>
+                                        <span class="cmd-desc">Collections utilitário: métodos prontos para ordenar, inverter, embaralhar (.shuffle) e sincronizar coleções.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">public class Caixa&lt;T&gt; { private T valor; public T get() { return valor; } }</span>
+                                        <span class="cmd-desc">Generics (&lt;T&gt;): parametrização de tipos para garantir segurança de tipos (type-safety) em tempo de compilação sem cast manual.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             JAVA - TRATAMENTO DE EXCEÇÕES
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="java-excecoes">
+                                <span class="accordion-icon">⚠️</span>
+                                <span class="accordion-title">Java - Tratamento de Exceções</span>
+                                <span class="accordion-badge">Intermediário</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="java-excecoes">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">try { int res = 10 / 0; } catch (ArithmeticException e) { System.err.println(e.getMessage()); }</span>
+                                        <span class="cmd-desc">try-catch: intercepta e trata erros em tempo de execução, impedindo que a aplicação trave de forma inesperada.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">try { ... } catch (IOException | SQLException e) { log.error("Falha de I/O ou BD", e); }</span>
+                                        <span class="cmd-desc">Multi-Catch: captura múltiplos tipos de exceção no mesmo bloco usando pipe (|), evitando repetição desnecessária de blocos de tratamento.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">try { ... } finally { conexao.close(); }</span>
+                                        <span class="cmd-desc">finally: bloco que SEMPRE é executado após o try ou catch, mesmo se houver erro ou return antecipado. Ideal para limpar recursos.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">try (var reader = Files.newBufferedReader(path)) { String linha = reader.readLine(); }</span>
+                                        <span class="cmd-desc">try-with-resources: fecha automaticamente conexões, arquivos e streams que implementam AutoCloseable ao fim do bloco.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">if (saldo &lt; valor) { throw new SaldoInsuficienteException("Saldo insuficiente"); }</span>
+                                        <span class="cmd-desc">throw: lança intencionalmente uma exceção quando uma regra de negócio ou pré-condição do sistema é violada.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">public void processar() throws IOException { ... }</span>
+                                        <span class="cmd-desc">throws: declara na assinatura do método que ele pode propagar uma Checked Exception, obrigando o chamador a tratá-la com try-catch.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">public class RegraNegocioException extends RuntimeException { public RegraNegocioException(String msg) { super(msg); } }</span>
+                                        <span class="cmd-desc">Exceção Customizada: herda de RuntimeException para representar falhas de regras de negócio em arquiteturas modernas.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ==========================================
+                             JAVA - RECURSOS MODERNOS (JAVA 8 AO 21+)
+                        ========================================== -->
+                        <div class="accordion-item">
+                            <div class="accordion-header" data-target="java-moderno">
+                                <span class="accordion-icon">🚀</span>
+                                <span class="accordion-title">Java - Recursos Modernos (Java 8 ao 21+)</span>
+                                <span class="accordion-badge">Especialista</span>
+                                <span class="accordion-arrow">▶</span>
+                            </div>
+                            <div class="accordion-body" id="java-moderno">
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">lista.stream().filter(s -&gt; s.startsWith("A")).map(String::toUpperCase).toList();</span>
+                                        <span class="cmd-desc">Streams API &amp; Method Reference: processamento declarativo e funcional sobre coleções (filtragem, mapeamento e coleta).</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">Optional&lt;String&gt; opt = Optional.ofNullable(valor); String res = opt.orElse("Padrão");</span>
+                                        <span class="cmd-desc">Optional: container para valores que podem ser nulos, eliminando NullPointerException de forma elegante e expressiva.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">public record UsuarioDTO(Long id, String nome, String email) {} // Java 16+</span>
+                                        <span class="cmd-desc">Record: classe imutável concisa para transporte de dados (DTOs) com construtor, getters, equals, hashCode e toString gerados pela JVM.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">public sealed interface Notificacao permits Email, SMS, WhatsApp {} // Java 17+</span>
+                                        <span class="cmd-desc">Sealed Classes / Interfaces: controla e restringe expressamente quais classes têm autorização para estendê-la.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">String json = """ { "nome": "Leo", "ativo": true } """; // Java 15+</span>
+                                        <span class="cmd-desc">Text Blocks: strings multilinha delimitadas por 3 aspas, preservando formatação de JSON, SQL e HTML sem barras de escape.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">String tipo = switch (obj) { case Integer i -&gt; "Int: " + i; case String s -&gt; "Str: " + s; default -&gt; "Outro"; }; // Java 21+</span>
+                                        <span class="cmd-desc">Pattern Matching para Switch: avalia tipos complexos e faz cast de variáveis diretamente nas ramificações do switch.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">String primeiro = lista.getFirst(); String ultimo = lista.getLast(); List&lt;String&gt; rev = lista.reversed(); // Java 21+</span>
+                                        <span class="cmd-desc">Sequenced Collections: métodos padronizados da JDK 21 para acessar o primeiro, último e inverter coleções diretamente.</span>
+                                    </div>
+                                    <button class="btn-copy-cmd">📋 Copiar</button>
+                                </div>
+                                <div class="cmd-item">
+                                    <div class="cmd-left">
+                                        <span class="cmd-text">try (var executor = Executors.newVirtualThreadPerTaskExecutor()) { executor.submit(() -&gt; processar()); } // Java 21+</span>
+                                        <span class="cmd-desc">Virtual Threads (Loom): threads ultraleves gerenciadas pela JVM (milhões simultâneas) para I/O massivo com altíssimo throughput.</span>
                                     </div>
                                     <button class="btn-copy-cmd">📋 Copiar</button>
                                 </div>

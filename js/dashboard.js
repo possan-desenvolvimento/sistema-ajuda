@@ -80,10 +80,50 @@ const knowledgeDictionary = [
         link: 'pages/dados.html'
     },
     {
+        title: 'Entender a JVM, Memória (Stack/Heap) e Tipagem do Java',
+        keywords: ['jvm java', 'memoria heap stack', 'garbage collector', 'linguagem tipada java', 'bytecode java', 'historia java'],
+        command: 'javac App.java && java App # Bytecode -> JVM -> Máquina',
+        description: 'Arquitetura da JVM, compilação em Bytecode, gestão de memória Heap/Stack e tipagem estática e forte.',
+        module: 'Back-End',
+        link: 'pages/backend.html'
+    },
+    {
         title: 'Criar um endpoint no Spring Boot',
         keywords: ['endpoint spring', 'rota backend', 'controller java', 'api spring'],
         command: '@GetMapping("/rota")',
         description: 'Anotação usada para mapear uma rota GET em um controller Spring.',
+        module: 'Back-End',
+        link: 'pages/backend.html'
+    },
+    {
+        title: 'Declarar variáveis e tipos em Java',
+        keywords: ['variaveis java', 'tipos primitivos', 'int double string', 'declarar variavel java', 'var java'],
+        command: 'int idade = 25; var nome = "Leo";',
+        description: 'Declaração de tipos primitivos, objetos e inferência de tipo com var no Java.',
+        module: 'Back-End',
+        link: 'pages/backend.html'
+    },
+    {
+        title: 'Casting e conversão de tipos em Java',
+        keywords: ['casting java', 'converter string para int', 'parse int', 'downcasting', 'widening narrowing'],
+        command: 'int num = Integer.parseInt("123"); double d = (double) num;',
+        description: 'Conversões primitivas explícitas, parse de texto e verificação com instanceof no Java.',
+        module: 'Back-End',
+        link: 'pages/backend.html'
+    },
+    {
+        title: 'Loops e repetições em Java (for-each e while)',
+        keywords: ['loop java', 'for each java', 'laco repeticao', 'while java', 'percorrer lista java'],
+        command: 'for (String item : lista) { System.out.println(item); }',
+        description: 'Laços for-each, for tradicional, while e do-while para iteração sobre dados em Java.',
+        module: 'Back-End',
+        link: 'pages/backend.html'
+    },
+    {
+        title: 'Filtrar e transformar listas com Streams no Java',
+        keywords: ['stream java', 'filter map tolist', 'lambda java', 'programacao funcional java'],
+        command: 'lista.stream().filter(s -> s.length() > 3).map(String::toUpperCase).toList();',
+        description: 'Processamento declarativo e encadeado de coleções usando Streams e Lambdas.',
         module: 'Back-End',
         link: 'pages/backend.html'
     },
@@ -374,6 +414,30 @@ const knowledgeDictionary = [
         description: 'Remove recursos Docker não utilizados. Revise antes de confirmar, pois pode apagar imagens importantes.',
         module: 'DevOps',
         link: 'pages/devops.html'
+    },
+    {
+        title: 'Engenharia de Prompt & Economia de Tokens',
+        keywords: ['ia', 'prompt', 'copilot', 'tokens', 'economizar tokens', 'chatgpt', 'prompt engineering', 'inteligencia artificial'],
+        command: '#file:arquivo.java + Objetivo Claro + Restrições',
+        description: 'Como estruturar prompts cirúrgicos, reduzir o consumo de tokens e evitar alucinações da IA.',
+        module: 'IA & Copilot',
+        link: 'pages/ia.html'
+    },
+    {
+        title: 'Quando Usar Agent, Ask ou Plan no GitHub Copilot',
+        keywords: ['modo agent', 'ask chat', 'plan planning', 'quando usar agent', 'modos copilot', 'copilot agent'],
+        command: 'Ask (Dúvidas) | Plan (Estratégia) | Agent (Execução autônoma)',
+        description: 'Critérios para escolher entre modo Chat, Planejador de tarefas ou Agente com edição e testes.',
+        module: 'IA & Copilot',
+        link: 'pages/ia.html'
+    },
+    {
+        title: 'Skills e Agentes de IA (MCP e Tool Calling)',
+        keywords: ['skills ia', 'agentes ia', 'mcp', 'tool calling', 'subagentes', 'model context protocol', 'react loop'],
+        command: 'Skills (Conhecimento modular) + Tool Calling (Terminal & Files)',
+        description: 'Conceito e funcionamento de Skills sob demanda, agentes autônomos e servidores MCP.',
+        module: 'IA & Copilot',
+        link: 'pages/ia.html'
     }
 ];
 
